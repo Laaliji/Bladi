@@ -6,6 +6,7 @@ import { ChevronLeftIcon, ShareIcon, BookmarkIcon, PlayIcon, Volume2Icon, Camera
 
 interface HeritageDetailScreenProps {
   onBack?: () => void
+  isDark?: boolean
 }
 
 const HERITAGE_DATA = {
@@ -35,7 +36,8 @@ The mosque was founded in 1147 by the Almohad caliph Abd al-Mu'min after his con
   ],
 }
 
-export function HeritageDetailScreen({ onBack }: HeritageDetailScreenProps) {
+export function HeritageDetailScreen({ onBack, isDark }: HeritageDetailScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [saved, setSaved] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)

@@ -8,45 +8,11 @@ import { BottomNavigation } from '../bottom-navigation'
 
 interface HomeMapScreenProps {
   onRegionSelect?: (regionId: string) => void
+  isDark?: boolean
 }
 
-const NEARBY_HIGHLIGHTS = [
-  {
-    id: '1',
-    name: 'Jemaa el-Fnaa',
-    nameAr: 'جامع الفنا',
-    category: 'Heritage Site',
-    image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400&h=300&fit=crop',
-    distance: '0.5 km',
-  },
-  {
-    id: '2',
-    name: 'Bahia Palace',
-    nameAr: 'قصر الباهية',
-    category: 'Architecture',
-    image: 'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=400&h=300&fit=crop',
-    distance: '1.2 km',
-  },
-  {
-    id: '3',
-    name: 'Majorelle Garden',
-    nameAr: 'حديقة ماجوريل',
-    category: 'Heritage Site',
-    image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&h=300&fit=crop',
-    distance: '2.3 km',
-  },
-]
-
-const MAP_PINS = [
-  { id: '1', x: 45, y: 55, type: 'heritage' as const, name: 'Marrakech' },
-  { id: '2', x: 30, y: 25, type: 'artisan' as const, name: 'Fes' },
-  { id: '3', x: 15, y: 45, type: 'heritage' as const, name: 'Casablanca' },
-  { id: '4', x: 55, y: 70, type: 'food' as const, name: 'Ouarzazate' },
-  { id: '5', x: 25, y: 15, type: 'heritage' as const, name: 'Tangier' },
-  { id: '6', x: 68, y: 35, type: 'itinerary' as const, name: 'Merzouga' },
-]
-
-export function HomeMapScreen({ onRegionSelect }: HomeMapScreenProps) {
+export function HomeMapScreen({ onRegionSelect, isDark }: HomeMapScreenProps) {
+  void isDark // dark mode handled by parent container
   const [activeFilter, setActiveFilter] = useState('all')
   const [bottomSheetExpanded, setBottomSheetExpanded] = useState(false)
 

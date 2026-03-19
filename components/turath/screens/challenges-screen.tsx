@@ -6,6 +6,7 @@ import { ChevronLeftIcon, TrophyIcon, MapPinIcon, StarIcon } from '../icons'
 
 interface ChallengesScreenProps {
   onBack?: () => void
+  isDark?: boolean
 }
 
 const CHALLENGE_CATEGORIES = [
@@ -92,7 +93,8 @@ const UNLOCKED_REWARDS = [
   { id: '2', type: 'content', title: 'Exclusive Zellige Video', description: 'Behind the scenes with master craftsmen' },
 ]
 
-export function ChallengesScreen({ onBack }: ChallengesScreenProps) {
+export function ChallengesScreen({ onBack, isDark }: ChallengesScreenProps) {
+  void isDark // dark mode handled via CSS .dark class
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeTab, setActiveTab] = useState<'challenges' | 'leaderboard' | 'rewards'>('challenges')
 

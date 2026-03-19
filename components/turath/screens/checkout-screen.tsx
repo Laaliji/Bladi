@@ -7,6 +7,7 @@ import { ChevronLeftIcon, CheckIcon } from '../icons'
 interface CheckoutScreenProps {
   onBack?: () => void
   onComplete?: () => void
+  isDark?: boolean
 }
 
 const CART_ITEMS = [
@@ -36,7 +37,8 @@ const SHIPPING_OPTIONS = [
   { id: 'premium', name: 'Premium Shipping', price: 600, days: '1-2 days' },
 ]
 
-export function CheckoutScreen({ onBack, onComplete }: CheckoutScreenProps) {
+export function CheckoutScreen({ onBack, onComplete, isDark }: CheckoutScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [selectedShipping, setSelectedShipping] = useState('standard')
 
   const subtotal = CART_ITEMS.reduce((acc, item) => acc + item.price * item.quantity, 0)

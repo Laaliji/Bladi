@@ -7,9 +7,11 @@ import { ChevronLeftIcon, ChevronRightIcon, CheckIcon, GlobeIcon, BellIcon, User
 
 interface SettingsScreenProps {
   onBack?: () => void
+  isDark?: boolean
 }
 
-export function SettingsScreen({ onBack }: SettingsScreenProps) {
+export function SettingsScreen({ onBack, isDark }: SettingsScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [selectedLanguage, setSelectedLanguage] = useState('en')
   const [notifications, setNotifications] = useState({
     newContent: true,

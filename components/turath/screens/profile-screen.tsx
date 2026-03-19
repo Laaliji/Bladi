@@ -8,6 +8,7 @@ import { BottomNavigation } from '../bottom-navigation'
 interface ProfileScreenProps {
   onSettingsClick?: () => void
   onChallengesClick?: () => void
+  isDark?: boolean
 }
 
 const USER_DATA = {
@@ -51,7 +52,8 @@ const ACTIVE_CHALLENGES = [
   { id: '2', title: 'Support 3 local artisans', progress: 2, total: 3, reward: '10% Discount Coupon' },
 ]
 
-export function ProfileScreen({ onSettingsClick, onChallengesClick }: ProfileScreenProps) {
+export function ProfileScreen({ onSettingsClick, onChallengesClick, isDark }: ProfileScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [activeTab, setActiveTab] = useState<'badges' | 'progress' | 'history'>('badges')
 
   return (

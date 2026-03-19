@@ -9,6 +9,7 @@ import { BottomNavigation } from '../bottom-navigation'
 interface MarketplaceScreenProps {
   onProductSelect?: (productId: string) => void
   onArtisanSelect?: (artisanId: string) => void
+  isDark?: boolean
 }
 
 const FEATURED_ARTISANS = [
@@ -97,7 +98,8 @@ const PRODUCTS = [
   },
 ]
 
-export function MarketplaceScreen({ onProductSelect, onArtisanSelect }: MarketplaceScreenProps) {
+export function MarketplaceScreen({ onProductSelect, onArtisanSelect, isDark }: MarketplaceScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [likedProducts, setLikedProducts] = useState<Record<string, boolean>>(
     PRODUCTS.reduce((acc, p) => ({ ...acc, [p.id]: p.liked }), {})

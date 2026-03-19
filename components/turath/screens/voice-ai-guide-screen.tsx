@@ -8,6 +8,7 @@ import { BottomNavigation } from '../bottom-navigation'
 
 interface VoiceAIGuideScreenProps {
   onBack?: () => void
+  isDark?: boolean
 }
 
 const SUGGESTED_QUESTIONS = [
@@ -27,7 +28,8 @@ const INITIAL_MESSAGES: ChatMessage[] = [
   },
 ]
 
-export function VoiceAIGuideScreen({ onBack }: VoiceAIGuideScreenProps) {
+export function VoiceAIGuideScreen({ onBack, isDark }: VoiceAIGuideScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES)
   const [isListening, setIsListening] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)

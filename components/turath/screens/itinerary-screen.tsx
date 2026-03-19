@@ -7,6 +7,7 @@ import { ChevronLeftIcon, WalkingIcon, CarIcon, BusIcon, NavigationIcon, CheckIc
 
 interface ItineraryScreenProps {
   onBack?: () => void
+  isDark?: boolean
 }
 
 const ITINERARY_DATA = {
@@ -72,7 +73,8 @@ const ITINERARY_DATA = {
   ],
 }
 
-export function ItineraryScreen({ onBack }: ItineraryScreenProps) {
+export function ItineraryScreen({ onBack, isDark }: ItineraryScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [selectedDay, setSelectedDay] = useState(1)
   const [transportMode, setTransportMode] = useState<TransportMode>('walking')
 

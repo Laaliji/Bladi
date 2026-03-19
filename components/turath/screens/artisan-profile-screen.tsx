@@ -7,6 +7,7 @@ import { ChevronLeftIcon, ShareIcon, StarIcon, VerifiedIcon, HeartIcon, CartIcon
 interface ArtisanProfileScreenProps {
   onBack?: () => void
   onAddToCart?: (productId: string) => void
+  isDark?: boolean
 }
 
 const ARTISAN_DATA = {
@@ -76,7 +77,8 @@ const REVIEWS = [
   },
 ]
 
-export function ArtisanProfileScreen({ onBack, onAddToCart }: ArtisanProfileScreenProps) {
+export function ArtisanProfileScreen({ onBack, onAddToCart, isDark }: ArtisanProfileScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [isFollowing, setIsFollowing] = useState(ARTISAN_DATA.following)
   const [activeTab, setActiveTab] = useState<'portfolio' | 'products' | 'reviews'>('portfolio')
 

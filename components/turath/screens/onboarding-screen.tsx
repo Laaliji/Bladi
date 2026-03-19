@@ -7,9 +7,11 @@ import { CheckIcon, ChevronRightIcon } from '../icons'
 
 interface OnboardingScreenProps {
   onComplete?: () => void
+  isDark?: boolean
 }
 
-export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
+export function OnboardingScreen({ onComplete, isDark }: OnboardingScreenProps) {
+  void isDark // dark mode handled by parent container
   const [step, setStep] = useState<'splash' | 'language' | 'interests'>('splash')
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null)
   const [selectedInterests, setSelectedInterests] = useState<string[]>([])

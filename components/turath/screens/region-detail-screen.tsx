@@ -8,6 +8,7 @@ import { ChevronLeftIcon, BookmarkIcon, ShareIcon, MapPinIcon, HeartIcon } from 
 interface RegionDetailScreenProps {
   onBack?: () => void
   onCardSelect?: (id: string) => void
+  isDark?: boolean
 }
 
 const REGION_DATA = {
@@ -77,7 +78,8 @@ const CONTENT_CARDS = [
   },
 ]
 
-export function RegionDetailScreen({ onBack, onCardSelect }: RegionDetailScreenProps) {
+export function RegionDetailScreen({ onBack, onCardSelect, isDark }: RegionDetailScreenProps) {
+  void isDark // dark mode via CSS .dark class
   const [activeTab, setActiveTab] = useState('history')
   const [savedItems, setSavedItems] = useState<Record<string, boolean>>(
     CONTENT_CARDS.reduce((acc, card) => ({ ...acc, [card.id]: card.saved }), {})
