@@ -1,5 +1,5 @@
-import { ScreenGallery } from "@/components/turath/screen-gallery"
+import { AppShell } from "@/components/turath/app-shell"
 
 export default function TurathPage() {
-  return <ScreenGallery />
+  return <AppShell />
 }

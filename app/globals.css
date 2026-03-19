@@ -215,3 +215,53 @@
 .waveform-bar {
   animation: waveform 1s ease-in-out infinite;
 }
+
+/* ── Screen Transition Animations ─────────────────────────── */
+@keyframes screenEnterRight {
+  from { transform: translateX(100%); opacity: 0.6; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes screenEnterLeft {
+  from { transform: translateX(-100%); opacity: 0.6; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes screenExitLeft {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes screenExitRight {
+  from { transform: translateX(0);   opacity: 1; }
+  to   { transform: translateX(100%); opacity: 0; }
+}
+
+.screen-enter-right {
+  animation: screenEnterRight 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  z-index: 10;
+}
+
+.screen-enter-left {
+  animation: screenEnterLeft 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  z-index: 10;
+}
+
+.screen-exit-left {
+  animation: screenExitLeft 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  z-index: 5;
+}
+
+.screen-exit-right {
+  animation: screenExitRight 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  z-index: 5;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
