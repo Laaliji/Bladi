@@ -116,14 +116,22 @@ export function ScreenGallery() {
             const ScreenComponent = screen.component
             return (
               <div key={screen.id} className="flex flex-col items-center gap-3">
-                <button
+                <div
+                  role="button"
+                  tabIndex={0}
                   onClick={() => setSelectedScreen(selectedScreen === screen.id ? null : screen.id)}
-                  className="transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#C1121F] focus:ring-offset-4 rounded-[3rem]"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      setSelectedScreen(selectedScreen === screen.id ? null : screen.id)
+                    }
+                  }}
+                  className="transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#C1121F] focus:ring-offset-4 rounded-[3rem] cursor-pointer"
                 >
                   <PhoneFrame isDark={isDark}>
                     <ScreenComponent isDark={isDark} />
                   </PhoneFrame>
-                </button>
+                </div>
                 <span className={cn(
                   "text-sm font-medium",
                   isDark ? "text-white/80" : "text-[#1a1a1a]/80"

@@ -6,6 +6,22 @@ import { FILTER_CHIPS } from '@/lib/turath-types'
 import { SearchIcon, MicIcon, MapPinIcon, ChevronRightIcon } from '../icons'
 import { BottomNavigation } from '../bottom-navigation'
 
+const MAP_PINS = [
+  { id: 'fez', name: 'Fez', x: 55, y: 35, type: 'heritage' as const },
+  { id: 'marrakech', name: 'Marrakech', x: 45, y: 55, type: 'artisan' as const },
+  { id: 'chefchaouen', name: 'Chefchaouen', x: 50, y: 28, type: 'heritage' as const },
+  { id: 'essaouira', name: 'Essaouira', x: 30, y: 52, type: 'food' as const },
+  { id: 'atlas', name: 'Atlas Mountains', x: 55, y: 60, type: 'itinerary' as const },
+  { id: 'tangier', name: 'Tangier', x: 48, y: 18, type: 'heritage' as const },
+]
+
+const NEARBY_HIGHLIGHTS = [
+  { id: '1', name: 'Al Quaraouiyine', category: 'Heritage', distance: '2.3 km', image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400' },
+  { id: '2', name: 'Chouara Tannery', category: 'Artisan', distance: '1.8 km', image: 'https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=400' },
+  { id: '3', name: 'Bab Boujloud', category: 'Heritage', distance: '3.1 km', image: 'https://images.unsplash.com/photo-1553899017-9279a3e1c0c9?w=400' },
+  { id: '4', name: 'Dar Batha', category: 'Museum', distance: '2.5 km', image: 'https://images.unsplash.com/photo-1548018560-c7196548e84d?w=400' },
+]
+
 interface HomeMapScreenProps {
   onRegionSelect?: (regionId: string) => void
   isDark?: boolean
