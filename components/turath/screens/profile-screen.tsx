@@ -24,9 +24,9 @@ const BADGES = [
 ]
 
 const REGION_PROGRESS = [
-  { id: '1', name: 'Marrakech-Safi', progress: 75, color: '#C1121F' },
-  { id: '2', name: 'Fes-Meknes', progress: 45, color: '#C9A84C' },
-  { id: '3', name: 'Casablanca-Settat', progress: 30, color: '#1B4332' },
+  { id: '1', name: 'Marrakech-Safi', progress: 75, color: '#C1272D' },
+  { id: '2', name: 'Fes-Meknes', progress: 45, color: '#F4C430' },
+  { id: '3', name: 'Casablanca-Settat', progress: 30, color: '#006233' },
   { id: '4', name: 'Draa-Tafilalet', progress: 60, color: '#8B5A2B' },
 ]
 
@@ -66,36 +66,41 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="pt-12 px-4 pb-6 bg-card border-b border-border">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold text-foreground">Profile</h1>
-          <button onClick={() => navigate('settings')} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Settings">
-            <SettingsIcon className="w-5 h-5 text-foreground" />
+      <div className="pt-12 px-4 pb-6 bg-[#2A52BE] text-white overflow-hidden relative shadow-md">
+        <div className="absolute inset-0 zellige-pattern opacity-10 pointer-events-none mix-blend-overlay" />
+        <div className="flex items-center justify-between mb-4 relative z-10">
+          <div className="flex flex-col gap-0.5">
+            <h1 className="text-3xl font-bold font-serif">Profile</h1>
+            <span className="text-sm font-sans tracking-widest text-[#F4C430]/90">ⴰⵎⵓⵖ</span>
+          </div>
+          <button onClick={() => navigate('settings')} className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors" aria-label="Settings">
+            <SettingsIcon className="w-5 h-5 text-white" />
           </button>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="w-20 h-20 rounded-2xl bg-cover bg-center border-2 border-accent" style={{ backgroundImage: `url(${USER_DATA.avatar})` }} />
+        <div className="flex items-center gap-4 relative z-10">
+          <div className="w-20 h-20 rounded-2xl bg-cover bg-center border-2 border-[#F4C430] shadow-lg" style={{ backgroundImage: `url(${USER_DATA.avatar})` }} />
           <div className="flex-1">
-            <h2 className="text-xl font-bold text-foreground">{USER_DATA.name}</h2>
+            <h2 className="text-2xl font-bold font-serif">{USER_DATA.name}</h2>
             <div className="flex items-center gap-2 mt-1">
               <span className="text-lg">🇺🇸</span>
               <span className="text-sm text-muted-foreground">{USER_DATA.country}</span>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Member since {USER_DATA.memberSince}</p>
+            <p className="text-xs text-white/80 mt-1">Member since {USER_DATA.memberSince}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 mt-4">
+        <div className="grid grid-cols-4 gap-2 mt-6 relative z-10">
           {[
-            { label: 'Regions', value: USER_DATA.stats.regionsVisited },
-            { label: 'Sites', value: USER_DATA.stats.sitesExplored },
-            { label: 'Artisans', value: USER_DATA.stats.artisansSupported },
-            { label: 'Languages', value: USER_DATA.stats.languagesUsed },
+            { label: 'Regions', labelAmz: 'ⵜⵉⵎⵏⴰⴹⵉⵏ', value: USER_DATA.stats.regionsVisited },
+            { label: 'Sites', labelAmz: 'ⵉⴷⵖⴰⵔⵏ', value: USER_DATA.stats.sitesExplored },
+            { label: 'Artisans', labelAmz: 'ⵉⵏⴰⵥⵓⵕⵏ', value: USER_DATA.stats.artisansSupported },
+            { label: 'Languages', labelAmz: 'ⵜⵓⵜⵍⴰⵢⵉⵏ', value: USER_DATA.stats.languagesUsed },
           ].map((stat, i) => (
-            <div key={i} className="text-center p-2 bg-muted rounded-xl">
-              <p className="text-lg font-bold text-foreground">{stat.value}</p>
-              <p className="text-xs text-muted-foreground">{stat.label}</p>
+            <div key={i} className="text-center p-2 bg-black/20 rounded-xl border border-white/10 backdrop-blur-sm flex flex-col items-center">
+              <p className="text-lg font-bold text-white font-serif">{stat.value}</p>
+              <p className="text-[10px] text-white/80 uppercase tracking-wider">{stat.label}</p>
+              <span className="text-[9px] font-sans opacity-70 mt-0.5">{stat.labelAmz}</span>
             </div>
           ))}
         </div>
@@ -104,7 +109,7 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
       {/* Tabs */}
       <div className="flex border-b border-border bg-card">
         {(['badges', 'progress', 'history'] as const).map((tab) => (
-          <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-3 text-sm font-medium transition-all border-b-2 capitalize", activeTab === tab ? "text-primary border-primary" : "text-muted-foreground border-transparent")}>
+          <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-4 text-sm font-bold font-serif transition-all border-b-2 capitalize", activeTab === tab ? "text-[#C1272D] border-[#C1272D] bg-[#C1272D]/5" : "text-muted-foreground border-transparent hover:bg-black/5 dark:hover:bg-white/5")}>
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
@@ -115,11 +120,11 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
           <div className="p-4">
             <div className="grid grid-cols-3 gap-3">
               {BADGES.map((badge) => (
-                <div key={badge.id} className={cn("p-4 rounded-2xl border text-center", badge.unlocked ? "bg-accent/10 border-accent" : "bg-muted border-border opacity-50")}>
-                  <div className={cn("w-12 h-12 rounded-full mx-auto flex items-center justify-center", badge.unlocked ? "bg-accent" : "bg-muted-foreground/20")}>
+                <div key={badge.id} className={cn("p-4 rounded-2xl border text-center transition-all", badge.unlocked ? "bg-[#F4C430]/10 border-[#F4C430] shadow-sm transform hover:-translate-y-1" : "bg-muted border-border opacity-60 grayscale")}>
+                  <div className={cn("w-12 h-12 rounded-full mx-auto flex items-center justify-center shadow-inner", badge.unlocked ? "bg-[#F4C430]" : "bg-muted-foreground/20")}>
                     <BadgeIcon type={badge.icon} unlocked={badge.unlocked} />
                   </div>
-                  <p className="text-xs font-medium text-foreground mt-2 truncate">{badge.name}</p>
+                  <p className="text-xs font-bold font-serif text-foreground mt-2 leading-tight">{badge.name}</p>
                 </div>
               ))}
             </div>

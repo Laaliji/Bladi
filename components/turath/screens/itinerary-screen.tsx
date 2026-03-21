@@ -37,15 +37,15 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
       {/* Header */}
       <div className="pt-12 px-4 pb-4 border-b border-border bg-card">
         <div className="flex items-center gap-3 mb-4">
-          <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Go back">
+          <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/5 transition-colors" aria-label="Go back">
             <ChevronLeftIcon className="w-5 h-5 text-foreground" />
           </button>
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-foreground">{ITINERARY_DATA.name}</h1>
-            <p className="text-sm font-serif text-accent" dir="rtl">{ITINERARY_DATA.nameAr}</p>
+            <h1 className="text-2xl font-bold font-serif text-foreground">{ITINERARY_DATA.name}</h1>
+            <p className="text-lg font-serif text-[#F4C430]" dir="rtl">{ITINERARY_DATA.nameAr}</p>
           </div>
-          <button onClick={() => navigate('voice-ai')} className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center" aria-label="AI Guide">
-            <WaveformIcon className="w-5 h-5 text-secondary" />
+          <button onClick={() => navigate('voice-ai')} className="w-10 h-10 rounded-full bg-[#2A52BE]/10 flex items-center justify-center hover:bg-[#2A52BE]/20 transition-colors" aria-label="AI Guide">
+            <WaveformIcon className="w-5 h-5 text-[#2A52BE]" />
           </button>
         </div>
 
@@ -60,7 +60,7 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
               key={id}
               onClick={() => setTransportMode(id)}
               className={cn("flex-1 py-2 px-3 rounded-xl flex items-center justify-center gap-2 transition-all text-sm font-medium",
-                transportMode === id ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                transportMode === id ? "bg-[#C1272D] text-white shadow-md font-bold" : "bg-muted text-muted-foreground hover:bg-muted/80"
               )}
             >
               <Icon className="w-4 h-4" />
@@ -76,7 +76,7 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
               key={day}
               onClick={() => setSelectedDay(day)}
               className={cn("flex-1 py-2 rounded-xl text-sm font-medium transition-all",
-                selectedDay === day ? "bg-accent text-accent-foreground" : "bg-muted text-muted-foreground"
+                selectedDay === day ? "bg-[#2A52BE] text-white shadow-md font-bold" : "bg-muted text-muted-foreground hover:bg-muted/80"
               )}
             >
               Day {day}
@@ -86,10 +86,10 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
       </div>
 
       {/* Progress */}
-      <div className="px-4 py-3 bg-secondary/10 flex items-center gap-3">
+      <div className="px-4 py-3 bg-[#006233]/5 flex items-center gap-3 border-y border-border/50">
         <div className="flex-1">
           <div className="h-2 bg-muted rounded-full overflow-hidden">
-            <div className="h-full bg-secondary rounded-full transition-all" style={{ width: `${(completedStops / totalStops) * 100}%` }} />
+            <div className="h-full bg-[#006233] rounded-full transition-all" style={{ width: `${(completedStops / totalStops) * 100}%` }} />
           </div>
         </div>
         <span className="text-sm font-medium text-foreground">{completedStops}/{totalStops} completed</span>
@@ -103,10 +103,10 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
             {ITINERARY_DATA.stops.map((stop, index) => (
               <div key={stop.id} className="flex gap-4">
                 <div className="relative z-10 flex-shrink-0">
-                  <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center",
-                    stop.completed ? "bg-secondary text-secondary-foreground" : "bg-muted text-muted-foreground"
+                  <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner",
+                    stop.completed ? "bg-[#F4C430] text-[#1A1A1A] border-2 border-[#F4C430]" : "bg-muted text-muted-foreground border-2 border-transparent"
                   )}>
-                    {stop.completed ? <CheckIcon className="w-6 h-6" /> : <span className="text-lg font-bold">{index + 1}</span>}
+                    {stop.completed ? <CheckIcon className="w-6 h-6" /> : <span className="text-lg font-bold font-serif">{index + 1}</span>}
                   </div>
                 </div>
                 <button
@@ -134,17 +134,18 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
       </div>
 
       {/* CTA */}
-      <div className="absolute bottom-0 left-0 right-0 bg-card border-t border-border">
+      <div className="absolute bottom-0 left-0 right-0 bg-card border-t border-[var(--turath-gold)]/20 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
         <div className="h-20 bg-[#E8E0D5] relative overflow-hidden">
-          <svg className="absolute inset-0 w-full h-full opacity-50" viewBox="0 0 100 20">
-            <path d="M10 10 Q25 5 40 10 T70 10 T100 10" fill="none" stroke="#C9A84C" strokeWidth="0.5" strokeDasharray="2,2" />
+          <div className="absolute inset-0 arabesque-pattern opacity-20 pointer-events-none" />
+          <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 100 20">
+            <path d="M10 10 Q25 5 40 10 T70 10 T100 10" fill="none" stroke="#2A52BE" strokeWidth="0.8" strokeDasharray="2,2" />
             {[10, 25, 40, 55, 70, 85].map((x, i) => (
-              <circle key={i} cx={x} cy="10" r="2" fill={i < 2 ? "#1B4332" : "#C1121F"} />
+              <circle key={i} cx={x} cy="10" r="2" fill={i < 2 ? "#006233" : "#C1272D"} />
             ))}
           </svg>
         </div>
-        <div className="p-4">
-          <button className="w-full py-4 px-6 bg-primary text-primary-foreground rounded-2xl font-semibold shadow-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+        <div className="p-4 bg-background">
+          <button className="w-full py-4 px-6 bg-[#C1272D] text-white rounded-2xl font-serif font-bold text-lg shadow-[0_8px_30px_rgba(193,39,45,0.3)] hover:bg-[#A00F1A] transition-colors flex items-center justify-center gap-2">
             <NavigationIcon className="w-5 h-5" />
             <span>Start Navigation</span>
           </button>

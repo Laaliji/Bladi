@@ -8,6 +8,7 @@ import { useNavigation } from '../navigation-provider'
 const HERITAGE_DATA = {
   title: 'Koutoubia Mosque',
   titleAr: 'جامع الكتبية',
+  titleAmz: 'ⵜⵉⵎⵣⴳⵉⴷⴰ ⵏ ⵍⴽⵓⵜⵓⴱⵉⵢⵢⴰ',
   description: `The Koutoubia Mosque is the largest mosque in Marrakech, Morocco. The mosque was founded in 1147 by the Almohad caliph Abd al-Mu'min after his conquest of Marrakesh. The minaret, completed under the reign of Yaqub al-Mansur (1184–1199), stands as one of the finest examples of Almohad architecture.`,
   images: [
     'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=800&h=600&fit=crop',
@@ -15,12 +16,13 @@ const HERITAGE_DATA = {
     'https://images.unsplash.com/photo-1580746738099-78d6833b3f84?w=800&h=600&fit=crop',
   ],
   pullQuote: 'صومعة الكتبية رمز من رموز مراكش العريقة',
+  pullQuoteAmz: 'ⵜⵉⵎⵣⴳⵉⴷⴰ ⵏ ⵍⴽⵓⵜⵓⴱⵉⵢⵢⴰ ⵜⴳⴰ ⵜⴰⵎⴰⵜⴰⵔⵜ ⵏ ⵎⵕⵕⴰⴽⵛ',
   pullQuoteEn: 'The Koutoubia Minaret — a timeless symbol of Marrakech',
   timeline: [
-    { year: '1147', event: 'Foundation by Almohad caliph', eventAr: 'تأسيس من طرف الموحدين' },
-    { year: '1158', event: 'Reconstruction begins', eventAr: 'بداية إعادة البناء' },
-    { year: '1195', event: 'Minaret completed', eventAr: 'اكتمال الصومعة' },
-    { year: '1990', event: 'UNESCO recognition', eventAr: 'اعتراف اليونسكو' },
+    { year: '1147', event: 'Foundation by Almohad caliph', eventAr: 'تأسيس من طرف الموحدين', eventAmz: 'ⴰⵙⵔⵙ ⵏ ⵉⵎⵡⴰⵃⴷⵉⵢⵏ' },
+    { year: '1158', event: 'Reconstruction begins', eventAr: 'بداية إعادة البناء', eventAmz: 'ⴰⵍⴰⵙ ⵏ ⵜⵓⵙⴽⴰ' },
+    { year: '1195', event: 'Minaret completed', eventAr: 'اكتمال الصومعة', eventAmz: 'ⵜⵉⴳⵉⵔⴰ ⵏ ⵜⵚⵚⵓⵎⵄⵜ' },
+    { year: '1990', event: 'UNESCO recognition', eventAr: 'اعتراف اليونسكو', eventAmz: 'ⴰⵙⵙⵏ ⵏ ⵢⵓⵏⵉⵙⴽⵓ' },
   ],
   relatedContent: [
     { id: '1', title: 'Almohad Dynasty', image: 'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=200&h=150&fit=crop' },
@@ -71,8 +73,11 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
         </div>
 
         <div className="absolute bottom-4 left-4 right-4">
-          <h1 className="text-2xl font-bold text-foreground">{HERITAGE_DATA.title}</h1>
-          <h2 className="text-xl font-serif text-accent" dir="rtl">{HERITAGE_DATA.titleAr}</h2>
+          <h1 className="text-3xl font-bold font-serif text-white drop-shadow-md">{HERITAGE_DATA.title}</h1>
+          <div className="flex flex-col gap-0.5">
+            <h2 className="text-2xl font-serif text-[#F4C430] drop-shadow-md" dir="rtl">{HERITAGE_DATA.titleAr}</h2>
+            <h3 className="text-sm font-sans text-[#F4C430]/90 drop-shadow-sm tracking-widest">{HERITAGE_DATA.titleAmz}</h3>
+          </div>
         </div>
       </div>
 
@@ -80,8 +85,8 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
       <div className="flex-1 px-4 pt-4 pb-28 space-y-6">
         <button
           onClick={() => setIsPlaying(!isPlaying)}
-          className={cn("w-full py-3 px-4 rounded-2xl flex items-center justify-center gap-3 transition-all",
-            isPlaying ? "bg-accent text-accent-foreground" : "bg-secondary text-secondary-foreground"
+          className={cn("w-full py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition-all",
+            isPlaying ? "bg-[#2A52BE] text-white shadow-[0_8px_30px_rgba(42,82,190,0.3)]" : "bg-[#006233] text-white shadow-lg"
           )}
         >
           {isPlaying ? (
@@ -105,19 +110,23 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
           <p className="text-foreground leading-relaxed text-sm">{HERITAGE_DATA.description}</p>
         </div>
 
-        <blockquote className="relative py-6 px-4 bg-accent/10 rounded-2xl border-l-4 border-accent">
-          <p className="text-lg font-serif text-accent leading-relaxed text-center" dir="rtl">{HERITAGE_DATA.pullQuote}</p>
-          <p className="text-sm text-muted-foreground mt-2 text-center italic">{HERITAGE_DATA.pullQuoteEn}</p>
+        <blockquote className="relative py-6 px-4 bg-[#F4C430]/10 rounded-2xl border-l-4 border-[#F4C430] overflow-hidden">
+          <div className="absolute inset-0 calligraphy-pattern opacity-30 pointer-events-none" />
+          <p className="text-xl font-serif text-[#F4C430] font-bold leading-relaxed text-center relative z-10 drop-shadow-sm" dir="rtl">{HERITAGE_DATA.pullQuote}</p>
+          <p className="text-sm font-sans text-[#F4C430]/80 mt-1 text-center relative z-10">{HERITAGE_DATA.pullQuoteAmz}</p>
+          <p className="text-sm text-muted-foreground mt-2 text-center italic relative z-10">{HERITAGE_DATA.pullQuoteEn}</p>
         </blockquote>
 
         <div>
           <h3 className="text-lg font-semibold text-foreground mb-4">Historical Timeline</h3>
-          <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
             {HERITAGE_DATA.timeline.map((item, index) => (
-              <div key={index} className="flex-shrink-0 w-32 p-3 bg-card rounded-2xl border border-border text-center">
-                <p className="text-xl font-bold text-primary">{item.year}</p>
-                <p className="text-xs text-foreground mt-1">{item.event}</p>
-                <p className="text-xs text-muted-foreground font-serif mt-1" dir="rtl">{item.eventAr}</p>
+              <div key={index} className="flex-shrink-0 w-32 p-4 bg-card rounded-2xl border border-border text-center shadow-md relative overflow-hidden">
+                <div className="absolute inset-0 zellige-pattern opacity-10 pointer-events-none" />
+                <p className="text-2xl font-bold font-serif text-[#C1272D] relative z-10 drop-shadow-sm">{item.year}</p>
+                <p className="text-xs text-foreground mt-2 relative z-10 font-medium">{item.event}</p>
+                <p className="text-xs text-muted-foreground font-serif mt-1 relative z-10" dir="rtl">{item.eventAr}</p>
+                <p className="text-[10px] text-muted-foreground/80 font-sans mt-0.5 relative z-10 tracking-wide">{item.eventAmz}</p>
               </div>
             ))}
           </div>
@@ -141,11 +150,11 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
 
       {/* Action buttons */}
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background to-transparent pt-8 flex gap-3">
-        <button className="flex-1 py-3 px-4 bg-card border border-border text-foreground rounded-2xl font-medium flex items-center justify-center gap-2">
+        <button className="flex-1 py-4 px-4 bg-card border border-[#F4C430]/30 text-foreground rounded-2xl font-serif font-bold shadow-md hover:bg-black/5 dark:hover:bg-white/5 transition-all flex items-center justify-center gap-2">
           <ShareIcon className="w-5 h-5" />
           Share
         </button>
-        <button onClick={() => navigate('itinerary')} className="flex-1 py-3 px-4 bg-primary text-primary-foreground rounded-2xl font-medium flex items-center justify-center gap-2">
+        <button onClick={() => navigate('itinerary')} className="flex-1 py-4 px-4 bg-[#C1272D] text-white rounded-2xl font-serif font-bold shadow-[0_8px_30px_rgba(193,39,45,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
           <PlayIcon className="w-5 h-5" />
           Plan Visit
         </button>

@@ -51,11 +51,11 @@ export function BottomNavigation() {
                   key={id}
                   onClick={() => navigate(TAB_SCREEN_MAP[id] as Parameters<typeof navigate>[0])}
                   className={cn(
-                    "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-200",
+                    "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-300",
                     "min-w-[52px] min-h-[44px]",
                     isActive
-                      ? "text-accent bg-accent/10"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-[#2A52BE] bg-[#2A52BE]/10 dark:text-[#F4C430] dark:bg-[#F4C430]/10 shadow-inner"
+                      : "text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5"
                   )}
                   aria-label={label}
                   aria-current={isActive ? 'page' : undefined}
@@ -67,7 +67,7 @@ export function BottomNavigation() {
                     )}
                   />
                   <span className={cn(
-                    "text-[10px] font-medium transition-opacity",
+                    "text-[10px] font-medium transition-opacity font-serif",
                     isActive ? "opacity-100" : "opacity-70"
                   )}>
                     {label}

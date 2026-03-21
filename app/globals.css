@@ -11,38 +11,42 @@
   --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
-  --primary: #C1121F; /* Moroccan flag red */
+  --primary: #C1272D; /* Moroccan deep red */
   --primary-foreground: #FFFFFF;
-  --secondary: #1B4332; /* Atlas cedar green */
+  --secondary: #006233; /* Emerald green */
   --secondary-foreground: #FFFFFF;
   --muted: #F5F0E8;
   --muted-foreground: #6B6B6B;
-  --accent: #C9A84C; /* Zellige gold */
+  --accent: #F4C430; /* Saffron yellow */
   --accent-foreground: #1A1A1A;
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
   --border: #E8E3D9;
   --input: #E8E3D9;
-  --ring: #C9A84C;
-  --chart-1: #C1121F;
-  --chart-2: #C9A84C;
-  --chart-3: #1B4332;
-  --chart-4: #8B5A2B;
-  --chart-5: #4A7C59;
+  --ring: #F4C430;
+  --chart-1: #C1272D;
+  --chart-2: #F4C430;
+  --chart-3: #006233;
+  --chart-4: #2A52BE; /* Majorelle blue */
+  --chart-5: #E07A5F; /* Earthy orange */
   --radius: 1rem;
   --sidebar: #FAF7F0;
   --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #C1121F;
+  --sidebar-primary: #C1272D;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #F5F0E8;
   --sidebar-accent-foreground: #1A1A1A;
   --sidebar-border: #E8E3D9;
-  --sidebar-ring: #C9A84C;
+  --sidebar-ring: #F4C430;
   
   /* Custom Turath tokens */
-  --turath-red: #C1121F;
-  --turath-gold: #C9A84C;
-  --turath-green: #1B4332;
+  --turath-red: #C1272D;
+  --turath-green: #006233;
+  --turath-majorelle: #2A52BE;
+  --turath-saffron: #F4C430;
+  --turath-earth: #E07A5F;
+  --turath-desert: #A0522D;
+  --turath-indigo: #4B0082;
   --turath-parchment: #FAF7F0;
   --turath-charcoal: #1A1A1A;
   --turath-warm-dark: #1E1C1A;
@@ -56,37 +60,37 @@
   --card-foreground: #F5F0E8;
   --popover: #1E1C1A;
   --popover-foreground: #F5F0E8;
-  --primary: #C1121F;
+  --primary: #C1272D;
   --primary-foreground: #FFFFFF;
-  --secondary: #2D5A45;
+  --secondary: #006233;
   --secondary-foreground: #FFFFFF;
   --muted: #2A2826;
   --muted-foreground: #A0A0A0;
-  --accent: #C9A84C;
+  --accent: #F4C430;
   --accent-foreground: #1A1A1A;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
   --border: #3A3836;
   --input: #3A3836;
-  --ring: #C9A84C;
-  --chart-1: #C1121F;
-  --chart-2: #C9A84C;
-  --chart-3: #4A7C59;
-  --chart-4: #B8860B;
-  --chart-5: #8B4513;
+  --ring: #F4C430;
+  --chart-1: #C1272D;
+  --chart-2: #F4C430;
+  --chart-3: #006233;
+  --chart-4: #2A52BE;
+  --chart-5: #E07A5F;
   --sidebar: #1E1C1A;
   --sidebar-foreground: #F5F0E8;
-  --sidebar-primary: #C1121F;
+  --sidebar-primary: #C1272D;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #2A2826;
   --sidebar-accent-foreground: #F5F0E8;
   --sidebar-border: #3A3836;
-  --sidebar-ring: #C9A84C;
+  --sidebar-ring: #F4C430;
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', sans-serif;
-  --font-serif: 'Noto Naskh Arabic', serif;
+  --font-sans: var(--font-outfit), var(--font-el-messiri), sans-serif;
+  --font-serif: var(--font-arabic), serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -127,8 +131,12 @@
   
   /* Turath custom colors */
   --color-turath-red: var(--turath-red);
-  --color-turath-gold: var(--turath-gold);
   --color-turath-green: var(--turath-green);
+  --color-turath-majorelle: var(--turath-majorelle);
+  --color-turath-saffron: var(--turath-saffron);
+  --color-turath-earth: var(--turath-earth);
+  --color-turath-desert: var(--turath-desert);
+  --color-turath-indigo: var(--turath-indigo);
   --color-turath-parchment: var(--turath-parchment);
   --color-turath-charcoal: var(--turath-charcoal);
   --color-turath-warm-dark: var(--turath-warm-dark);
@@ -145,12 +153,27 @@
 
 /* Zellige pattern background */
 .zellige-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232A52BE' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* Mashrabiya lattice pattern */
 .mashrabiya-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C9A84C' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C1272D' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Arabesque pattern */
+.arabesque-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0C20 11 11 20 0 20C11 20 20 29 20 40C20 29 29 20 40 20C29 20 20 11 20 0Z' fill='%23006233' fill-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Amazigh diamond pattern */
+.amazigh-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 5 L35 20 L20 35 L5 20 Z' fill='none' stroke='%23E07A5F' stroke-width='1.5' stroke-opacity='0.15'/%3E%3Cpath d='M20 12 L28 20 L20 28 L12 20 Z' fill='%23F4C430' fill-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Calligraphy background pattern */
+.calligraphy-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 50 Q 30 20 50 50 T 90 50' fill='none' stroke='%23F4C430' stroke-width='1' fill-opacity='0.1' opacity='0.2'/%3E%3Cpath d='M20 70 Q 40 40 60 70 T 100 70' fill='none' stroke='%23006233' stroke-width='0.5' fill-opacity='0.1' opacity='0.15'/%3E%3C/svg%3E");
 }
 
 /* Horseshoe arch clip path */
@@ -169,7 +192,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--turath-gold);
+  background: var(--turath-saffron);
   border-radius: 3px;
 }
 
@@ -191,10 +214,10 @@
 /* Gold gradient animation */
 @keyframes gold-pulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4);
+    box-shadow: 0 0 0 0 rgba(244, 196, 48, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 20px rgba(201, 168, 76, 0);
+    box-shadow: 0 0 0 20px rgba(244, 196, 48, 0);
   }
 }
 

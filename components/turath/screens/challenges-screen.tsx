@@ -6,11 +6,11 @@ import { ChevronLeftIcon, TrophyIcon, MapPinIcon, StarIcon } from '../icons'
 import { useNavigation } from '../navigation-provider'
 
 const CHALLENGE_CATEGORIES = [
-  { id: 'all', label: 'All' },
-  { id: 'explorer', label: 'Explorer' },
-  { id: 'cultural', label: 'Cultural' },
-  { id: 'artisan', label: 'Artisan' },
-  { id: 'historian', label: 'Historian' },
+  { id: 'all', label: 'All', labelAmz: 'ⴰⴽⴽⵯ' },
+  { id: 'explorer', label: 'Explorer', labelAmz: 'ⴰⵎⵙⵉⴳⴳⵍ' },
+  { id: 'cultural', label: 'Cultural', labelAmz: 'ⴰⴷⵍⵙⴰⵏ' },
+  { id: 'artisan', label: 'Artisan', labelAmz: 'ⴰⵏⴰⵥⵓⵕ' },
+  { id: 'historian', label: 'Historian', labelAmz: 'ⴰⵎⵣⵔⵓⵢ' },
 ]
 
 const CHALLENGES = [
@@ -59,16 +59,17 @@ export function ChallengesScreen({ isDark }: ChallengesScreenProps) {
 
   return (
     <div className="h-full flex flex-col bg-background">
-      <div className="pt-12 px-4 pb-4 bg-card border-b border-border">
-        <div className="flex items-center gap-3 mb-4">
-          <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Go back">
-            <ChevronLeftIcon className="w-5 h-5 text-foreground" />
+      <div className="pt-12 px-4 pb-4 bg-[#2A52BE] text-white overflow-hidden relative shadow-md">
+        <div className="absolute inset-0 zellige-pattern opacity-10 pointer-events-none mix-blend-overlay" />
+        <div className="flex items-center gap-3 mb-4 relative z-10">
+          <button onClick={goBack} className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors shadow-sm" aria-label="Go back">
+            <ChevronLeftIcon className="w-5 h-5 text-white" />
           </button>
-          <h1 className="text-xl font-bold text-foreground">Challenges & Rewards</h1>
+          <h1 className="text-2xl font-bold font-serif drop-shadow-sm">Challenges & Rewards</h1>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 relative z-10">
           {(['challenges', 'leaderboard', 'rewards'] as const).map((tab) => (
-            <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-2 rounded-xl text-sm font-medium capitalize transition-all", activeTab === tab ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>
+            <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-3 rounded-xl text-sm font-bold font-serif capitalize transition-all shadow-sm border", activeTab === tab ? "bg-[#C1272D] text-white ring-2 ring-white/20 border-transparent" : "bg-black/20 text-white/80 border-white/10 hover:bg-black/30")}>
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
           ))}
@@ -80,8 +81,9 @@ export function ChallengesScreen({ isDark }: ChallengesScreenProps) {
           <>
             <div className="px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide border-b border-border">
               {CHALLENGE_CATEGORIES.map((cat) => (
-                <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={cn("px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all", activeCategory === cat.id ? "bg-accent text-accent-foreground" : "bg-muted text-muted-foreground")}>
-                  {cat.label}
+                <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={cn("px-4 py-2 rounded-xl flex flex-col items-center justify-center transition-all shadow-sm border", activeCategory === cat.id ? "bg-[#F4C430] text-[#1A1A1A] border-[#F4C430]" : "bg-muted text-muted-foreground hover:bg-black/5 dark:hover:bg-white/5 border-transparent")}>
+                  <span className="text-xs font-bold font-serif whitespace-nowrap">{cat.label}</span>
+                  <span className="text-[10px] opacity-80 whitespace-nowrap">{cat.labelAmz}</span>
                 </button>
               ))}
             </div>
@@ -97,13 +99,13 @@ export function ChallengesScreen({ isDark }: ChallengesScreenProps) {
                       <p className="text-xs text-muted-foreground mt-1">{challenge.description}</p>
                       <div className="flex items-center gap-2 mt-3">
                         <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                          <div className={cn("h-full rounded-full transition-all", challenge.active ? "bg-primary" : "bg-muted-foreground")} style={{ width: `${(challenge.progress / challenge.total) * 100}%` }} />
+                          <div className={cn("h-full rounded-full transition-all", challenge.active ? "bg-[#006233]" : "bg-muted-foreground")} style={{ width: `${(challenge.progress / challenge.total) * 100}%` }} />
                         </div>
                         <span className="text-xs font-medium text-foreground">{challenge.progress}/{challenge.total}</span>
                       </div>
-                      <div className="flex items-center gap-2 mt-3 p-2 bg-accent/10 rounded-lg">
-                        <TrophyIcon className="w-4 h-4 text-accent" />
-                        <span className="text-xs font-medium text-accent">{challenge.reward}</span>
+                      <div className="flex items-center gap-2 mt-3 p-2 bg-[#F4C430]/10 rounded-lg border border-[#F4C430]/20">
+                        <TrophyIcon className="w-4 h-4 text-[#F4C430]" />
+                        <span className="text-xs font-bold tracking-wide text-[#F4C430]">{challenge.reward}</span>
                       </div>
                     </div>
                   </div>

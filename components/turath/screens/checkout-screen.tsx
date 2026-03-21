@@ -47,15 +47,16 @@ export function CheckoutScreen({ isDark }: CheckoutScreenProps) {
   }
 
   return (
-    <div className="h-full flex flex-col bg-background">
-      <div className="pt-12 px-4 pb-4 flex items-center gap-3 border-b border-border bg-card">
-        <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Go back">
+    <div className="h-full flex flex-col bg-background relative">
+      <div className="absolute inset-0 bg-[#FAF7F0] opacity-50 pointer-events-none" />
+      <div className="pt-12 px-4 pb-4 flex items-center gap-3 border-b border-border bg-card relative z-10 shadow-sm">
+        <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/5 transition-colors" aria-label="Go back">
           <ChevronLeftIcon className="w-5 h-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-bold text-foreground">Checkout</h1>
+        <h1 className="text-2xl font-bold font-serif text-foreground">Checkout</h1>
       </div>
 
-      <div className="flex-1 overflow-y-auto pb-40">
+      <div className="flex-1 overflow-y-auto pb-40 relative z-10">
         {/* Cart items */}
         <div className="p-4 border-b border-border">
           <h2 className="text-sm font-semibold text-muted-foreground mb-3">ORDER SUMMARY</h2>
@@ -75,14 +76,17 @@ export function CheckoutScreen({ isDark }: CheckoutScreenProps) {
 
         {/* Artisan support */}
         <div className="p-4 border-b border-border">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">ARTISAN SUPPORT</h2>
-          <div className="p-4 bg-secondary/10 rounded-2xl border border-secondary/30">
-            <p className="font-semibold text-foreground">Supporting Local Artisans</p>
-            <p className="text-sm text-muted-foreground mt-1">85% of your purchase goes directly to the maker</p>
-            <div className="space-y-2 pt-3 mt-3 border-t border-secondary/30">
+          <h2 className="text-sm font-semibold text-muted-foreground mb-3 font-sans tracking-wide">ARTISAN SUPPORT</h2>
+          <div className="p-4 bg-[#006233]/10 rounded-2xl border border-[#006233]/20 relative overflow-hidden">
+            <div className="absolute right-[-20px] top-[-20px] opacity-10">
+              <svg width="100" height="100" viewBox="0 0 24 24" fill="#006233"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            </div>
+            <p className="font-semibold text-foreground text-lg font-serif relative z-10">Supporting Local Artisans</p>
+            <p className="text-sm text-muted-foreground mt-1 relative z-10">85% of your purchase goes directly to the maker</p>
+            <div className="space-y-2 pt-3 mt-3 border-t border-[#006233]/20 relative z-10">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Artisan receives</span>
-                <span className="font-semibold text-secondary">{artisanEarnings} MAD</span>
+                <span className="font-semibold text-[#006233]">{artisanEarnings} MAD</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Platform fee (15%)</span>
@@ -97,10 +101,10 @@ export function CheckoutScreen({ isDark }: CheckoutScreenProps) {
           <h2 className="text-sm font-semibold text-muted-foreground mb-3">SHIPPING</h2>
           <div className="space-y-2">
             {SHIPPING_OPTIONS.map((option) => (
-              <button key={option.id} onClick={() => setSelectedShipping(option.id)} className={cn("w-full flex items-center justify-between p-4 rounded-2xl border-2 transition-all", selectedShipping === option.id ? "border-accent bg-accent/10" : "border-border bg-card")}>
+              <button key={option.id} onClick={() => setSelectedShipping(option.id)} className={cn("w-full flex items-center justify-between p-4 rounded-2xl border-2 transition-all", selectedShipping === option.id ? "border-[#F4C430] bg-[#F4C430]/10 shadow-sm" : "border-border bg-card hover:border-border/80")}>
                 <div className="flex items-center gap-3">
-                  <div className={cn("w-5 h-5 rounded-full border-2 flex items-center justify-center", selectedShipping === option.id ? "border-accent bg-accent" : "border-muted-foreground")}>
-                    {selectedShipping === option.id && <CheckIcon className="w-3 h-3 text-accent-foreground" />}
+                  <div className={cn("w-5 h-5 rounded-full border-2 flex items-center justify-center", selectedShipping === option.id ? "border-[#F4C430] bg-[#F4C430]" : "border-muted-foreground")}>
+                    {selectedShipping === option.id && <CheckIcon className="w-3 h-3 text-[#1A1A1A]" />}
                   </div>
                   <div className="text-left">
                     <p className="font-medium text-foreground">{option.name}</p>
@@ -128,8 +132,8 @@ export function CheckoutScreen({ isDark }: CheckoutScreenProps) {
       </div>
 
       {/* Payment buttons */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-card border-t border-border">
-        <button onClick={() => setOrdered(true)} className="w-full py-4 bg-primary text-primary-foreground rounded-2xl font-semibold shadow-lg hover:bg-primary/90 transition-colors mb-3">
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-card border-t border-[var(--turath-gold)]/20 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-20">
+        <button onClick={() => setOrdered(true)} className="w-full py-4 bg-[#C1272D] text-white rounded-2xl font-bold font-serif text-lg shadow-[0_8px_30px_rgba(193,39,45,0.3)] hover:bg-[#A00F1A] transition-colors mb-3">
           Pay {total} MAD
         </button>
         <div className="flex gap-3">

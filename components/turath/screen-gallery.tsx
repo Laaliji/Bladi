@@ -41,7 +41,7 @@ export function ScreenGallery() {
       <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-foreground/10">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C1121F] to-[#C9A84C] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C1272D] to-[#F4C430] flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -90,19 +90,19 @@ export function ScreenGallery() {
         <div className="flex items-center gap-4 mb-8">
           <span className={cn(
             "px-3 py-1 rounded-full text-xs font-medium",
-            isDark ? "bg-[#C1121F]/20 text-[#C1121F]" : "bg-[#C1121F]/10 text-[#C1121F]"
+            isDark ? "bg-[#C1272D]/20 text-[#C1272D]" : "bg-[#C1272D]/10 text-[#C1272D]"
           )}>
             12 Screens
           </span>
           <span className={cn(
             "px-3 py-1 rounded-full text-xs font-medium",
-            isDark ? "bg-[#C9A84C]/20 text-[#C9A84C]" : "bg-[#C9A84C]/10 text-[#C9A84C]"
+            isDark ? "bg-[#F4C430]/20 text-[#F4C430]" : "bg-[#F4C430]/10 text-[#F4C430]"
           )}>
             Light + Dark Mode
           </span>
           <span className={cn(
             "px-3 py-1 rounded-full text-xs font-medium",
-            isDark ? "bg-[#1B4332]/20 text-[#4ade80]" : "bg-[#1B4332]/10 text-[#1B4332]"
+            isDark ? "bg-[#006233]/20 text-[#4ade80]" : "bg-[#006233]/10 text-[#006233]"
           )}>
             Production Ready
           </span>
@@ -126,7 +126,7 @@ export function ScreenGallery() {
                       setSelectedScreen(selectedScreen === screen.id ? null : screen.id)
                     }
                   }}
-                  className="transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#C1121F] focus:ring-offset-4 rounded-[3rem] cursor-pointer"
+                  className="transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#C1272D] focus:ring-offset-4 rounded-[3rem] cursor-pointer"
                 >
                   <PhoneFrame isDark={isDark}>
                     <ScreenComponent isDark={isDark} />
@@ -157,9 +157,9 @@ export function ScreenGallery() {
             Turath UI Kit - Moroccan Cultural Heritage App
           </p>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#C1121F]" />
-            <div className="w-3 h-3 rounded-full bg-[#C9A84C]" />
-            <div className="w-3 h-3 rounded-full bg-[#1B4332]" />
+            <div className="w-3 h-3 rounded-full bg-[#C1272D]" />
+            <div className="w-3 h-3 rounded-full bg-[#F4C430]" />
+            <div className="w-3 h-3 rounded-full bg-[#006233]" />
             <div className="w-3 h-3 rounded-full bg-[#FAF7F0] border border-[#1a1a1a]/20" />
           </div>
         </div>

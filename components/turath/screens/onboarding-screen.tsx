@@ -44,26 +44,27 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
   if (step === 'splash') {
     return (
       <div className="h-full flex flex-col items-center justify-center px-8 pt-12 pb-8 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div className="w-full h-full" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.15'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
+        <div className="absolute inset-0 opacity-40">
+          <div className="w-full h-full calligraphy-pattern" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center">
-          <div className="w-24 h-24 rounded-2xl bg-primary flex items-center justify-center mb-6 shadow-lg gold-pulse">
-            <svg className="w-14 h-14 text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+          <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#C1272D] via-[#2A52BE] to-[#F4C430] flex items-center justify-center mb-6 shadow-2xl gold-pulse">
+            <svg className="w-14 h-14 text-white" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" fill="none"/>
             </svg>
           </div>
-          <h1 className="text-4xl font-bold text-foreground mb-2">Turath</h1>
-          <h2 className="text-3xl font-serif text-accent mb-4" dir="rtl">تراث</h2>
+          <h1 className="text-5xl font-bold font-serif text-foreground mb-2 drop-shadow-sm">Turath</h1>
+          <div className="flex flex-col items-center gap-1 mb-4">
+            <h2 className="text-4xl font-serif text-[#F4C430] drop-shadow-sm" dir="rtl">تراث</h2>
+            <h3 className="text-2xl font-sans text-[#F4C430]/90 drop-shadow-sm tracking-widest">ⵜⴰⵢⵙⵉ</h3>
+          </div>
           <p className="text-center text-muted-foreground text-sm mb-12 max-w-[240px]">
             Explore Morocco&apos;s rich cultural heritage and artisan traditions
           </p>
           <button
             onClick={() => setStep('language')}
-            className="w-full max-w-[280px] py-4 px-6 bg-primary text-primary-foreground rounded-2xl font-semibold text-lg shadow-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+            className="w-full max-w-[280px] py-4 px-6 bg-[#C1272D] text-white rounded-2xl font-semibold font-serif text-xl shadow-[0_8px_30px_rgba(193,39,45,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
           >
             <span>Get Started</span>
             <ChevronRightIcon className="w-5 h-5" />
@@ -142,7 +143,11 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
               </div>
               <div className="text-left">
                 <p className="font-semibold text-foreground">{interest.label}</p>
-                <p className="text-sm text-muted-foreground font-serif" dir="rtl">{interest.labelAr}</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-sm text-muted-foreground font-serif" dir="rtl">{interest.labelAr}</p>
+                  <span className="text-xs text-muted-foreground/50">|</span>
+                  <p className="text-sm text-muted-foreground font-sans tracking-wide">{interest.labelAmz}</p>
+                </div>
               </div>
             </div>
             {selectedInterests.includes(interest.id) && <CheckIcon className="w-6 h-6 text-accent" />}
@@ -161,6 +166,8 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
       >
         <span>Start Exploring</span>
         <span className="font-serif" dir="rtl">ابدأ الاستكشاف</span>
+        <span className="opacity-80 font-sans tracking-wider mx-1">|</span>
+        <span className="opacity-90 font-sans tracking-wide">ⴱⴷⵓ ⴰⵙⵉⴳⴳⵍ</span>
       </button>
     </div>
   )

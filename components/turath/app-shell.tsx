@@ -100,17 +100,13 @@ function AppContent() {
       className={cn(
         "min-h-screen flex flex-col items-center justify-center relative transition-colors duration-300",
         isDark
-          ? "bg-gradient-to-br from-[#0a0a0a] via-[#141210] to-[#0a0a0a]"
-          : "bg-gradient-to-br from-[#FAF7F0] via-[#F0E8D8] to-[#FAF7F0]"
+          ? "bg-gradient-to-br from-[#0F0F0F] via-[#1E1C1A] to-[#0F0F0F]"
+          : "bg-gradient-to-br from-[#FAF7F0] via-[#F5F0E8] to-[#FAF7F0]"
       )}
     >
-      {/* Zellige Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden">
-        <div className="w-full h-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '80px 80px',
-        }} />
-      </div>
+      {/* Zellige & Amazigh Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none overflow-hidden zellige-pattern" />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden amazigh-pattern" />
 
       {/* Top Chrome Bar */}
       <div className="relative z-10 w-full max-w-sm mx-auto mb-4 px-2">
@@ -120,15 +116,18 @@ function AppContent() {
         )}>
           {/* Logo + App name */}
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#C1121F] to-[#C9A84C] flex items-center justify-center">
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#C1272D] via-[#2A52BE] to-[#006233] flex items-center justify-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-white">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <span className={cn("text-sm font-semibold", isDark ? "text-white" : "text-[#1a1a1a]")}>
-              Turath <span className="font-normal opacity-50">/</span> <span className="text-[#C9A84C] text-xs">{SCREEN_LABELS[currentScreen]}</span>
+            <span className={cn("text-sm font-bold font-serif flex items-center gap-1.5", isDark ? "text-white" : "text-[#1a1a1a]")}>
+              <span>Turath</span>
+              <span className="font-sans font-normal opacity-50">/</span>
+              <span className="font-sans text-[#F4C430] text-xs">{SCREEN_LABELS[currentScreen]}</span>
+              <span className="font-sans text-[#E07A5F] text-xs ml-0.5 opacity-80">ⵣ</span>
             </span>
           </div>
 
@@ -192,7 +191,7 @@ function AppContent() {
                     className={cn(
                       "px-2 py-2 rounded-xl text-xs font-medium text-center transition-all",
                       currentScreen === id
-                        ? "bg-[#C9A84C] text-[#1a1a1a]"
+                        ? "bg-[#F4C430] text-[#1a1a1a]"
                         : isDark
                           ? "bg-white/5 text-white/70 hover:bg-white/10"
                           : "bg-black/5 text-black/70 hover:bg-black/10"
@@ -221,19 +220,21 @@ function AppContent() {
         <div
           className="absolute -inset-4 opacity-20 pointer-events-none rounded-[4rem]"
           style={{
-            background: 'radial-gradient(ellipse at center, #C9A84C22 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse at center, rgba(244,196,48,0.2) 0%, transparent 70%)',
             filter: 'blur(20px)',
           }}
         />
       </div>
 
       {/* Bottom tagline */}
-      <div className="relative z-10 mt-6 flex items-center gap-3">
-        <div className="w-2 h-2 rounded-full bg-[#C1121F]" />
-        <div className="w-2 h-2 rounded-full bg-[#C9A84C]" />
-        <div className="w-2 h-2 rounded-full bg-[#1B4332]" />
-        <span className={cn("text-xs ml-1", isDark ? "text-white/30" : "text-black/30")}>
-          Turath — Moroccan Cultural Heritage
+      <div className="relative z-10 mt-6 flex items-center gap-2">
+        <div className="w-2 h-2 rounded-full bg-[#C1272D] shadow-sm" />
+        <div className="w-2 h-2 rounded-full bg-[#006233] shadow-sm" />
+        <div className="w-2 h-2 rounded-full bg-[#2A52BE] shadow-sm" />
+        <div className="w-2 h-2 rounded-full bg-[#F4C430] shadow-sm" />
+        <div className="w-2 h-2 rounded-full bg-[#E07A5F] shadow-sm" />
+        <span className={cn("text-sm ml-2 font-serif", isDark ? "text-white/50" : "text-black/50")}>
+          تراث — Moroccan Heritage — ⵜⴰⵢⵙⵉ
         </span>
       </div>
     </div>

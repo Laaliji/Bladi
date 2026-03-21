@@ -35,10 +35,10 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
 
   const getPinColor = (type: 'heritage' | 'artisan' | 'food' | 'itinerary') => {
     switch (type) {
-      case 'heritage': return 'bg-primary text-primary-foreground'
-      case 'artisan': return 'bg-accent text-accent-foreground'
-      case 'food': return 'bg-secondary text-secondary-foreground'
-      case 'itinerary': return 'bg-blue-500 text-white'
+      case 'heritage': return 'bg-[#C1272D] text-white ring-2 ring-[#C1272D]/20'
+      case 'artisan': return 'bg-[#F4C430] text-[#1A1A1A] ring-2 ring-[#F4C430]/20'
+      case 'food': return 'bg-[#006233] text-white ring-2 ring-[#006233]/20'
+      case 'itinerary': return 'bg-[#2A52BE] text-white ring-2 ring-[#2A52BE]/20'
     }
   }
 
@@ -46,12 +46,13 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
     <div className="h-full flex flex-col relative">
       {/* Search bar */}
       <div className="absolute top-12 left-4 right-4 z-30">
-        <div className="glass rounded-2xl border border-border/50 shadow-lg">
-          <div className="flex items-center gap-3 px-4 py-3">
+        <div className="glass rounded-2xl border border-[#F4C430]/30 shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden">
+          <div className="absolute inset-0 zellige-pattern opacity-10 pointer-events-none" />
+          <div className="flex items-center gap-3 px-4 py-3 relative z-10">
             <SearchIcon className="w-5 h-5 text-muted-foreground" />
-            <input type="text" placeholder="Search places, crafts, artisans..." className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none" />
-            <button className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-              <MicIcon className="w-5 h-5 text-primary" />
+            <input type="text" placeholder="Search places, crafts, artisans..." className="flex-1 bg-transparent text-sm font-sans text-foreground placeholder:text-muted-foreground outline-none" />
+            <button className="w-10 h-10 rounded-xl bg-[#2A52BE]/10 flex items-center justify-center hover:bg-[#2A52BE]/20 transition-all text-[#2A52BE]">
+              <MicIcon className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -78,10 +79,11 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
       </div>
 
       {/* Map area */}
-      <div className="flex-1 relative bg-[#E8E0D5]">
-        <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}>
-          <path d="M10 20 L30 10 L50 12 L70 18 L85 30 L90 50 L85 70 L70 85 L50 90 L30 88 L15 75 L8 55 L10 35 Z" fill="#F5EFE6" stroke="#C9A84C" strokeWidth="0.5" />
-          <path d="M25 35 Q35 30 45 35 Q55 30 65 40 Q70 50 65 60 Q55 70 45 68 Q35 70 28 60 Q22 50 25 35 Z" fill="none" stroke="#C9A84C" strokeWidth="0.3" strokeDasharray="2,2" opacity="0.5" />
+      <div className="flex-1 relative bg-[var(--color-turath-parchment)]">
+        <div className="absolute inset-0 opacity-15 arabesque-pattern pointer-events-none" />
+        <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 8px 16px rgba(193,39,45,0.05))' }}>
+          <path d="M10 20 L30 10 L50 12 L70 18 L85 30 L90 50 L85 70 L70 85 L50 90 L30 88 L15 75 L8 55 L10 35 Z" fill="#F5EFE6" stroke="#F4C430" strokeWidth="0.8" />
+          <path d="M25 35 Q35 30 45 35 Q55 30 65 40 Q70 50 65 60 Q55 70 45 68 Q35 70 28 60 Q22 50 25 35 Z" fill="none" stroke="#2A52BE" strokeWidth="0.4" strokeDasharray="2,2" opacity="0.6" />
         </svg>
 
         {MAP_PINS.map((pin) => (

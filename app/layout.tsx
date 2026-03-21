@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Noto_Naskh_Arabic } from 'next/font/google'
+import { El_Messiri, Noto_Naskh_Arabic, Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ 
+const elMessiri = El_Messiri({ 
+  subsets: ["latin", "arabic"],
+  variable: '--font-el-messiri',
+  display: 'swap',
+})
+
+const outfit = Outfit({ 
   subsets: ["latin"],
-  variable: '--font-inter',
+  variable: '--font-outfit',
   display: 'swap',
 })
 
@@ -58,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="ltr">
-      <body className={`${inter.variable} ${notoNaskhArabic.variable} font-sans antialiased`}>
+      <body className={`${outfit.variable} ${elMessiri.variable} ${notoNaskhArabic.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

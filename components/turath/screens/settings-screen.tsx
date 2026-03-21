@@ -33,17 +33,18 @@ export function SettingsScreen({ isDark }: SettingsScreenProps) {
 
   return (
     <div className="h-full flex flex-col bg-background relative">
-      <div className="pt-12 px-4 pb-4 flex items-center gap-3 border-b border-border bg-card">
-        <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Go back">
+      <div className="pt-12 px-4 pb-4 flex items-center gap-3 border-b border-[#F4C430]/20 bg-[#FAF7F0] dark:bg-card relative overflow-hidden shadow-sm">
+        <div className="absolute inset-0 arabesque-pattern opacity-10 pointer-events-none" />
+        <button onClick={goBack} className="w-10 h-10 rounded-full bg-background flex items-center justify-center relative z-10 shadow-sm hover:scale-105 transition-transform" aria-label="Go back">
           <ChevronLeftIcon className="w-5 h-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-bold text-foreground">Settings</h1>
+        <h1 className="text-2xl font-bold font-serif text-foreground relative z-10">Settings</h1>
       </div>
 
       <div className="flex-1 overflow-y-auto pb-8">
         {/* Profile */}
         <div className="p-4 border-b border-border">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">PROFILE</h2>
+          <h2 className="text-[11px] font-bold font-serif text-[#F4C430] tracking-[0.15em] mb-4">PROFILE</h2>
           <button className="w-full flex items-center gap-4 p-4 bg-card rounded-2xl border border-border">
             <div className="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center">
               <UserIcon className="w-7 h-7 text-accent" />
@@ -58,7 +59,7 @@ export function SettingsScreen({ isDark }: SettingsScreenProps) {
 
         {/* Language */}
         <div className="p-4 border-b border-border">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">LANGUAGE</h2>
+          <h2 className="text-[11px] font-bold font-serif text-[#F4C430] tracking-[0.15em] mb-4">LANGUAGE</h2>
           <button onClick={() => setShowLanguageModal(true)} className="w-full flex items-center gap-4 p-4 bg-card rounded-2xl border border-border">
             <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
               <GlobeIcon className="w-5 h-5 text-secondary" />
@@ -73,7 +74,7 @@ export function SettingsScreen({ isDark }: SettingsScreenProps) {
 
         {/* Notifications */}
         <div className="p-4 border-b border-border">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">NOTIFICATIONS</h2>
+          <h2 className="text-[11px] font-bold font-serif text-[#F4C430] tracking-[0.15em] mb-4">NOTIFICATIONS</h2>
           <div className="space-y-2">
             {[
               { id: 'newContent' as const, label: 'New Content', description: 'Heritage sites, stories, and guides' },
@@ -86,7 +87,7 @@ export function SettingsScreen({ isDark }: SettingsScreenProps) {
                   <p className="font-medium text-foreground">{item.label}</p>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
                 </div>
-                <button onClick={() => toggleNotification(item.id)} className={cn("relative w-12 h-7 rounded-full transition-colors", notifications[item.id] ? "bg-secondary" : "bg-muted")}>
+                <button onClick={() => toggleNotification(item.id)} className={cn("relative w-12 h-7 rounded-full transition-colors", notifications[item.id] ? "bg-[#2A52BE]" : "bg-muted")}>
                   <div className={cn("absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform", notifications[item.id] ? "translate-x-6" : "translate-x-1")} />
                 </button>
               </div>
@@ -96,7 +97,7 @@ export function SettingsScreen({ isDark }: SettingsScreenProps) {
 
         {/* Accessibility */}
         <div className="p-4 border-b border-border">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">ACCESSIBILITY</h2>
+          <h2 className="text-[11px] font-bold font-serif text-[#F4C430] tracking-[0.15em] mb-4">ACCESSIBILITY</h2>
           <div className="space-y-2">
             <div className="p-4 bg-card rounded-2xl border border-border">
               <p className="font-medium text-foreground mb-3">Text Size</p>
@@ -117,7 +118,7 @@ export function SettingsScreen({ isDark }: SettingsScreenProps) {
                   <p className="font-medium text-foreground">{item.label}</p>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </div>
-                <button onClick={() => setAccessibility(prev => ({ ...prev, [item.key]: !prev[item.key] }))} className={cn("relative w-12 h-7 rounded-full transition-colors", accessibility[item.key] ? "bg-secondary" : "bg-muted")}>
+                <button onClick={() => setAccessibility(prev => ({ ...prev, [item.key]: !prev[item.key] }))} className={cn("relative w-12 h-7 rounded-full transition-colors", accessibility[item.key] ? "bg-[#2A52BE]" : "bg-muted")}>
                   <div className={cn("absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform", accessibility[item.key] ? "translate-x-6" : "translate-x-1")} />
                 </button>
               </div>
@@ -127,7 +128,7 @@ export function SettingsScreen({ isDark }: SettingsScreenProps) {
 
         {/* About */}
         <div className="p-4">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3">ABOUT</h2>
+          <h2 className="text-[11px] font-bold font-serif text-[#F4C430] tracking-[0.15em] mb-4">ABOUT</h2>
           <div className="p-4 bg-card rounded-2xl border border-border space-y-4">
             <p className="text-sm text-muted-foreground text-center">Turath is developed in partnership with:</p>
             <div className="flex items-center justify-center gap-6 py-2">

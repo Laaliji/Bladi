@@ -43,29 +43,37 @@ export function MarketplaceScreen({ isDark }: MarketplaceScreenProps) {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="pt-12 px-4 pb-4 bg-card border-b border-border">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold text-foreground">Artisan Shop</h1>
-          <button onClick={() => navigate('checkout')} className="relative w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-            <CartIcon className="w-5 h-5 text-foreground" />
-            {cartCount > 0 && <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center">{cartCount}</span>}
-          </button>
-        </div>
-
-        <div className="flex gap-2">
-          <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-muted rounded-2xl">
-            <SearchIcon className="w-5 h-5 text-muted-foreground" />
-            <input type="text" placeholder="Search products..." className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none" />
+      <div className="pt-12 px-4 pb-4 bg-[#006233] text-white relative shadow-md">
+        <div className="absolute inset-0 zellige-pattern opacity-[0.15] pointer-events-none mix-blend-overlay" />
+        <div className="flex items-center justify-between mb-4 relative z-10">
+          <div className="flex flex-col gap-0.5">
+            <h1 className="text-3xl font-bold font-serif drop-shadow-md">Artisan Shop</h1>
+            <span className="text-sm font-sans tracking-widest text-[#F4C430]/90">ⵜⴰⵃⴰⵏⵓⵜ ⵏ ⵉⵏⴰⵥⵓⵕⵏ</span>
           </div>
-          <button className="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center">
-            <FilterIcon className="w-5 h-5 text-accent-foreground" />
+          <button onClick={() => navigate('checkout')} className="relative w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all border border-white/20 backdrop-blur-sm">
+            <CartIcon className="w-5 h-5 text-white" />
+            {cartCount > 0 && <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#F4C430] text-[#1A1A1A] font-bold text-xs rounded-full flex items-center justify-center border-2 border-[#006233]">{cartCount}</span>}
           </button>
         </div>
 
-        <div className="flex gap-2 overflow-x-auto mt-4 pb-1 scrollbar-hide">
-          <button onClick={() => setActiveCategory(null)} className={cn("px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all", !activeCategory ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>All</button>
+        <div className="flex gap-2 relative z-10">
+          <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-black/20 border border-white/10 rounded-2xl backdrop-blur-md">
+            <SearchIcon className="w-5 h-5 text-white/50" />
+            <input type="text" placeholder="Search products..." className="flex-1 bg-transparent text-sm text-white placeholder:text-white/50 outline-none font-sans" />
+          </div>
+          <button className="w-12 h-12 rounded-2xl bg-[#F4C430] flex items-center justify-center shadow-lg active:scale-95 transition-transform hover:-translate-y-0.5">
+            <FilterIcon className="w-5 h-5 text-[#1A1A1A]" />
+          </button>
+        </div>
+
+        <div className="flex gap-2 overflow-x-auto mt-5 pb-1 scrollbar-hide relative z-10">
+           {/* Replaced fixed elements with conditional styles for Moroccan theme */}
+          <button onClick={() => setActiveCategory(null)} className={cn("px-4 py-2 rounded-xl text-sm font-bold font-serif whitespace-nowrap transition-all shadow-sm border flex flex-col items-center justify-center", !activeCategory ? "bg-[#C1272D] text-white border-[#C1272D]" : "bg-black/20 text-white/80 border-white/10 hover:bg-black/30")}>
+            <span>All</span>
+            <span className="text-[9px] opacity-80 mt-0.5 font-sans">ⴰⴽⴽⵯ</span>
+          </button>
           {CRAFT_CATEGORIES.map((cat) => (
-            <button key={cat} onClick={() => setActiveCategory(cat)} className={cn("px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all", activeCategory === cat ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>{cat}</button>
+            <button key={cat} onClick={() => setActiveCategory(cat)} className={cn("px-4 py-2 rounded-xl text-sm font-bold font-serif whitespace-nowrap transition-all shadow-sm border", activeCategory === cat ? "bg-[#C1272D] text-white border-[#C1272D]" : "bg-black/20 text-white/80 border-white/10 hover:bg-black/30")}>{cat}</button>
           ))}
         </div>
       </div>
@@ -105,10 +113,10 @@ export function MarketplaceScreen({ isDark }: MarketplaceScreenProps) {
                   </button>
                   <div className="absolute bottom-2 left-2 px-2 py-1 bg-secondary/90 text-secondary-foreground rounded-lg text-[10px] font-medium">{product.commission}% to artisan</div>
                 </div>
-                <div className="p-3">
-                  <p className="text-xs text-muted-foreground">{product.artisan}</p>
-                  <h3 className="font-semibold text-sm text-foreground truncate mt-0.5">{product.name}</h3>
-                  <p className="text-primary font-bold mt-1">{product.price} MAD</p>
+                <div className="p-3 bg-card relative">
+                  <p className="text-xs text-muted-foreground font-medium">{product.artisan}</p>
+                  <h3 className="font-semibold text-sm font-serif text-foreground truncate mt-0.5 leading-snug">{product.name}</h3>
+                  <p className="text-[#C1272D] font-bold mt-1 text-lg">{product.price} MAD</p>
                 </div>
               </button>
             ))}

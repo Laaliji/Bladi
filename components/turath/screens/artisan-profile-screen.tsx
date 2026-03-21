@@ -9,9 +9,11 @@ import { useNavigation } from '../navigation-provider'
 const ARTISAN_DATA = {
   name: 'Fatima Zahra',
   nameAr: 'فاطمة الزهراء',
+  nameAmz: 'ⴼⴰⵟⵉⵎⴰ ⵣⴰⵀⵔⴰ',
   photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
   craft: 'Traditional Zellige',
   craftAr: 'الزليج التقليدي',
+  craftAmz: 'ⴰⵣⵍⵍⵉⵊ ⴰⵎⵏⵙⴰⵢ',
   city: 'Fes',
   rating: 4.9,
   reviewCount: 127,
@@ -54,11 +56,12 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
   return (
     <div className="h-full flex flex-col overflow-y-auto">
       {/* Header */}
-      <div className="pt-12 px-4 pb-4 flex items-center justify-between bg-card">
-        <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Go back">
+      <div className="pt-12 px-4 pb-4 flex items-center justify-between bg-card relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 arabesque-pattern pointer-events-none" />
+        <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center relative z-10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors" aria-label="Go back">
           <ChevronLeftIcon className="w-5 h-5 text-foreground" />
         </button>
-        <button onClick={() => navigate('marketplace')} className="px-4 py-2 bg-accent text-accent-foreground rounded-xl text-sm font-medium">
+        <button onClick={() => navigate('marketplace')} className="px-4 py-2 bg-[#2A52BE] text-white rounded-xl text-sm font-bold font-serif shadow-md relative z-10 transition-transform active:scale-95">
           View Shop
         </button>
         <button className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
@@ -70,13 +73,20 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
       <div className="px-4 pb-6 bg-card border-b border-border">
         <div className="flex items-start gap-4">
           <div className="relative">
-            <div className="w-20 h-20 rounded-2xl bg-cover bg-center border-2 border-accent" style={{ backgroundImage: `url(${ARTISAN_DATA.photo})` }} />
-            {ARTISAN_DATA.verified && <VerifiedIcon className="absolute -bottom-1 -right-1 w-6 h-6 text-secondary" />}
+            <div className="w-20 h-20 rounded-2xl bg-cover bg-center border-2 border-[#F4C430] shadow-lg" style={{ backgroundImage: `url(${ARTISAN_DATA.photo})` }} />
+            {ARTISAN_DATA.verified && <VerifiedIcon className="absolute -bottom-1 -right-1 w-6 h-6 text-[#2A52BE] drop-shadow-sm" />}
           </div>
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-foreground">{ARTISAN_DATA.name}</h1>
-            <p className="text-sm text-accent font-serif" dir="rtl">{ARTISAN_DATA.nameAr}</p>
-            <p className="text-sm text-muted-foreground mt-1">{ARTISAN_DATA.craft}</p>
+            <h1 className="text-2xl font-bold font-serif text-foreground">{ARTISAN_DATA.name}</h1>
+            <div className="flex items-center gap-2">
+              <p className="text-lg text-[#F4C430] font-serif" dir="rtl">{ARTISAN_DATA.nameAr}</p>
+              <span className="text-xs text-muted-foreground/50">|</span>
+              <p className="text-sm text-[#F4C430]/90 font-sans tracking-wide">{ARTISAN_DATA.nameAmz}</p>
+            </div>
+            <div className="flex items-center gap-2 mt-1">
+              <p className="text-sm text-foreground/80 font-medium bg-[#006233]/10 px-2 py-0.5 rounded-lg border border-[#006233]/20">{ARTISAN_DATA.craft}</p>
+              <p className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-lg">{ARTISAN_DATA.craftAmz}</p>
+            </div>
             <div className="flex items-center gap-2 mt-2">
               <MapPinIcon className="w-4 h-4 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">{ARTISAN_DATA.city}</span>
@@ -90,8 +100,8 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
         </div>
 
         <div className="flex items-center gap-3 mt-4">
-          <button onClick={() => setIsFollowing(!isFollowing)} className={cn("flex-1 py-3 rounded-2xl font-medium transition-all", isFollowing ? "bg-muted text-foreground border border-border" : "bg-primary text-primary-foreground")}>{isFollowing ? 'Following' : 'Follow'}</button>
-          <button onClick={() => navigate('marketplace')} className="py-3 px-6 bg-accent text-accent-foreground rounded-2xl font-medium">Shop</button>
+          <button onClick={() => setIsFollowing(!isFollowing)} className={cn("flex-1 py-3 rounded-2xl font-medium font-serif transition-all shadow-sm", isFollowing ? "bg-muted text-foreground border border-border" : "bg-[#C1272D] text-white hover:bg-[#A00F1A]")}>{isFollowing ? 'Following' : 'Follow'}</button>
+          <button onClick={() => navigate('marketplace')} className="py-3 px-6 bg-[#2A52BE] text-white rounded-2xl font-bold font-serif shadow-[0_4px_20px_rgba(42,82,190,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-transform">Shop</button>
         </div>
 
         <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{ARTISAN_DATA.bio}</p>
@@ -100,7 +110,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
       {/* Tabs */}
       <div className="flex border-b border-border bg-card">
         {(['portfolio', 'products', 'reviews'] as const).map((tab) => (
-          <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-3 text-sm font-medium transition-all border-b-2 capitalize", activeTab === tab ? "text-primary border-primary" : "text-muted-foreground border-transparent")}>
+          <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-4 text-sm font-bold font-serif transition-all border-b-2 capitalize", activeTab === tab ? "text-[#C1272D] border-[#C1272D] bg-[#C1272D]/5" : "text-muted-foreground border-transparent hover:bg-black/5 dark:hover:bg-white/5")}>
             {tab === 'products' ? 'Shop' : tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
@@ -127,7 +137,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
                     <p className="text-lg font-bold text-primary mt-1">{product.price} MAD</p>
                   </div>
                   <div className="flex gap-2">
-                    <button onClick={() => navigate('checkout')} className="flex-1 py-2 bg-primary text-primary-foreground rounded-xl text-sm font-medium flex items-center justify-center gap-2">
+                    <button onClick={() => navigate('checkout')} className="flex-1 py-2 bg-[#2A52BE] text-white rounded-xl text-sm font-bold font-serif shadow-md hover:bg-[#1E4080] transition-colors flex items-center justify-center gap-2">
                       <CartIcon className="w-4 h-4" />
                       Add to Cart
                     </button>

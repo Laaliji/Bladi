@@ -95,6 +95,7 @@ export type Language = {
 }
 
 export const LANGUAGES: Language[] = [
+  { code: 'zgh', name: 'Tamazight', nativeName: 'ⵜⴰⵎⴰⵣⵉⵖⵜ', flag: 'ⵣ' },
   { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇲🇦' },
   { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
@@ -110,11 +111,11 @@ export const LANGUAGES: Language[] = [
 ]
 
 export const INTERESTS = [
-  { id: 'tourism', label: 'Tourism', labelAr: 'سياحة' },
-  { id: 'handicrafts', label: 'Handicrafts', labelAr: 'حرف يدوية' },
-  { id: 'history', label: 'History', labelAr: 'تاريخ' },
-  { id: 'gastronomy', label: 'Gastronomy', labelAr: 'فن الطبخ' },
-  { id: 'music', label: 'Music & Arts', labelAr: 'الموسيقى والفنون' },
+  { id: 'tourism', label: 'Tourism', labelAr: 'سياحة', labelAmz: 'ⵜⴰⵎⴰⵍⵍⴰⵢⵜ' },
+  { id: 'handicrafts', label: 'Handicrafts', labelAr: 'حرف يدوية', labelAmz: 'ⵜⵉⵥⵓⵕⵉⵡⵉⵏ ⵏ ⵓⴼⵓⵙ' },
+  { id: 'history', label: 'History', labelAr: 'تاريخ', labelAmz: 'ⴰⵎⵣⵔⵓⵢ' },
+  { id: 'gastronomy', label: 'Gastronomy', labelAr: 'فن الطبخ', labelAmz: 'ⴰⵙⵏⵡⵉ' },
+  { id: 'music', label: 'Music & Arts', labelAr: 'الموسيقى والفنون', labelAmz: 'ⴰⵥⴰⵡⴰⵏ ⴷ ⵜⵥⵓⵕⵉⵡⵉⵏ' },
 ]
 
 export const FILTER_CHIPS = [
@@ -128,11 +129,11 @@ export const FILTER_CHIPS = [
 ]
 
 export const CATEGORY_TABS = [
-  { id: 'history', label: 'History', labelAr: 'التاريخ' },
-  { id: 'crafts', label: 'Crafts', labelAr: 'الحرف' },
-  { id: 'food', label: 'Food', labelAr: 'الطعام' },
-  { id: 'music', label: 'Music', labelAr: 'الموسيقى' },
-  { id: 'architecture', label: 'Architecture', labelAr: 'العمارة' },
+  { id: 'history', label: 'History', labelAr: 'التاريخ', labelAmz: 'ⴰⵎⵣⵔⵓⵢ' },
+  { id: 'crafts', label: 'Crafts', labelAr: 'الحرف', labelAmz: 'ⵜⵉⵥⵓⵕⵉⵡⵉⵏ' },
+  { id: 'food', label: 'Food', labelAr: 'الطعام', labelAmz: 'ⵓⵜⵛⵉ' },
+  { id: 'music', label: 'Music', labelAr: 'الموسيقى', labelAmz: 'ⴰⵥⴰⵡⴰⵏ' },
+  { id: 'architecture', label: 'Architecture', labelAr: 'العمارة', labelAmz: 'ⵜⴰⵎⵙⴷⴰⴳⵜ' },
 ]
 
 export const CRAFT_CATEGORIES = [
