@@ -15,20 +15,21 @@ interface VoiceAIGuideScreenProps {
 
 export function VoiceAIGuideScreen({ isDark }: VoiceAIGuideScreenProps) {
   void isDark
+  const { t, locale } = useTranslation()
   const { goBack, selectedHeritageId, selectedCityId } = useNavigation()
 
   // Resolve heritage data from context
   const heritage = getHeritageDetail(selectedHeritageId)
 
-  const cityName  = heritage?.city   ?? selectedCityId ?? 'Morocco'
-  const siteName  = heritage?.title  ?? 'Moroccan Heritage'
+  const cityName  = heritage?.city   ?? selectedCityId ?? t('common.country_name', 'Morocco')
+  const siteName  = heritage?.title  ?? t('common.app_subtitle', 'Moroccan Heritage')
   const heroImage = heritage?.images?.[0] ?? null
-  const narration = heritage?.aiNarration ?? `Marhaba! I'm your Turath guide. Ask me anything about ${cityName}'s culture, history, or heritage sites. You can speak or type your questions.`
+  const narration = heritage?.aiNarration ?? t('voice_ai.welcome_msg', "Marhaba! I'm your Turath guide. Ask me anything about Morocco's culture, history, or heritage sites. You can speak or type your questions.")
   const suggestedQuestions = heritage?.suggestedQuestions ?? [
-    'Tell me about this site',
-    'Historical background',
-    'What are the must-sees?',
-    'Local traditions here',
+    t('voice_ai.tag_tell_me', 'Tell me about this site'),
+    t('voice_ai.tag_background', 'Historical background'),
+    t('voice_ai.tag_must_sees', 'What are the must-sees?'),
+    t('voice_ai.tag_traditions', 'Local traditions here'),
   ]
 
   const buildInitialMessages = (): ChatMessage[] => [
@@ -37,7 +38,7 @@ export function VoiceAIGuideScreen({ isDark }: VoiceAIGuideScreenProps) {
       role: 'assistant',
       content: narration,
       timestamp: new Date(),
-      tags: heritage?.tags ?? ['Welcome', 'ترحيب'],
+      tags: heritage?.tags ?? [t('voice_ai.tag_welcome', 'Welcome'), locale === 'ar' ? 'ترحيب' : t('voice_ai.tag_welcome', 'Welcome')],
     },
   ]
 
@@ -175,7 +176,7 @@ export function VoiceAIGuideScreen({ isDark }: VoiceAIGuideScreenProps) {
           </div>
         </div>
         <p className="text-sm text-[#A0A0A0] mt-3">
-          {isListening ? 'Listening...' : isSpeaking ? 'Speaking...' : 'Tap the mic to hear the story'}
+          {isListening ? t('voice_ai.status_listening', 'Listening...') : isSpeaking ? t('voice_ai.status_speaking', 'Speaking...') : t('voice_ai.status_tap_story', 'Tap the mic to hear the story')}
         </p>
       </div>
 
@@ -234,7 +235,7 @@ export function VoiceAIGuideScreen({ isDark }: VoiceAIGuideScreenProps) {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-              placeholder="Type your question..."
+              placeholder={t('voice_ai.type_placeholder', 'Type your question...')}
               className="flex-1 py-3 px-4 bg-[#1E1C1A] border border-[#3A3836] rounded-2xl text-sm text-[#F5F0E8] placeholder:text-[#6B6B6B] outline-none focus:border-[#C9A84C]"
               autoFocus
             />

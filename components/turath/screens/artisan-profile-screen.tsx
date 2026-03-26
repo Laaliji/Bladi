@@ -31,11 +31,11 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
 
   const artisanData = {
     name: t('demo_artisan.name', 'Hassan Bouazza'),
-    nameAr: 'حسان بوعزة',
+    nameAr: t('demo_artisan.name_ar', 'حسان بوعزة'),
     photo: '/artisan/profile%20picture.jpg',
     cover: '/artisan/pottery%202.jpg',
     craft: t('demo_artisan.craft', 'Safi Blue Pottery'),
-    craftAr: 'فخار آسفي الأزرق',
+    craftAr: t('demo_artisan.craft_ar', 'فخار آسفي الأزرق'),
     city: t('demo_artisan.city', 'Safi'),
     rating: 4.9,
     reviewCount: 214,
@@ -149,7 +149,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
           <ChevronLeftIcon className="w-5 h-5 text-foreground" />
         </button>
 
-        <span className="text-sm font-semibold text-foreground">{t('artisan_profile_screen.title', 'Artisan Profile')}</span>
+        <span className="text-sm font-semibold text-foreground">{t('navigation.artisan_profile', 'Artisan Profile')}</span>
 
         <button
           className="w-10 h-10 rounded-full bg-muted flex items-center justify-center"
@@ -199,7 +199,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
               <StarIcon className="w-3.5 h-3.5 text-[#C9A84C]" filled />
               <span className="text-sm font-bold text-foreground">{artisanData.rating}</span>
             </div>
-            <span className="text-[9px] text-muted-foreground">{artisanData.reviewCount} {t('artisan_profile_screen.reviews_count', 'reviews')}</span>
+            <span className="text-[9px] text-muted-foreground">{artisanData.reviewCount} {t('artisan_profile.reviews_count', 'reviews', { count: artisanData.reviewCount })}</span>
           </div>
         </div>
 
@@ -208,9 +208,9 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
           <MapPinIcon className="w-3.5 h-3.5 text-[#C1121F]" />
           <span className="text-xs text-muted-foreground">{artisanData.city}, {t('common.morocco', 'Morocco')}</span>
           <span className="text-muted-foreground/40 mx-1">·</span>
-          <span className="text-xs text-muted-foreground">{artisanData.yearsExp} {t('artisan_profile_screen.years_exp', 'yrs experience')}</span>
+          <span className="text-xs text-muted-foreground">{artisanData.yearsExp} {t('common.years_exp', 'yrs experience')}</span>
           <span className="text-muted-foreground/40 mx-1">·</span>
-          <span className="text-xs text-muted-foreground">{artisanData.piecesSold.toLocaleString()} {t('artisan_profile_screen.pieces_sold', 'pieces sold')}</span>
+          <span className="text-xs text-muted-foreground">{artisanData.piecesSold.toLocaleString()} {t('artisan_profile.pieces_sold_count', 'pieces sold', { count: artisanData.piecesSold })}</span>
         </div>
 
         {/* Followers */}
@@ -219,7 +219,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
             <span className="font-semibold text-foreground">
               {(artisanData.followers / 1000).toFixed(1)}k
             </span>{' '}
-            {t('artisan_profile_screen.followers', 'followers')}
+            {t('artisan_profile.followers_count', 'followers', { count: (artisanData.followers / 1000).toFixed(1) + 'k' })}
           </span>
         </div>
 
@@ -237,14 +237,14 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
                 : 'bg-primary text-primary-foreground',
             )}
           >
-            {isFollowing ? t('artisan_profile_screen.following', 'Following ✓') : t('artisan_profile_screen.follow', 'Follow')}
+            {isFollowing ? t('artisan_profile.following', 'Following ✓') : t('artisan_profile.follow', 'Follow')}
           </button>
 
           <button
             onClick={() => navigate('marketplace')}
             className="py-2.5 px-6 bg-[#C9A84C] text-[#1a1a1a] rounded-2xl font-semibold text-sm"
           >
-            {t('artisan_profile_screen.shop', 'Shop')}
+            {t('artisan_profile.shop', 'Shop')}
           </button>
         </div>
       </div>
@@ -262,7 +262,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
                 : 'text-muted-foreground border-transparent',
             )}
           >
-            {tab === 'products' ? t('artisan_profile_screen.tab_shop', 'Shop') : t(`artisan_profile_screen.tab_${tab}`, tab.charAt(0).toUpperCase() + tab.slice(1))}
+            {tab === 'products' ? t('artisan_profile.shop', 'Shop') : t(`artisan_profile.${tab}`, tab.charAt(0).toUpperCase() + tab.slice(1))}
           </button>
         ))}
       </div>
@@ -303,7 +303,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
                     </p>
                     <p className="text-base font-bold text-primary mt-1">
                       {product.price}{' '}
-                      <span className="text-xs font-normal text-muted-foreground">{t('artisan_profile_screen.mad', 'MAD')}</span>
+                      <span className="text-xs font-normal text-muted-foreground">{t('artisan_profile.mad', 'MAD')}</span>
                     </p>
                   </div>
                   <div className="flex gap-2">
@@ -312,7 +312,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
                       className="flex-1 py-2 bg-primary text-primary-foreground rounded-xl text-xs font-medium flex items-center justify-center gap-1.5"
                     >
                       <CartIcon className="w-3.5 h-3.5" />
-                      {t('artisan_profile_screen.add_to_cart', 'Add to Cart')}
+                      {t('marketplace.add_to_cart', 'Add to Cart')}
                     </button>
                     <button
                       onClick={() => toggleSave(product.id)}
@@ -349,7 +349,7 @@ export function ArtisanProfileScreen({ isDark }: ArtisanProfileScreenProps) {
                   ))}
                 </div>
                 <span className="text-[10px] text-muted-foreground mt-0.5">
-                  {artisanData.reviewCount} {t('artisan_profile_screen.reviews_count', 'reviews')}
+                  {artisanData.reviewCount} {t('artisan_profile.reviews_count', 'reviews', { count: artisanData.reviewCount })}
                 </span>
               </div>
 

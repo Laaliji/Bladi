@@ -15,7 +15,7 @@ interface TranslationData {
 interface LanguageContextType {
   locale: Locale
   setLocale: (locale: Locale) => void
-  t: (key: string, defaultValue?: string) => string
+  t: (key: string, defaultValue?: string, params?: Record<string, string | number>) => string
   dir: 'ltr' | 'rtl'
 }
 
@@ -98,9 +98,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLocaleState(newLocale)
   }
 
-  const t = (key: string, defaultValue?: string): string => {
-    const translation = getTranslation(locale, key)
-    return translation === key && defaultValue ? defaultValue : translation
+  const t = (key: string, defaultValue?: string, params?: Record<string, string | number>): string => {
+    let translation = getTranslation(locale, key)
+    if (translation === key && defaultValue) {
+      translation = defaultValue
+    }
+
+    if (params) {
+      Object.entries(params).forEach(([k, v]) => {
+        translation = translation.replace(`{{${k}}}`, String(v))
+      })
+    }
+
+    return translation
   }
 
   const value: LanguageContextType = {
@@ -121,7 +131,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 const defaultContext: LanguageContextType = {
   locale: 'fr',
   setLocale: () => {},
-  t: (key: string, defaultValue?: string) => defaultValue || key,
+  t: (key: string, defaultValue?: string, params?: Record<string, string | number>) => {
+    let res = defaultValue || key
+    if (params) {
+      Object.entries(params).forEach(([k, v]) => {
+        res = res.replace(`{{${k}}}`, String(v))
+      })
+    }
+    return res
+  },
   dir: 'ltr',
 }
 

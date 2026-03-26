@@ -7,89 +7,7 @@ import { ChevronLeftIcon, WalkingIcon, CarIcon, BusIcon, NavigationIcon, CheckIc
 import { useNavigation } from '../navigation-provider'
 import { useTranslation } from '../language-provider'
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  Per-city itinerary stops
-// ─────────────────────────────────────────────────────────────────────────────
-
-const CITY_ITINERARIES: Record<string, {
-  name: string; nameAr: string; totalDays: number
-  stops: { id: string; name: string; nameAr: string; image: string; time: string; duration: string; distance: string; description: string; completed: boolean }[]
-}> = {
-  marrakech: {
-    name: 'Historic Marrakech', nameAr: 'مراكش التاريخية', totalDays: 3,
-    stops: [
-      { id: '1', name: 'Jemaa el-Fna',    nameAr: 'جامع الفنا',      image: '/cities/Marrakech/jama-el-fnaa.jpg',     time: '9:00 AM',  duration: '2 hours',  distance: 'Start point', description: 'Begin at the vibrant UNESCO-listed main square', completed: true  },
-      { id: '2', name: 'Bahia Palace',    nameAr: 'قصر الباهية',     image: '/cities/Marrakech/bahia%20palace.jpeg', time: '11:30 AM', duration: '1.5 hours', distance: '1.2 km',    description: 'Explore the opulent 19th-century royal palace',  completed: true  },
-      { id: '3', name: 'Majorelle Garden',nameAr: 'حديقة ماجوريل',   image: '/cities/Marrakech/majorelle.jpg',       time: '2:00 PM',  duration: '1 hour',   distance: '2.5 km',    description: 'Stroll through the cobalt-blue YSL garden',      completed: false },
-    ],
-  },
-  fes: {
-    name: 'Imperial Fès', nameAr: 'فاس العتيقة', totalDays: 3,
-    stops: [
-      { id: '1', name: 'Al-Qarawiyyin',      nameAr: 'جامعة القرويين',   image: '/cities/fes/mezquita-al-karaouine-4.jpg', time: '9:00 AM',  duration: '2 hours',  distance: 'Start point', description: "Visit the world's oldest university",             completed: true  },
-      { id: '2', name: 'Bou Inania Madrasa', nameAr: 'مدرسة بو عنانية', image: '/cities/fes/bou%20inania.webp',           time: '11:30 AM', duration: '1 hour',   distance: '0.3 km',    description: 'Marvel at the intricate Marinid craftsmanship',   completed: true  },
-      { id: '3', name: 'Chouara Tannery',    nameAr: 'دباغة الشوارة',   image: '/cities/fes/Chouara-Tannery.jpg',         time: '1:30 PM',  duration: '1 hour',   distance: '0.8 km',    description: 'Witness the iconic medieval leather dyeing pits', completed: false },
-    ],
-  },
-  casablanca: {
-    name: 'Modern Casablanca', nameAr: 'الدار البيضاء', totalDays: 2,
-    stops: [
-      { id: '1', name: 'Hassan II Mosque', nameAr: 'مسجد الحسن الثاني', image: '/cities/Casablanca/hassan-ii-mosque-2.jpg', time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: "Marvel at Africa's largest mosque on the sea",    completed: true  },
-      { id: '2', name: 'Quartier Habous',  nameAr: 'حي الحبوس',          image: '/cities/Casablanca/habbous.png',            time: '11:30 AM', duration: '1.5 hours', distance: '3 km',      description: 'Wander the neo-Moorish French-Moroccan quarter',  completed: false },
-      { id: '3', name: 'Morocco Mall',     nameAr: 'مول المغرب',          image: '/cities/Casablanca/morocco-mall-3-.webp',   time: '2:30 PM',  duration: '2 hours',   distance: '6 km',      description: 'Explore the iconic aquarium shopping landmark',   completed: false },
-    ],
-  },
-  rabat: {
-    name: 'Royal Rabat', nameAr: 'الرباط الملكية', totalDays: 2,
-    stops: [
-      { id: '1', name: 'Hassan Tower',       nameAr: 'صومعة حسان',   image: '/cities/Rabat/hassan-tower2.webp',          time: '9:00 AM',  duration: '1 hour',   distance: 'Start point', description: 'Admire the unfinished 12th-century minaret',      completed: true  },
-      { id: '2', name: 'Chellah',            nameAr: 'شالة',          image: '/cities/Rabat/necropolis-de-chellah-3.jpg', time: '10:30 AM', duration: '1.5 hours', distance: '1.5 km',    description: 'Explore the ancient Roman & Merinid necropolis',  completed: false },
-      { id: '3', name: 'Kasbah des Oudaias', nameAr: 'قصبة الوداية', image: '/cities/Rabat/Kasbah-Udayas-Rabat.webp',    time: '1:00 PM',  duration: '1.5 hours', distance: '1.2 km',    description: 'Stroll through the fortified Andalusian quarter', completed: false },
-    ],
-  },
-  tangier: {
-    name: 'Gateway Tanger', nameAr: 'بوابة طنجة', totalDays: 2,
-    stops: [
-      { id: '1', name: 'Kasbah Museum',     nameAr: 'متحف القصبة',  image: '/cities/Tangier/kasbah%20museum.jpg',    time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: 'Discover the fortress overlooking the strait',   completed: true  },
-      { id: '2', name: 'Caves of Hercules', nameAr: 'كهوف هرقل',    image: '/cities/Tangier/hercules.jpg',           time: '11:30 AM', duration: '1 hour',    distance: '14 km',     description: 'Explore the legendary sea caves at the cape',    completed: false },
-      { id: '3', name: 'Grand Socco',       nameAr: 'السوق الكبير', image: '/cities/Tangier/Grand_Socco_Tangier.jpg', time: '2:00 PM',  duration: '1 hour',    distance: '12 km',     description: 'Soak in the lively central square of Tangier',   completed: false },
-    ],
-  },
-  chefchaouen: {
-    name: 'Blue Chefchaouen', nameAr: 'شفشاون الزرقاء', totalDays: 2,
-    stops: [
-      { id: '1', name: 'Blue Medina',        nameAr: 'المدينة الزرقاء', image: '/cities/Chefchaouen/blue%20medina.jpg',         time: '9:00 AM',  duration: '2 hours', distance: 'Start point', description: 'Wander the iconic blue-washed alleyways',          completed: true  },
-      { id: '2', name: 'Ras El Maa',         nameAr: 'رأس الماء',       image: '/cities/Chefchaouen/Ras-El-Maa-Waterfall.webp', time: '11:30 AM', duration: '1 hour',  distance: '0.5 km',    description: 'Relax at the crystal-clear spring waterfall',      completed: false },
-      { id: '3', name: 'Spanish Mosque',     nameAr: 'المسجد الإسباني', image: '/cities/Chefchaouen/spanish%20mosque.jpg',      time: '1:30 PM',  duration: '1 hour',  distance: '1 km',      description: 'Enjoy the panoramic view from the hilltop mosque', completed: false },
-      { id: '4', name: 'Akchour Waterfalls', nameAr: 'شلالات أكشور',   image: '/cities/Chefchaouen/akchour.jpg',               time: '3:30 PM',  duration: '2 hours', distance: '30 km',     description: 'Trek to the stunning Rif mountain cascades',        completed: false },
-    ],
-  },
-  meknes: {
-    name: 'Imperial Meknès', nameAr: 'مكناس الإمبراطورية', totalDays: 2,
-    stops: [
-      { id: '1', name: 'Bab Mansour',        nameAr: 'باب منصور',           image: '/cities/Meknes/bab-mansour-gate.jpg',                  time: '9:00 AM',  duration: '30 mins',   distance: 'Start point', description: 'Photograph the majestic Alaouite imperial gate',    completed: true  },
-      { id: '2', name: 'Moulay Ismail Tomb', nameAr: 'ضريح مولاي إسماعيل', image: '/cities/Meknes/Le-tombeau-de-Moulay-Isma%C3%AFl.jpg',  time: '10:00 AM', duration: '1 hour',    distance: '0.3 km',    description: 'Visit the ornate mausoleum of the sultan builder',   completed: false },
-      { id: '3', name: 'Place El Hedim',     nameAr: 'ساحة الهديم',         image: '/cities/Meknes/el-hedim-square.jpg',                  time: '12:00 PM', duration: '1.5 hours', distance: '0.2 km',    description: 'Explore the grand square of the imperial city',      completed: false },
-    ],
-  },
-  safi: {
-    name: 'Artisan Safi', nameAr: 'آسفي الحرفية', totalDays: 2,
-    stops: [
-      { id: '1', name: 'Kechla Fortress',   nameAr: 'قلعة كشلة',          image: '/cities/Safi/kachla%20fortress.jpg',            time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: 'Tour the Portuguese sea fortress on the cliff',    completed: true  },
-      { id: '2', name: 'Pottery Quarter',   nameAr: 'حي الفخار',           image: '/cities/Safi/pottery%20quarter.png',            time: '11:00 AM', duration: '2 hours',   distance: '1 km',      description: 'Watch artisans throw famous blue glazed ceramics', completed: false },
-      { id: '3', name: 'Portuguese Chapel', nameAr: 'الكنيسة البرتغالية', image: '/cities/Safi/cathedrale-portugaise0-scaled.jpg', time: '2:00 PM',  duration: '45 mins',   distance: '0.5 km',    description: 'Admire the historic Manueline-style chapel',       completed: false },
-    ],
-  },
-  essaouira: {
-    name: 'Wind City Essaouira', nameAr: 'الصويرة', totalDays: 2,
-    stops: [
-      { id: '1', name: 'Skala Ramparts', nameAr: 'أسوار الصقالة',  image: '/cities/Essaouira/skala.jpeg', time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: 'Walk the Atlantic-facing cannon sea walls', completed: true  },
-      { id: '2', name: 'Medina UNESCO',  nameAr: 'المدينة العتيقة', image: '/cities/Essaouira/skala.webp', time: '11:00 AM', duration: '2 hours',   distance: '0.3 km',    description: 'Explore the World Heritage walled medina', completed: false },
-    ],
-  },
-}
-
-const DEFAULT_ITINERARY = CITY_ITINERARIES.marrakech
+  // Data moved inside component to use t() hook
 
 interface ItineraryScreenProps {
   isDark?: boolean
@@ -98,6 +16,87 @@ interface ItineraryScreenProps {
 export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
   void isDark
   const { goBack, navigate, selectedCityId } = useNavigation()
+  const { t } = useTranslation()
+
+  const CITY_ITINERARIES: Record<string, {
+    name: string; nameAr: string; totalDays: number
+    stops: { id: string; name: string; nameAr: string; image: string; time: string; duration: string; distance: string; description: string; completed: boolean }[]
+  }> = {
+    marrakech: {
+      name: t('data.itineraries.marrakech.name'), nameAr: t('data.itineraries.marrakech.name_ar'), totalDays: 3,
+      stops: [
+        { id: '1', name: t('data.itineraries.marrakech.stop1_name'), nameAr: t('home_map.jemaa_el_fna_ar'), image: '/cities/Marrakech/jama-el-fnaa.jpg',     time: '9:00 AM',  duration: '2 hours',  distance: 'Start point', description: t('data.itineraries.marrakech.stop1_desc'), completed: true  },
+        { id: '2', name: t('data.itineraries.marrakech.stop2_name'), nameAr: t('home_map.bahia_palace_ar'), image: '/cities/Marrakech/bahia%20palace.jpeg', time: '11:30 AM', duration: '1.5 hours', distance: '1.2 km',    description: t('data.itineraries.marrakech.stop2_desc'),  completed: true  },
+        { id: '3', name: t('data.itineraries.marrakech.stop3_name'), nameAr: t('home_map.majorelle_ar'),    image: '/cities/Marrakech/majorelle.jpg',       time: '2:00 PM',  duration: '1 hour',   distance: '2.5 km',    description: t('data.itineraries.marrakech.stop3_desc'),      completed: false },
+      ],
+    },
+    fes: {
+      name: t('data.itineraries.fes.name'), nameAr: t('data.itineraries.fes.name_ar'), totalDays: 3,
+      stops: [
+        { id: '1', name: t('data.itineraries.fes.stop1_name'), nameAr: t('home_map.al_qarawiyyin_ar'),   image: '/cities/fes/mezquita-al-karaouine-4.jpg', time: '9:00 AM',  duration: '2 hours',  distance: 'Start point', description: t('data.itineraries.fes.stop1_desc'),             completed: true  },
+        { id: '2', name: t('data.itineraries.fes.stop2_name'), nameAr: t('home_map.bou_inania_ar'), image: '/cities/fes/bou%20inania.webp',           time: '11:30 AM', duration: '1 hour',   distance: '0.3 km',    description: t('data.itineraries.fes.stop2_desc'),   completed: true  },
+        { id: '3', name: t('data.itineraries.fes.stop3_name'), nameAr: t('home_map.chouara_ar'),   image: '/cities/fes/Chouara-Tannery.jpg',         time: '1:30 PM',  duration: '1 hour',   distance: '0.8 km',    description: t('data.itineraries.fes.stop3_desc'), completed: false },
+      ],
+    },
+    casablanca: {
+      name: t('data.itineraries.casablanca.name'), nameAr: t('data.itineraries.casablanca.name_ar'), totalDays: 2,
+      stops: [
+        { id: '1', name: t('data.itineraries.casablanca.stop1_name'), nameAr: t('home_map.hassan_ii_mosque_ar'), image: '/cities/Casablanca/hassan-ii-mosque-2.jpg', time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: t('data.itineraries.casablanca.stop1_desc'),    completed: true  },
+        { id: '2', name: t('data.itineraries.casablanca.stop2_name'), nameAr: t('home_map.habous_ar'),          image: '/cities/Casablanca/habbous.png',            time: '11:30 AM', duration: '1.5 hours', distance: '3 km',      description: t('data.itineraries.casablanca.stop2_desc'),  completed: false },
+        { id: '3', name: t('data.itineraries.casablanca.stop3_name'), nameAr: t('home_map.morocco_mall_ar'),          image: '/cities/Casablanca/morocco-mall-3-.webp',   time: '2:30 PM',  duration: '2 hours',   distance: '6 km',      description: t('data.itineraries.casablanca.stop3_desc'),   completed: false },
+      ],
+    },
+    rabat: {
+      name: t('data.itineraries.rabat.name'), nameAr: t('data.itineraries.rabat.name_ar'), totalDays: 2,
+      stops: [
+        { id: '1', name: t('data.itineraries.rabat.stop1_name'), nameAr: t('home_map.hassan_tower_ar'),   image: '/cities/Rabat/hassan-tower2.webp',          time: '9:00 AM',  duration: '1 hour',   distance: 'Start point', description: t('data.itineraries.rabat.stop1_desc'),      completed: true  },
+        { id: '2', name: t('data.itineraries.rabat.stop2_name'), nameAr: t('home_map.chellah_ar'),          image: '/cities/Rabat/necropolis-de-chellah-3.jpg', time: '10:30 AM', duration: '1.5 hours', distance: '1.5 km',    description: t('data.itineraries.rabat.stop2_desc'),  completed: false },
+        { id: '3', name: t('data.itineraries.rabat.stop3_name'), nameAr: t('home_map.kasbah_oudaias_ar'), image: '/cities/Rabat/Kasbah-Udayas-Rabat.webp',    time: '1:00 PM',  duration: '1.5 hours', distance: '1.2 km',    description: t('data.itineraries.rabat.stop3_desc'), completed: false },
+      ],
+    },
+    tangier: {
+      name: t('data.itineraries.tangier.name'), nameAr: t('data.itineraries.tangier.name_ar'), totalDays: 2,
+      stops: [
+        { id: '1', name: t('data.itineraries.tangier.stop1_name'), nameAr: t('home_map.kasbah_museum_ar'),  image: '/cities/Tangier/kasbah%20museum.jpg',    time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: t('data.itineraries.tangier.stop1_desc'),   completed: true  },
+        { id: '2', name: t('data.itineraries.tangier.stop2_name'), nameAr: t('home_map.caves_hercules_ar'),    image: '/cities/Tangier/hercules.jpg',           time: '11:30 AM', duration: '1 hour',    distance: '14 km',     description: t('data.itineraries.tangier.stop2_desc'),    completed: false },
+        { id: '3', name: t('data.itineraries.tangier.stop3_name'), nameAr: t('home_map.grand_socco_ar'), image: '/cities/Tangier/Grand_Socco_Tangier.jpg', time: '2:00 PM',  duration: '1 hour',    distance: '12 km',     description: t('data.itineraries.tangier.stop3_desc'),   completed: false },
+      ],
+    },
+    chefchaouen: {
+      name: t('data.itineraries.chefchaouen.name'), nameAr: t('data.itineraries.chefchaouen.name_ar'), totalDays: 2,
+      stops: [
+        { id: '1', name: t('data.itineraries.chefchaouen.stop1_name'), nameAr: t('home_map.blue_medina_ar'), image: '/cities/Chefchaouen/blue%20medina.jpg',         time: '9:00 AM',  duration: '2 hours', distance: 'Start point', description: t('data.itineraries.chefchaouen.stop1_desc'),          completed: true  },
+        { id: '2', name: t('data.itineraries.chefchaouen.stop2_name'), nameAr: t('home_map.ras_el_maa_ar'),       image: '/cities/Chefchaouen/Ras-El-Maa-Waterfall.webp', time: '11:30 AM', duration: '1 hour',  distance: '0.5 km',    description: t('data.itineraries.chefchaouen.stop2_desc'),      completed: false },
+        { id: '3', name: t('data.itineraries.chefchaouen.stop3_name'), nameAr: t('home_map.spanish_mosque_ar'), image: '/cities/Chefchaouen/spanish%20mosque.jpg',      time: '1:30 PM',  duration: '1 hour',  distance: '1 km',      description: t('data.itineraries.chefchaouen.stop3_desc'), completed: false },
+        { id: '4', name: t('data.itineraries.chefchaouen.stop4_name'), nameAr: t('home_map.akchour_ar'),   image: '/cities/Chefchaouen/akchour.jpg',               time: '3:30 PM',  duration: '2 hours', distance: '30 km',     description: t('data.itineraries.chefchaouen.stop4_desc'),        completed: false },
+      ],
+    },
+    meknes: {
+      name: t('data.itineraries.meknes.name'), nameAr: t('data.itineraries.meknes.name_ar'), totalDays: 2,
+      stops: [
+        { id: '1', name: t('data.itineraries.meknes.stop1_name'), nameAr: t('home_map.bab_mansour_ar'),           image: '/cities/Meknes/bab-mansour-gate.jpg',                  time: '9:00 AM',  duration: '30 mins',   distance: 'Start point', description: t('data.itineraries.meknes.stop1_desc'),    completed: true  },
+        { id: '2', name: t('data.itineraries.meknes.stop2_name'), nameAr: t('home_map.moulay_ismail_ar'), image: '/cities/Meknes/Le-tombeau-de-Moulay-Isma%C3%AFl.jpg',  time: '10:00 AM', duration: '1 hour',    distance: '0.3 km',    description: t('data.itineraries.meknes.stop2_desc'),   completed: false },
+        { id: '3', name: t('data.itineraries.meknes.stop3_name'), nameAr: t('home_map.el_hedim_ar'),         image: '/cities/Meknes/el-hedim-square.jpg',                  time: '12:00 PM', duration: '1.5 hours', distance: '0.2 km',    description: t('data.itineraries.meknes.stop3_desc'),      completed: false },
+      ],
+    },
+    safi: {
+      name: t('data.itineraries.safi.name'), nameAr: t('data.itineraries.safi.name_ar'), totalDays: 2,
+      stops: [
+        { id: '1', name: t('data.itineraries.safi.stop1_name'), nameAr: t('home_map.kechla_ar'),          image: '/cities/Safi/kachla%20fortress.jpg',            time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: t('data.itineraries.safi.stop1_desc'),    completed: true  },
+        { id: '2', name: t('data.itineraries.safi.stop2_name'), nameAr: t('home_map.pottery_quarter_ar'),           image: '/cities/Safi/pottery%20quarter.png',            time: '11:00 AM', duration: '2 hours',   distance: '1 km',      description: t('data.itineraries.safi.stop2_desc'), completed: false },
+        { id: '3', name: t('data.itineraries.safi.stop3_name'), nameAr: t('home_map.portuguese_chapel_ar'), image: '/cities/Safi/cathedrale-portugaise0-scaled.jpg', time: '2:00 PM',  duration: '45 mins',   distance: '0.5 km',    description: t('data.itineraries.safi.stop3_desc'),       completed: false },
+      ],
+    },
+    essaouira: {
+      name: t('data.itineraries.essaouira.name'), nameAr: t('data.itineraries.essaouira.name_ar'), totalDays: 2,
+      stops: [
+        { id: '1', name: t('data.itineraries.essaouira.stop1_name'), nameAr: t('home_map.skala_ar'),  image: '/cities/Essaouira/skala.jpeg', time: '9:00 AM',  duration: '1.5 hours', distance: 'Start point', description: t('data.itineraries.essaouira.stop1_desc'), completed: true  },
+        { id: '2', name: t('data.itineraries.essaouira.stop2_name'), nameAr: t('home_map.essaouira_medina_ar'), image: '/cities/Essaouira/skala.webp', time: '11:00 AM', duration: '2 hours',   distance: '0.3 km',    description: t('data.itineraries.essaouira.stop2_desc'), completed: false },
+      ],
+    },
+  }
+
+  const DEFAULT_ITINERARY = CITY_ITINERARIES.marrakech
   const itinerary = (selectedCityId ? CITY_ITINERARIES[selectedCityId] : null) ?? DEFAULT_ITINERARY
 
   const [selectedDay, setSelectedDay] = useState(1)
@@ -126,9 +125,9 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
         {/* Transport mode */}
         <div className="flex gap-2 mb-4">
           {[
-            { id: 'walking' as const, label: 'Walking', Icon: WalkingIcon },
-            { id: 'car' as const, label: 'Car', Icon: CarIcon },
-            { id: 'public' as const, label: 'Transit', Icon: BusIcon },
+            { id: 'walking' as const, label: t('itinerary.walking', 'Walking'), Icon: WalkingIcon },
+            { id: 'car' as const, label: t('itinerary.car', 'Car'), Icon: CarIcon },
+            { id: 'public' as const, label: t('itinerary.transit', 'Transit'), Icon: BusIcon },
           ].map(({ id, label, Icon }) => (
             <button
               key={id}
@@ -152,7 +151,7 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
                 selectedDay === day ? "bg-accent text-accent-foreground shadow-md" : "bg-muted text-muted-foreground hover:bg-muted/80"
               )}
             >
-              Day {day}
+              {t('itinerary.day', 'Day')} {day}
             </button>
           ))}
         </div>
@@ -165,7 +164,7 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
             <div className="h-full bg-secondary rounded-full transition-all duration-500" style={{ width: `${(completedStops / totalStops) * 100}%` }} />
           </div>
         </div>
-        <span className="text-sm font-medium text-foreground whitespace-nowrap">{completedStops}/{totalStops} completed</span>
+        <span className="text-sm font-medium text-foreground whitespace-nowrap">{completedStops}/{totalStops} {t('itinerary.completed', 'completed')}</span>
       </div>
 
       {/* Timeline */}
@@ -216,10 +215,10 @@ export function ItineraryScreen({ isDark }: ItineraryScreenProps) {
         <div className="p-4 space-y-2">
           <button className="w-full py-4 px-6 bg-primary text-primary-foreground rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:bg-primary/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
             <NavigationIcon className="w-5 h-5" />
-            <span>Start Navigation</span>
+            <span>{t('itinerary.start_navigation', 'Start Navigation')}</span>
           </button>
           <button className="w-full py-2 px-6 bg-muted text-muted-foreground rounded-xl font-medium hover:bg-muted/80 transition-colors">
-            View Full Route
+            {t('itinerary.view_full_route', 'View Full Route')}
           </button>
         </div>
       </div>

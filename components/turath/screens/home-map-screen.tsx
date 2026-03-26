@@ -128,7 +128,7 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
               className="text-[10px] font-bold tracking-widest uppercase mb-0.5"
               style={{ color: '#C9A84C', opacity: isDark ? 0.8 : 1 }}
             >
-              {t('home_map.subtitle', 'استكشف المغرب')}
+              {t('home_map.subtitle', 'Digital Heritage Guide')}
             </p>
             <h1 className={cn("text-[17px] font-black leading-tight tracking-tight", isDark ? "text-white" : "text-foreground")}>
               {t('home_map.title', 'Discover Morocco')}
@@ -154,7 +154,7 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
           <SearchIcon className={cn("w-4 h-4 flex-shrink-0", isDark ? "text-white/35" : "text-muted-foreground")} />
           <input
             type="text"
-            placeholder={t('home_map.search_placeholder', 'Search cities, crafts, artisans…')}
+            placeholder={t('home_map.search_placeholder', 'Search local crafts, artisans...')}
             className={cn("flex-1 bg-transparent text-xs outline-none", isDark ? "text-white placeholder:text-white/25" : "text-foreground placeholder:text-muted-foreground")}
           />
           <button className="w-7 h-7 rounded-lg flex items-center justify-center transition-transform active:scale-90" style={{ background: 'rgba(201,168,76,0.20)' }}>

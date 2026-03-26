@@ -333,3 +333,36 @@ export function CameraIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+export function HeritageIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M4 22V10l8-7 8 7v12" />
+      <path d="M10 22v-6c0-1.1.9-2 2-2s2 .9 2 2v6" />
+    </svg>
+  )
+}
+
+export function ArtisanIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M12 11c0 3.518-2.122 6-4 6-1.878 0-4-2.482-4-6V4h8v7Z" />
+      <path d="M16 11c0 3.518 2.122 6 4 6 1.878 0 4-2.482 4-6V4h-8v7Z" />
+      <path d="M12 18v3" />
+      <path d="M8 21h8" />
+    </svg>
+  )
+}
+
+export function ItineraryIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <circle cx="12" cy="5" r="3" />
+      <path d="M9 22V17l3-3 3 3v5" />
+      <path d="M12 8v6" />
+    </svg>
+  )
+}
+
+export function BackIcon(props: SVGProps<SVGSVGElement>) {
+  return <ChevronLeftIcon {...props} />
+}
