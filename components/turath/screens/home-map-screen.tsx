@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { FILTER_CHIPS } from '@/lib/turath-types'
-// topOffset=168 → image starts below filter chips (which end at ≈148px)
-// Northern cities (y=3-17%) render at 174-202px, cleared from all overlays.
-import { SearchIcon, MicIcon, MapPinIcon, ChevronRightIcon } from '../icons'
+import {
+  SearchIcon, MicIcon, MapPinIcon, ChevronRightIcon, StarIcon, BellIcon,
+} from '../icons'
 import { BottomNavigation } from '../bottom-navigation'
 import { useNavigation } from '../navigation-provider'
 import {
@@ -16,37 +16,71 @@ import {
 } from '../interactive-morocco-map'
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Content data per city type
+//  Real monument images per city (from /public/cities/)
 // ─────────────────────────────────────────────────────────────────────────────
 
-const HIGHLIGHTS_BY_TYPE: Record<CityType, {
+const CITY_HIGHLIGHTS: Record<string, {
   id: string; name: string; category: string; description: string; image: string
 }[]> = {
-  heritage: [
-    { id: 'h1', name: 'Al Quaraouiyine',  category: 'Heritage',      description: "World's oldest university",      image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400' },
-    { id: 'h2', name: 'Bab Boujloud',     category: 'Architecture',  description: 'Blue Gate of the Fès Medina',    image: 'https://images.unsplash.com/photo-1553899017-9279a3e1c0c9?w=400' },
-    { id: 'h3', name: 'Hassan Tower',     category: 'Monument',      description: 'Unfinished minaret of Rabat',    image: 'https://images.unsplash.com/photo-1548018560-c7196548e84d?w=400' },
-    { id: 'h4', name: 'Chellah',          category: 'Ruins',         description: 'Ancient Roman & Merinid site',   image: 'https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=400' },
+  tangier: [
+    { id: 't1', name: 'Kasbah Museum',       category: 'Heritage',      description: 'Iconic fortress overlooking the strait',      image: '/cities/Tangier/kasbah%20museum.jpg' },
+    { id: 't2', name: 'Caves of Hercules',   category: 'Nature',        description: 'Legendary sea caves at the cape',             image: '/cities/Tangier/hercules.jpg' },
+    { id: 't3', name: 'Grand Socco',         category: 'Market',        description: 'Lively central square of Tangier',            image: '/cities/Tangier/Grand_Socco_Tangier.jpg' },
   ],
-  artisan: [
-    { id: 'a1', name: 'Chouara Tannery',  category: 'Artisan',       description: 'Iconic leather dyeing pits',     image: 'https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=400' },
-    { id: 'a2', name: 'Jemaa el-Fna',    category: 'Market',        description: 'Vibrant square of Marrakech',    image: 'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=400' },
-    { id: 'a3', name: 'Zellige Studio',   category: 'Craft',         description: 'Traditional tile artisans',      image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400' },
-    { id: 'a4', name: 'Safi Pottery',     category: 'Ceramics',      description: 'Famous blue glazed ceramics',    image: 'https://images.unsplash.com/photo-1548018560-c7196548e84d?w=400' },
+  chefchaouen: [
+    { id: 'c1', name: 'Blue Medina',         category: 'Heritage',      description: 'Iconic blue-washed alleyways',                image: '/cities/Chefchaouen/blue%20medina.jpg' },
+    { id: 'c2', name: 'Ras El Maa',          category: 'Nature',        description: 'Crystal-clear spring waterfall',              image: '/cities/Chefchaouen/Ras-El-Maa-Waterfall.webp' },
+    { id: 'c3', name: 'Spanish Mosque',      category: 'Monument',      description: 'Panoramic hilltop mosque',                    image: '/cities/Chefchaouen/spanish%20mosque.jpg' },
+    { id: 'c4', name: 'Akchour Waterfalls',  category: 'Nature',        description: 'Stunning cascades in the Rif mountains',      image: '/cities/Chefchaouen/akchour.jpg' },
   ],
-  food: [
-    { id: 'f1', name: 'Tagine Workshop',  category: 'Gastronomy',    description: 'Slow-cooked Moroccan dishes',    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=400' },
-    { id: 'f2', name: 'Argan Oil Farm',   category: 'Produce',       description: 'Liquid gold of Morocco',         image: 'https://images.unsplash.com/photo-1548018560-c7196548e84d?w=400' },
-    { id: 'f3', name: 'Souk Spices',      category: 'Market',        description: 'Rainbow of Moroccan spices',     image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400' },
-    { id: 'f4', name: 'Atlantic Seafood', category: 'Food',          description: 'Fresh catch from the Atlantic',  image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400' },
+  fes: [
+    { id: 'f1', name: 'Al-Qarawiyyin',       category: 'Heritage',      description: "World's oldest university",                   image: '/cities/fes/mezquita-al-karaouine-4.jpg' },
+    { id: 'f2', name: 'Bou Inania Madrasa',  category: 'Architecture',  description: 'Exquisite Marinid-era school',                image: '/cities/fes/bou%20inania.webp' },
+    { id: 'f3', name: 'Chouara Tannery',     category: 'Artisan',       description: 'Iconic leather dyeing pits of Fès',           image: '/cities/fes/Chouara-Tannery.jpg' },
+  ],
+  meknes: [
+    { id: 'm1', name: 'Bab Mansour',         category: 'Architecture',  description: 'Majestic imperial gate of Meknès',            image: '/cities/Meknes/bab-mansour-gate.jpg' },
+    { id: 'm2', name: 'Moulay Ismail Tomb',  category: 'Heritage',      description: 'Mausoleum of the sultan builder',             image: '/cities/Meknes/Le-tombeau-de-Moulay-Isma%C3%AFl.jpg' },
+    { id: 'm3', name: 'Place El Hedim',      category: 'Market',        description: 'Grand square of the imperial city',           image: '/cities/Meknes/el-hedim-square.jpg' },
+  ],
+  rabat: [
+    { id: 'r1', name: 'Hassan Tower',        category: 'Monument',      description: 'Unfinished minaret of the 12th century',      image: '/cities/Rabat/hassan-tower2.webp' },
+    { id: 'r2', name: 'Chellah',             category: 'Ruins',         description: 'Ancient Roman & Merinid riverside site',      image: '/cities/Rabat/necropolis-de-chellah-3.jpg' },
+    { id: 'r3', name: 'Kasbah des Oudaias',  category: 'Heritage',      description: 'Fortified Andalusian neighbourhood',          image: '/cities/Rabat/Kasbah-Udayas-Rabat.webp' },
+  ],
+  casablanca: [
+    { id: 'ca1', name: 'Hassan II Mosque',   category: 'Monument',      description: "Africa's largest mosque, sea terrace",        image: '/cities/Casablanca/hassan-ii-mosque-2.jpg' },
+    { id: 'ca2', name: 'Quartier Habous',    category: 'Heritage',      description: 'French-Moroccan neo-Moorish district',        image: '/cities/Casablanca/habbous.png' },
+    { id: 'ca3', name: 'Morocco Mall',       category: 'Shopping',      description: 'Iconic aquarium shopping landmark',           image: '/cities/Casablanca/morocco-mall-3-.webp' },
+  ],
+  safi: [
+    { id: 's1', name: 'Kechla Fortress',     category: 'Heritage',      description: 'Portuguese sea fortress on the cliff',        image: '/cities/Safi/kachla%20fortress.jpg' },
+    { id: 's2', name: 'Pottery Quarter',     category: 'Artisan',       description: 'Famous blue glazed ceramics workshops',       image: '/cities/Safi/pottery%20quarter.png' },
+    { id: 's3', name: 'Portuguese Chapel',   category: 'Architecture',  description: 'Historic Manueline-style chapel',             image: '/cities/Safi/cathedrale-portugaise0-scaled.jpg' },
+    { id: 's4', name: 'Safi Tagine',         category: 'Food',          description: 'Authentic slow-cooked Safi tagine',           image: '/cities/Safi/tajine.webp' },
+  ],
+  essaouira: [
+    { id: 'e1', name: 'Skala Ramparts',      category: 'Heritage',      description: 'Atlantic-facing cannon sea walls',            image: '/cities/Essaouira/skala.jpeg' },
+    { id: 'e2', name: 'Medina UNESCO',       category: 'Monument',      description: 'World Heritage walled medina port',           image: '/cities/Essaouira/skala.webp' },
+  ],
+  marrakech: [
+    { id: 'mk1', name: 'Jemaa el-Fna',      category: 'Market',        description: 'Vibrant UNESCO-listed main square',           image: '/cities/Marrakech/jama-el-fnaa.jpg' },
+    { id: 'mk2', name: 'Bahia Palace',       category: 'Architecture',  description: 'Opulent 19th-century royal palace',           image: '/cities/Marrakech/bahia%20palace.jpeg' },
+    { id: 'mk3', name: 'Majorelle Garden',   category: 'Nature',        description: 'Cobalt-blue Yves Saint Laurent garden',       image: '/cities/Marrakech/majorelle.jpg' },
   ],
 }
 
+// Default when no city is selected — one card per city
 const DEFAULT_HIGHLIGHTS = [
-  { id: 'd1', name: 'Al Quaraouiyine',  category: 'Heritage',   description: "World's oldest university",     image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400' },
-  { id: 'd2', name: 'Chouara Tannery',  category: 'Artisan',    description: 'Iconic leather dyeing pits',    image: 'https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=400' },
-  { id: 'd3', name: 'Jemaa el-Fna',    category: 'Market',     description: 'Vibrant square of Marrakech',   image: 'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=400' },
-  { id: 'd4', name: 'Tagine Workshop',  category: 'Food',       description: 'Slow-cooked Moroccan dishes',   image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=400' },
+  { id: 'd1', name: 'Al-Qarawiyyin',       category: 'Fès',           description: "World's oldest university",                   image: '/cities/fes/mezquita-al-karaouine-4.jpg' },
+  { id: 'd2', name: 'Jemaa el-Fna',        category: 'Marrakech',     description: 'Vibrant UNESCO-listed main square',           image: '/cities/Marrakech/jama-el-fnaa.jpg' },
+  { id: 'd3', name: 'Hassan II Mosque',    category: 'Casablanca',    description: "Africa's largest mosque",                     image: '/cities/Casablanca/hassan-ii-mosque-2.jpg' },
+  { id: 'd4', name: 'Hassan Tower',        category: 'Rabat',         description: 'Unfinished 12th-century minaret',             image: '/cities/Rabat/hassan-tower2.webp' },
+  { id: 'd5', name: 'Blue Medina',         category: 'Chefchaouen',   description: 'Iconic blue-washed alleyways',                image: '/cities/Chefchaouen/blue medina.jpg' },
+  { id: 'd6', name: 'Bab Mansour',         category: 'Meknès',        description: 'Majestic imperial gate',                      image: '/cities/Meknes/bab-mansour-gate.jpg' },
+  { id: 'd7', name: 'Chouara Tannery',     category: 'Fès',           description: 'Iconic leather dyeing pits',                  image: '/cities/fes/Chouara-Tannery.jpg' },
+  { id: 'd8', name: 'Skala Ramparts',      category: 'Essaouira',     description: 'Atlantic-facing cannon sea walls',            image: '/cities/Essaouira/skala.jpeg' },
+  { id: 'd9', name: 'Kasbah Museum',       category: 'Tanger',        description: 'Fortress overlooking the strait',             image: '/cities/Tangier/kasbah museum.jpg' },
 ]
 
 interface HomeMapScreenProps {
@@ -54,62 +88,97 @@ interface HomeMapScreenProps {
 }
 
 export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
-  void isDark
-  const { navigate } = useNavigation()
+  const { navigate, setSelectedCityId } = useNavigation()
   const [activeFilter, setActiveFilter] = useState('all')
-  const [bottomSheetExpanded, setBottomSheetExpanded] = useState(false)
   const [hoveredCity, setHoveredCity]   = useState<MapCity | null>(null)
   const [selectedCity, setSelectedCity] = useState<MapCity | null>(null)
 
-  // Hover is used only for marker visuals. Cards are driven by selectedCity.
-  const activeBadgeCity = selectedCity ?? hoveredCity   // badge above map
-  const activeCity      = selectedCity                  // content
-  const activeMeta      = activeCity ? TYPE_META[activeCity.type] : null
+  const goToCity = (cityId: string | null) => {
+    setSelectedCityId(cityId)
+    navigate('region-detail')
+  }
 
-  const highlights = activeCity ? HIGHLIGHTS_BY_TYPE[activeCity.type] : DEFAULT_HIGHLIGHTS
+  const activeCity = selectedCity ?? hoveredCity
+  const activeMeta = activeCity ? TYPE_META[activeCity.type] : null
+
+  const highlights = selectedCity
+    ? (CITY_HIGHLIGHTS[selectedCity.id] ?? DEFAULT_HIGHLIGHTS)
+    : DEFAULT_HIGHLIGHTS
+
   const filteredHighlights = activeFilter === 'all'
     ? highlights
     : highlights.filter(h => h.category.toLowerCase().includes(activeFilter.toLowerCase()))
 
-  // Collapsed sheet height chosen so the map image (326 px tall from the top)
-  // is fully visible above the sheet.  Image bottom ≈ 326 px;
-  // sheet top = phone-inner-height(784) − nav(64) − sheet(140) = 580 px → clear ✓
-  const SHEET_H_COLLAPSED = 140
-  const SHEET_H_EXPANDED  = 480
+  const mapBg = isDark
+    ? 'linear-gradient(135deg, #060810 0%, #0b0d18 40%, #0e1022 70%, #080a10 100%)'
+    : 'linear-gradient(135deg, #BDD9EF 0%, #C8E8D8 100%)'
 
   return (
-    <div className="h-full flex flex-col relative">
+    <div className="h-full flex flex-col overflow-hidden">
 
-      {/* ── Search bar ─────────────────────────────────────────────────── */}
-      <div className="absolute top-12 left-4 right-4 z-30">
-        <div className="glass rounded-2xl border border-border/50 shadow-lg">
-          <div className="flex items-center gap-3 px-4 py-3">
-            <SearchIcon className="w-5 h-5 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Search places, crafts, artisans…"
-              className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
-            />
-            <button className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
-              <MicIcon className="w-5 h-5 text-primary" />
-            </button>
+      {/* ── HERO HEADER ─────────────────────────────────────────────────── */}
+      <div
+        className="flex-shrink-0 pt-10 pb-3 px-4"
+        style={{
+          background: isDark
+            ? 'linear-gradient(to bottom, #0d0d16 0%, #0b0b13 80%, transparent 100%)'
+            : undefined,
+        }}
+      >
+        {/* Greeting row */}
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <p
+              className="text-[10px] font-semibold tracking-widest uppercase mb-0.5"
+              style={{ color: '#C9A84C', opacity: isDark ? 0.8 : 1 }}
+            >
+              استكشف المغرب
+            </p>
+            <h1 className={cn("text-[17px] font-black leading-tight tracking-tight", isDark ? "text-white" : "text-foreground")}>
+              Discover Morocco
+            </h1>
+          </div>
+          <div className="relative">
+            <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center", isDark ? "bg-white/8 border border-white/10" : "bg-black/5 border border-black/8")}>
+              <BellIcon className={cn("w-4 h-4", isDark ? "text-white/60" : "text-foreground/60")} />
+            </div>
+            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#C1121F] border border-background" />
           </div>
         </div>
-      </div>
 
-      {/* ── Filter chips ───────────────────────────────────────────────── */}
-      <div className="absolute top-28 left-0 right-0 z-20 px-4">
-        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+        {/* Search bar */}
+        <div
+          className={cn("flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl border")}
+          style={{
+            background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.85)',
+            border: isDark ? '1px solid rgba(255,255,255,0.10)' : '1px solid rgba(0,0,0,0.08)',
+            backdropFilter: 'blur(12px)',
+          }}
+        >
+          <SearchIcon className={cn("w-4 h-4 flex-shrink-0", isDark ? "text-white/35" : "text-muted-foreground")} />
+          <input
+            type="text"
+            placeholder="Search cities, crafts, artisans…"
+            className={cn("flex-1 bg-transparent text-xs outline-none", isDark ? "text-white placeholder:text-white/25" : "text-foreground placeholder:text-muted-foreground")}
+          />
+          <button className="w-7 h-7 rounded-xl flex items-center justify-center" style={{ background: 'rgba(201,168,76,0.20)' }}>
+            <MicIcon className="w-3.5 h-3.5 text-[#C9A84C]" />
+          </button>
+        </div>
+
+        {/* Filter chips */}
+        <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide mt-2.5">
           {FILTER_CHIPS.map((chip) => (
             <button
               key={chip.id}
               onClick={() => setActiveFilter(chip.id)}
-              className={cn(
-                "px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all",
-                activeFilter === chip.id
-                  ? "bg-accent text-accent-foreground shadow-md"
-                  : "glass border border-border/50 text-foreground hover:bg-accent/10"
-              )}
+              className="px-3 py-1 rounded-xl text-[10px] font-semibold whitespace-nowrap transition-all flex-shrink-0"
+              style={{
+                background: activeFilter === chip.id ? '#C9A84C' : isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)',
+                color: activeFilter === chip.id ? '#1a1a1a' : isDark ? 'rgba(255,255,255,0.55)' : undefined,
+                border: activeFilter === chip.id ? 'none' : isDark ? '1px solid rgba(255,255,255,0.10)' : '1px solid rgba(0,0,0,0.08)',
+                boxShadow: activeFilter === chip.id ? '0 2px 8px rgba(201,168,76,0.35)' : undefined,
+              }}
             >
               {chip.label}
             </button>
@@ -117,138 +186,194 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
         </div>
       </div>
 
-      {/* ── Map area (flex-1 fills remaining height) ───────────────────── */}
-      <div className="flex-1 relative bg-gradient-to-b from-[#BDD9EF] to-[#C8E8D8]">
-        <InteractiveMoroccoMap
-          hoveredCity={hoveredCity}
-          selectedCity={selectedCity}
-          onCityHover={setHoveredCity}
-          onCityClick={(city) => setSelectedCity(prev => prev?.id === city.id ? null : city)}
-          topOffset={168}
-          bottomOffset={154}
-          className="absolute inset-0"
-        />
-
-        {/* Active city badge — shown on hover OR selection */}
-        {activeBadgeCity && (
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center gap-1">
+      {/* ── MAP + SIDE INFO PANEL ────────────────────────────────────────── */}
+      <div
+        className="flex-shrink-0 mx-3 rounded-2xl overflow-hidden flex"
+        style={{
+          height: 248,
+          border: isDark ? '1px solid rgba(255,255,255,0.07)' : '1px solid rgba(0,0,0,0.07)',
+          boxShadow: isDark ? '0 8px 32px rgba(0,0,0,0.55)' : '0 4px 20px rgba(0,0,0,0.09)',
+        }}
+      >
+        {/* Map */}
+        <div className="relative flex-1 overflow-hidden" style={{ background: mapBg }}>
+          {isDark && (
             <div
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-lg text-xs font-bold"
-              style={{
-                backgroundColor: TYPE_META[activeBadgeCity.type].hex,
-                color: activeBadgeCity.type === 'artisan' ? '#1a1a1a' : 'white',
-              }}
-            >
-              <MapPinIcon className="w-3 h-3" />
-              <span>{activeBadgeCity.name}</span>
-              {selectedCity?.id === activeBadgeCity.id && (
-                <>
-                  <span className="opacity-50">·</span>
-                  <span className="opacity-85 font-normal">{activeBadgeCity.heritageSites} sites</span>
-                  <span className="opacity-50">·</span>
-                  <span className="opacity-85 font-normal">{activeBadgeCity.artisans} artisans</span>
-                </>
-              )}
+              className="absolute inset-0 z-10 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(6,8,16,0.65) 100%)' }}
+            />
+          )}
+          <InteractiveMoroccoMap
+            hoveredCity={hoveredCity}
+            selectedCity={selectedCity}
+            onCityHover={setHoveredCity}
+            onCityClick={(city) => setSelectedCity(prev => prev?.id === city.id ? null : city)}
+            topOffset={0}
+            bottomOffset={0}
+            isDark={isDark}
+            className="absolute inset-0"
+          />
+        </div>
+
+        {/* Info Panel */}
+        <div
+          className="flex-shrink-0 flex flex-col py-3 px-3"
+          style={{
+            width: 108,
+            background: isDark ? 'rgba(10,10,20,0.97)' : 'rgba(255,255,255,0.96)',
+            borderLeft: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+          }}
+        >
+          {/* City count */}
+          <div className="mb-2">
+            <p className={cn("text-[8px] font-bold uppercase tracking-widest mb-0.5", isDark ? "text-white/30" : "text-muted-foreground")}>Explore</p>
+            <div className="flex items-baseline gap-1">
+              <span className={cn("text-[26px] font-black leading-none", isDark ? "text-white" : "text-foreground")}>9</span>
+              <span className={cn("text-[9px]", isDark ? "text-white/35" : "text-muted-foreground")}>cities</span>
             </div>
-            {selectedCity?.id === activeBadgeCity.id && (
-              <span className="text-[9px] bg-black/40 text-white/80 px-2 py-0.5 rounded-full">
-                Tap another city to switch
-              </span>
+          </div>
+
+          <div className={cn("h-px mb-2", isDark ? "bg-white/7" : "bg-black/6")} />
+
+          {/* City detail or legend */}
+          <div className="flex-1 min-h-0">
+            {activeCity ? (
+              <div className="space-y-1">
+                {activeMeta && (
+                  <span
+                    className="inline-block text-[7px] font-bold px-1.5 py-0.5 rounded-full"
+                    style={{ backgroundColor: activeMeta.hex, color: activeCity.type === 'artisan' ? '#1a1a1a' : 'white' }}
+                  >
+                    {activeMeta.label}
+                  </span>
+                )}
+                <p className={cn("text-[11px] font-bold leading-tight", isDark ? "text-white" : "text-foreground")}>{activeCity.name}</p>
+                <p className={cn("text-[9px]", isDark ? "text-white/35" : "text-muted-foreground")} dir="rtl">{activeCity.nameAr}</p>
+                <div className={cn("h-px my-1", isDark ? "bg-white/7" : "bg-black/6")} />
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1">
+                    <MapPinIcon className="w-2.5 h-2.5 text-[#C1121F] flex-shrink-0" />
+                    <span className={cn("text-[8px]", isDark ? "text-white/45" : "text-muted-foreground")}>{activeCity.heritageSites} sites</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <StarIcon className="w-2.5 h-2.5 text-[#C9A84C] flex-shrink-0" />
+                    <span className={cn("text-[8px]", isDark ? "text-white/45" : "text-muted-foreground")}>{activeCity.artisans} artisans</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <p className={cn("text-[8.5px] leading-snug mb-2", isDark ? "text-white/35" : "text-muted-foreground")}>Tap a city on the map</p>
+                <div className="space-y-1.5">
+                  {(Object.entries(TYPE_META) as [CityType, typeof TYPE_META[CityType]][]).map(([type, meta]) => (
+                    <div key={type} className="flex items-center gap-1.5">
+                      <span
+                        className="w-2 h-2 rounded-full flex-shrink-0 border"
+                        style={{ backgroundColor: meta.hex, borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)' }}
+                      />
+                      <span className={cn("text-[8px]", isDark ? "text-white/40" : "text-muted-foreground")}>{meta.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
-        )}
+
+          {/* View all CTA */}
+          <button
+            onClick={() => goToCity(activeCity?.id ?? null)}
+            className="w-full mt-2 text-[8px] font-bold py-1.5 rounded-lg flex items-center justify-center gap-0.5 transition-all"
+            style={{
+              background: isDark ? 'rgba(201,168,76,0.18)' : 'rgba(201,168,76,0.14)',
+              border: '1px solid rgba(201,168,76,0.25)',
+              color: isDark ? '#C9A84C' : '#8a6a10',
+            }}
+          >
+            View all <ChevronRightIcon className="w-2.5 h-2.5" />
+          </button>
+        </div>
       </div>
 
-      {/* ── Bottom sheet (glassmorphic, short collapsed height) ────────── */}
-      <div
-        className={cn(
-          "absolute bottom-14 left-0 right-0 z-20",
-          "rounded-t-3xl overflow-hidden shadow-2xl",
-          "bg-background/92 backdrop-blur-md border-t border-border/30",
-          "transition-all duration-300"
-        )}
-        style={{ height: bottomSheetExpanded ? SHEET_H_EXPANDED : SHEET_H_COLLAPSED }}
-      >
-        {/* Drag handle */}
-        <button
-          onClick={() => setBottomSheetExpanded(!bottomSheetExpanded)}
-          className="w-full flex justify-center py-2.5"
-          aria-label={bottomSheetExpanded ? 'Collapse' : 'Expand'}
-        >
-          <div className="w-8 h-1 bg-muted-foreground/30 rounded-full" />
-        </button>
-
-        <div className="px-4">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2 flex-1 min-w-0">
-              {activeMeta && (
-                <span
-                  className="flex-shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded-full text-white"
-                  style={{ backgroundColor: activeMeta.hex, color: activeCity?.type === 'artisan' ? '#1a1a1a' : 'white' }}
-                >
-                  {activeMeta.label}
-                </span>
-              )}
-              <div className="min-w-0">
-                <h3 className="text-sm font-semibold text-foreground leading-tight truncate">
-                  {activeCity ? `${activeCity.name} Highlights` : 'Explore Morocco'}
-                </h3>
-                {activeCity && (
-                  <p className="text-[10px] text-muted-foreground" dir="rtl">{activeCity.nameAr}</p>
-                )}
-              </div>
-            </div>
-            <button
-              onClick={() => navigate('region-detail')}
-              className="flex-shrink-0 text-xs text-accent font-medium flex items-center gap-0.5 ml-2"
-            >
-              View all <ChevronRightIcon className="w-3.5 h-3.5" />
-            </button>
+      {/* ── HIGHLIGHTS SECTION ──────────────────────────────────────────── */}
+      <div className="flex-1 flex flex-col min-h-0 px-3 pt-3 pb-1">
+        {/* Section header */}
+        <div className="flex items-center justify-between mb-2 flex-shrink-0">
+          <div>
+            <h2 className={cn("text-xs font-bold", isDark ? "text-white" : "text-foreground")}>
+              {selectedCity ? `${selectedCity.name} Highlights` : 'Explore Morocco'}
+            </h2>
+            {selectedCity && (
+              <p className={cn("text-[9px] mt-0.5", isDark ? "text-white/35" : "text-muted-foreground")} dir="rtl">
+                {selectedCity.nameAr}
+              </p>
+            )}
           </div>
+          <button
+            onClick={() => goToCity(selectedCity?.id ?? null)}
+            className="text-[10px] font-semibold flex items-center gap-0.5 transition-opacity hover:opacity-80"
+            style={{ color: isDark ? '#C9A84C' : '#8a6a10' }}
+          >
+            See all <ChevronRightIcon className="w-3 h-3" />
+          </button>
+        </div>
 
-          {/* City quick-tags (selected only) */}
-          {selectedCity && (
-            <div className="flex gap-1.5 mb-2.5 overflow-x-auto scrollbar-hide">
-              {selectedCity.highlights.map((h, i) => (
-                <span
-                  key={i}
-                  className="flex-shrink-0 px-2 py-0.5 rounded-lg text-[9px] font-semibold border border-border bg-muted text-foreground whitespace-nowrap"
-                >
-                  {h}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* Content cards */}
-          <div className="flex gap-2.5 overflow-x-auto pb-1 scrollbar-hide">
-            {filteredHighlights.map((place) => (
-              <button
-                key={place.id}
-                onClick={() => navigate('region-detail')}
-                className="flex-shrink-0 w-28 rounded-xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-md transition-all text-left active:scale-[0.97]"
+        {/* City quick-tags */}
+        {selectedCity && (
+          <div className="flex gap-1.5 mb-2 overflow-x-auto scrollbar-hide flex-shrink-0">
+            {selectedCity.highlights.map((h, i) => (
+              <span
+                key={i}
+                className="flex-shrink-0 px-2 py-0.5 rounded-lg text-[8px] font-semibold border whitespace-nowrap"
+                style={{
+                  background: isDark ? 'rgba(255,255,255,0.05)' : undefined,
+                  border: isDark ? '1px solid rgba(255,255,255,0.10)' : '1px solid var(--color-border)',
+                  color: isDark ? 'rgba(255,255,255,0.50)' : undefined,
+                }}
               >
-                <div className="overflow-hidden" style={{ height: 58 }}>
-                  <div
-                    className="w-full h-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
-                    style={{ backgroundImage: `url(${place.image})` }}
-                  />
-                </div>
-                <div className="p-2">
-                  <h4 className="font-semibold text-[10px] text-foreground truncate leading-tight">
-                    {place.name}
-                  </h4>
-                  <p className="text-[8.5px] text-muted-foreground mt-0.5 line-clamp-2 leading-tight">
-                    {place.description}
-                  </p>
-                  <span className="inline-block mt-1 text-[8px] font-bold text-accent uppercase tracking-wide">
-                    {place.category}
-                  </span>
-                </div>
-              </button>
+                {h}
+              </span>
             ))}
           </div>
+        )}
+
+        {/* Highlight cards */}
+        <div className="flex gap-2.5 overflow-x-auto pb-1 scrollbar-hide flex-shrink-0">
+          {filteredHighlights.map((place) => (
+            <button
+              key={place.id}
+              onClick={() => goToCity(place.id.startsWith('d') ? null : selectedCity?.id ?? null)}
+              className="flex-shrink-0 w-28 rounded-xl overflow-hidden text-left transition-all active:scale-[0.97]"
+              style={{
+                background: isDark ? 'rgba(255,255,255,0.04)' : 'var(--color-card)',
+                border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid var(--color-border)',
+                boxShadow: isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 1px 4px rgba(0,0,0,0.07)',
+              }}
+            >
+              <div className="overflow-hidden" style={{ height: 62 }}>
+                <div
+                  className="w-full h-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
+                  style={{ backgroundImage: `url(${place.image})` }}
+                />
+              </div>
+              <div
+                className="p-2"
+                style={{ borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : undefined }}
+              >
+                <h4 className={cn("font-semibold text-[10px] truncate leading-tight", isDark ? "text-white/90" : "text-foreground")}>
+                  {place.name}
+                </h4>
+                <p className={cn("text-[8px] mt-0.5 line-clamp-2 leading-tight", isDark ? "text-white/38" : "text-muted-foreground")}>
+                  {place.description}
+                </p>
+                <span
+                  className="inline-block mt-1 text-[7.5px] font-bold uppercase tracking-wide"
+                  style={{ color: isDark ? '#C9A84C' : '#8a6a10' }}
+                >
+                  {place.category}
+                </span>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 

@@ -35,106 +35,87 @@ function geo(lon: number, lat: number) {
   }
 }
 
-// 9 selected cities – manually verified to not overlap
+// Helper: Create city with easily adjustable x/y offsets
+function createCity(
+  id: string,
+  name: string,
+  nameAr: string,
+  lon: number,
+  lat: number,
+  type: CityType,
+  xOffset: number = 0,
+  yOffset: number = 0,
+  config: Omit<MapCity, 'id' | 'name' | 'nameAr' | 'x' | 'y' | 'type'> = {}
+): MapCity {
+  const pos = geo(lon, lat)
+  return {
+    id,
+    name,
+    nameAr,
+    x: pos.x + xOffset,
+    y: pos.y + yOffset,
+    type,
+    ...config,
+  }
+}
+
+// 9 selected cities – precisely calibrated to match screenshot
+// Formulas: x% = (lon + 17.1) / 16.1 × 100, y% = (36.0 − lat) / 15.2 × 100
 export const MOROCCO_CITIES: MapCity[] = [
-  {
-    id: 'tangier',
-    name: 'Tanger',
-    nameAr: 'طنجة',
-    ...geo(-5.80, 35.78),
-    type: 'heritage',
-    heritageSites: 18,
-    artisans: 42,
-    highlights: ['Kasbah Museum', 'Caves of Hercules', 'Grand Socco'],
-  },
-  {
-    id: 'chefchaouen',
-    name: 'Chefchaouen',
-    nameAr: 'شفشاون',
-    // Nudge right to separate from Tangier (≈6% away)
-    x: geo(-5.27, 35.17).x + 1.5,
-    y: geo(-5.27, 35.17).y,
-    type: 'heritage',
-    heritageSites: 9,
-    artisans: 55,
-    highlights: ['Blue Medina', 'Ras Elma Spring', 'Spanish Mosque'],
-  },
-  {
-    id: 'fes',
-    name: 'Fès',
-    nameAr: 'فاس',
-    // Nudge right to separate from Meknès
-    x: geo(-5.00, 34.05).x + 2,
-    y: geo(-5.00, 34.05).y,
-    type: 'heritage',
-    heritageSites: 31,
-    artisans: 180,
-    highlights: ['Al-Qarawiyyin', 'Bou Inania Madrasa', 'Chouara Tannery'],
-  },
-  {
-    id: 'meknes',
-    name: 'Meknès',
-    nameAr: 'مكناس',
-    // Nudge left to separate from Fès
-    x: geo(-5.55, 33.90).x - 1,
-    y: geo(-5.55, 33.90).y + 1,
-    type: 'heritage',
-    heritageSites: 14,
-    artisans: 70,
-    highlights: ['Bab Mansour', 'Mausoleum of Moulay Ismail', 'Place El Hedim'],
-  },
-  {
-    id: 'rabat',
-    name: 'Rabat',
-    nameAr: 'الرباط',
-    ...geo(-6.85, 34.02),
-    type: 'heritage',
-    heritageSites: 22,
-    artisans: 90,
-    highlights: ['Hassan Tower', 'Chellah', 'Kasbah des Oudaias'],
-  },
-  {
-    id: 'casablanca',
-    name: 'Casablanca',
-    nameAr: 'الدار البيضاء',
-    ...geo(-7.60, 33.60),
-    type: 'artisan',
-    heritageSites: 15,
-    artisans: 120,
-    highlights: ['Hassan II Mosque', 'Morocco Mall', 'Quartier Habous'],
-  },
-  {
-    id: 'safi',
-    name: 'Safi',
-    nameAr: 'آسفي',
-    ...geo(-9.24, 32.30),
-    type: 'artisan',
-    heritageSites: 9,
-    artisans: 75,
-    highlights: ['Kechla Fortress', 'Pottery Quarter', 'Portuguese Chapel'],
-  },
-  {
-    id: 'essaouira',
-    name: 'Essaouira',
-    nameAr: 'الصويرة',
-    // Nudge up slightly to separate from Marrakech
-    x: geo(-9.77, 31.51).x,
-    y: geo(-9.77, 31.51).y - 1,
-    type: 'food',
-    heritageSites: 12,
-    artisans: 88,
-    highlights: ['Medina UNESCO', 'Skala Ramparts', 'Gnawa Festival'],
-  },
-  {
-    id: 'marrakech',
-    name: 'Marrakech',
-    nameAr: 'مراكش',
-    ...geo(-8.01, 31.65),
-    type: 'artisan',
-    heritageSites: 24,
-    artisans: 156,
-    highlights: ['Jemaa el-Fna', 'Bahia Palace', 'Majorelle Garden'],
-  },
+  createCity(
+    'tangier', 'Tanger', 'طنجة',
+    -5.80, 35.78, 'heritage',
+    -1.2, -0.8, // Fine-tuned to exact position
+    { heritageSites: 18, artisans: 42, highlights: ['Kasbah Museum', 'Caves of Hercules', 'Grand Socco'] }
+  ),
+  createCity(
+    'chefchaouen', 'Chefchaouen', 'شفشاون',
+    -5.27, 35.17, 'heritage',
+    0.3, -0.2, // Fine-tuned positioning
+    { heritageSites: 9, artisans: 55, highlights: ['Blue Medina', 'Ras Elma Spring', 'Spanish Mosque'] }
+  ),
+  createCity(
+    'fes', 'Fès', 'فاس',
+    -5.00, 34.05, 'heritage',
+    1.5, 0.5, // Fine-tuned positioning
+    { heritageSites: 31, artisans: 180, highlights: ['Al-Qarawiyyin', 'Bou Inania Madrasa', 'Chouara Tannery'] }
+  ),
+  createCity(
+    'meknes', 'Meknès', 'مكناس',
+    -5.55, 33.90, 'heritage',
+    -0.8, 0.8, // Fine-tuned positioning
+    { heritageSites: 14, artisans: 70, highlights: ['Bab Mansour', 'Mausoleum of Moulay Ismail', 'Place El Hedim'] }
+  ),
+  createCity(
+    'rabat', 'Rabat', 'الرباط',
+    -6.85, 34.02, 'heritage',
+    -1.5, 0.3, // Fine-tuned to exact position
+    { heritageSites: 22, artisans: 90, highlights: ['Hassan Tower', 'Chellah', 'Kasbah des Oudaias'] }
+  ),
+  createCity(
+    'casablanca', 'Casablanca', 'الدار البيضاء',
+    -7.60, 33.60, 'artisan',
+    -0.5, 0.6, // Fine-tuned positioning
+    { heritageSites: 15, artisans: 120, highlights: ['Hassan II Mosque', 'Morocco Mall', 'Quartier Habous'] }
+  ),
+  createCity(
+    'safi', 'Safi', 'آسفي',
+    -9.24, 32.30, 'artisan',
+    0.2, 0.4, // Fine-tuned positioning
+    { heritageSites: 9, artisans: 75, highlights: ['Kechla Fortress', 'Pottery Quarter', 'Portuguese Chapel'] }
+  ),
+  createCity(
+    'essaouira', 'Essaouira', 'الصويرة',
+    -9.77, 31.51, 'food',
+    0.3, -0.6, // Fine-tuned positioning
+    { heritageSites: 12, artisans: 88, highlights: ['Medina UNESCO', 'Skala Ramparts', 'Gnawa Festival'] }
+  ),
+  createCity(
+    'marrakech', 'Marrakech', 'مراكش',
+    -8.01, 31.65, 'artisan',
+    0.6, 0.2, // Fine-tuned positioning
+    { heritageSites: 24, artisans: 156, highlights: ['Jemaa el-Fna', 'Bahia Palace', 'Majorelle Garden'] }
+  ),
 ]
 
 export const TYPE_META: Record<CityType, { label: string; hex: string }> = {
@@ -152,6 +133,8 @@ interface Props {
   topOffset?: number
   /** px at the bottom reserved by bottom sheet + nav */
   bottomOffset?: number
+  /** whether the host background is dark (adjusts legend style) */
+  isDark?: boolean
   className?: string
 }
 
@@ -162,6 +145,7 @@ export function InteractiveMoroccoMap({
   onCityClick,
   topOffset = 0,
   bottomOffset = 0,
+  isDark = false,
   className,
 }: Props) {
 
@@ -329,12 +313,15 @@ export function InteractiveMoroccoMap({
         {(Object.entries(TYPE_META) as [CityType, (typeof TYPE_META)[CityType]][]).map(([type, meta]) => (
           <div key={type} className="flex items-center gap-1">
             <span
-              className="w-2 h-2 rounded-full border border-white/70 shadow flex-shrink-0"
-              style={{ backgroundColor: meta.hex }}
+              className="w-2 h-2 rounded-full flex-shrink-0"
+              style={{ backgroundColor: meta.hex, border: isDark ? '1px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.7)' }}
             />
             <span
-              className="text-[7.5px] text-white font-semibold px-1 py-0.5 rounded leading-none"
-              style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+              className="text-[7.5px] font-semibold px-1 py-0.5 rounded leading-none"
+              style={{
+                backgroundColor: isDark ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.5)',
+                color: 'white',
+              }}
             >
               {meta.label}
             </span>

@@ -27,6 +27,10 @@ interface NavigationContextType {
   navigate: (screen: ScreenId) => void
   goBack: () => void
   canGoBack: boolean
+  selectedCityId: string | null
+  setSelectedCityId: (id: string | null) => void
+  selectedHeritageId: string | null
+  setSelectedHeritageId: (id: string | null) => void
 }
 
 const NavigationContext = createContext<NavigationContextType | null>(null)
@@ -36,6 +40,8 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   const [previousScreen, setPreviousScreen] = useState<ScreenId | null>(null)
   const [direction, setDirection] = useState<TransitionDirection>('forward')
   const [isDark, setIsDark] = useState(false)
+  const [selectedCityId, setSelectedCityId] = useState<string | null>(null)
+  const [selectedHeritageId, setSelectedHeritageId] = useState<string | null>(null)
 
   const currentScreen = stack[stack.length - 1]
 
@@ -62,6 +68,10 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
       navigate,
       goBack,
       canGoBack: stack.length > 1,
+      selectedCityId,
+      setSelectedCityId,
+      selectedHeritageId,
+      setSelectedHeritageId,
     }}>
       {children}
     </NavigationContext.Provider>

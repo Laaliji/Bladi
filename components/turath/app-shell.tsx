@@ -98,7 +98,7 @@ function AppContent() {
   return (
     <div
       className={cn(
-        "min-h-screen flex flex-col items-center justify-center relative transition-colors duration-300",
+        "h-screen overflow-hidden flex flex-col items-center justify-center relative transition-colors duration-300",
         isDark
           ? "bg-gradient-to-br from-[#0a0a0a] via-[#141210] to-[#0a0a0a]"
           : "bg-gradient-to-br from-[#FAF7F0] via-[#F0E8D8] to-[#FAF7F0]"
@@ -207,8 +207,27 @@ function AppContent() {
         )}
       </div>
 
-      {/* Phone Frame */}
-      <div className="relative z-10">
+      {/* Phone Frame — scaled to always fit in viewport */}
+      <div
+        className="relative z-10"
+        style={{
+          /* The phone is 375×812 + 28px border each axis = 403×840 logical px.
+             Scale it so its visual height fits within the available space.
+             We use a CSS clamp so it never exceeds 1× but shrinks on small screens. */
+          transform: 'scale(var(--phone-scale, 1))',
+          transformOrigin: 'top center',
+          /* Pull up the dead space left behind by the scale-down */
+          marginBottom: 'calc((var(--phone-scale, 1) - 1) * 840px)',
+        }}
+      >
+        <style>{`
+          :root {
+  /* Minimum bumped from 0.55 to 0.6; subtracted less (120px) to allow more growth */
+  --phone-scale: clamp(0.6, calc((100dvh - 120px) / 840px), 1.05);
+}
+
+        `}</style>
+
         <PhoneFrame isDark={isDark}>
           <div className="relative w-full h-full overflow-hidden">
             {screenIds.map(id => (
