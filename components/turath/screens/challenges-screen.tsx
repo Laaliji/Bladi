@@ -4,35 +4,9 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { ChevronLeftIcon, TrophyIcon, MapPinIcon, StarIcon } from '../icons'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
-const CHALLENGE_CATEGORIES = [
-  { id: 'all', label: 'All' },
-  { id: 'explorer', label: 'Explorer' },
-  { id: 'cultural', label: 'Cultural' },
-  { id: 'artisan', label: 'Artisan' },
-  { id: 'historian', label: 'Historian' },
-]
-
-const CHALLENGES = [
-  { id: '1', title: 'Visit 5 UNESCO sites in Marrakech', description: 'Explore the most significant heritage locations in the Red City', category: 'explorer', progress: 3, total: 5, reward: 'Heritage Guardian Badge', rewardIcon: 'shield', active: true },
-  { id: '2', title: 'Support 3 local artisans', description: 'Purchase authentic crafts directly from makers', category: 'artisan', progress: 2, total: 3, reward: '10% Discount Coupon', rewardIcon: 'ticket', active: true },
-  { id: '3', title: 'Use AI Guide in 3 languages', description: 'Explore cultural content in multiple languages', category: 'cultural', progress: 1, total: 3, reward: 'Polyglot Badge', rewardIcon: 'globe', active: true },
-  { id: '4', title: 'Learn about Almohad Dynasty', description: 'Complete the historical journey through Almohad sites', category: 'historian', progress: 0, total: 4, reward: 'Historian Badge', rewardIcon: 'book', active: false },
-  { id: '5', title: 'Walk 10km in Fes Medina', description: 'Explore the ancient streets on foot', category: 'explorer', progress: 4, total: 10, reward: 'Medina Walker Badge', rewardIcon: 'walk', active: true },
-]
-
-const LEADERBOARD = [
-  { rank: 1, name: 'Sarah M.', country: 'UK', flag: '🇬🇧', points: 2840, badge: 'Heritage Guardian' },
-  { rank: 2, name: 'Ahmed K.', country: 'Morocco', flag: '🇲🇦', points: 2650, badge: 'Zellige Master' },
-  { rank: 3, name: 'You', country: 'USA', flag: '🇺🇸', points: 1920, badge: 'Storyteller', isUser: true },
-  { rank: 4, name: 'Marie L.', country: 'France', flag: '🇫🇷', points: 1850, badge: 'Explorer' },
-  { rank: 5, name: 'Kenji T.', country: 'Japan', flag: '🇯🇵', points: 1720, badge: 'Artisan Supporter' },
-]
-
-const UNLOCKED_REWARDS = [
-  { id: '1', type: 'coupon', title: '15% Off Next Purchase', code: 'TURATH15', expiry: 'Valid until Dec 2024' },
-  { id: '2', type: 'content', title: 'Exclusive Zellige Video', description: 'Behind the scenes with master craftsmen' },
-]
+// Data arrays moved inside component for translation
 
 function CategoryIcon({ category, active }: { category: string; active: boolean }) {
   const color = active ? "text-primary" : "text-muted-foreground"
@@ -52,6 +26,37 @@ interface ChallengesScreenProps {
 export function ChallengesScreen({ isDark }: ChallengesScreenProps) {
   void isDark
   const { goBack } = useNavigation()
+  const { t } = useTranslation()
+
+  const CHALLENGE_CATEGORIES = [
+    { id: 'all', label: t('home_map.all') },
+    { id: 'explorer', label: t('challenges.explorer') },
+    { id: 'cultural', label: t('challenges.cultural') },
+    { id: 'artisan', label: t('challenges.artisan') },
+    { id: 'historian', label: t('challenges.historian') },
+  ]
+
+  const CHALLENGES = [
+    { id: '1', title: t('data.challenge_titles.visit_5_unesco'), description: t('data.challenge_descriptions.visit_5_unesco'), category: 'explorer', progress: 3, total: 5, reward: t('data.rewards.heritage_guardian'), rewardIcon: 'shield', active: true },
+    { id: '2', title: t('data.challenge_titles.support_3_artisans'), description: t('data.challenge_descriptions.support_3_artisans'), category: 'artisan', progress: 2, total: 3, reward: t('data.rewards.discount_10'), rewardIcon: 'ticket', active: true },
+    { id: '3', title: t('data.challenge_titles.ai_guide_3_languages'), description: t('data.challenge_descriptions.ai_guide_3_languages'), category: 'cultural', progress: 1, total: 3, reward: t('data.rewards.polyglot_badge'), rewardIcon: 'globe', active: true },
+    { id: '4', title: t('data.challenge_titles.almohad_dynasty'), description: t('data.challenge_descriptions.almohad_dynasty'), category: 'historian', progress: 0, total: 4, reward: t('data.rewards.historian_badge'), rewardIcon: 'book', active: false },
+    { id: '5', title: t('data.challenge_titles.walk_10km_fes'), description: t('data.challenge_descriptions.walk_10km_fes'), category: 'explorer', progress: 4, total: 10, reward: t('data.rewards.medina_walker'), rewardIcon: 'walk', active: true },
+  ]
+
+  const LEADERBOARD = [
+    { rank: 1, name: 'Sarah M.', country: 'UK', flag: '🇬🇧', points: 2840, badge: t('data.rewards.heritage_guardian') },
+    { rank: 2, name: 'Ahmed K.', country: 'Morocco', flag: '🇲🇦', points: 2650, badge: t('data.rewards.zellige_master') },
+    { rank: 3, name: t('data.leaderboard.you'), country: 'USA', flag: '🇺🇸', points: 1920, badge: t('data.rewards.storyteller'), isUser: true },
+    { rank: 4, name: 'Marie L.', country: 'France', flag: '🇫🇷', points: 1850, badge: t('challenges.explorer') },
+    { rank: 5, name: 'Kenji T.', country: 'Japan', flag: '🇯🇵', points: 1720, badge: t('challenges.artisan') },
+  ]
+
+  const UNLOCKED_REWARDS = [
+    { id: '1', type: 'coupon', title: t('data.rewards.discount_15'), code: 'TURATH15', expiry: t('challenges.valid_until_dec') },
+    { id: '2', type: 'content', title: t('challenges.exclusive_video'), description: t('challenges.behind_scenes') },
+  ]
+
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeTab, setActiveTab] = useState<'challenges' | 'leaderboard' | 'rewards'>('challenges')
 
@@ -64,12 +69,12 @@ export function ChallengesScreen({ isDark }: ChallengesScreenProps) {
           <button onClick={goBack} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Go back">
             <ChevronLeftIcon className="w-5 h-5 text-foreground" />
           </button>
-          <h1 className="text-xl font-bold text-foreground">Challenges & Rewards</h1>
+          <h1 className="text-xl font-bold text-foreground">{t('challenges.challenges_rewards_title')}</h1>
         </div>
         <div className="flex gap-2">
           {(['challenges', 'leaderboard', 'rewards'] as const).map((tab) => (
             <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-2 rounded-xl text-sm font-medium capitalize transition-all", activeTab === tab ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {tab === 'rewards' ? t('challenges.rewards_tab') : t(`challenges.${tab}`)}
             </button>
           ))}
         </div>
@@ -129,7 +134,7 @@ export function ChallengesScreen({ isDark }: ChallengesScreenProps) {
                 </div>
                 <div className="text-right">
                   <p className="font-bold text-foreground">{entry.points.toLocaleString()}</p>
-                  <p className="text-xs text-muted-foreground">points</p>
+                  <p className="text-xs text-muted-foreground">{t('challenges.points_suffix')}</p>
                 </div>
               </div>
             ))}
@@ -138,7 +143,7 @@ export function ChallengesScreen({ isDark }: ChallengesScreenProps) {
 
         {activeTab === 'rewards' && (
           <div className="p-4 space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground">UNLOCKED REWARDS</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase">{t('challenges.unlocked_rewards')}</h3>
             {UNLOCKED_REWARDS.map((reward) => (
               <div key={reward.id} className="p-4 bg-card rounded-2xl border border-border">
                 <div className="flex items-start gap-3">

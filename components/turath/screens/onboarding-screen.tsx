@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { LANGUAGES, INTERESTS } from '@/lib/turath-types'
 import { CheckIcon, ChevronRightIcon } from '../icons'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
 function InterestIcon({ interest, selected }: { interest: string; selected: boolean }) {
   const color = selected ? "text-accent-foreground" : "text-muted-foreground"
@@ -31,6 +32,7 @@ interface OnboardingScreenProps {
 export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
   void isDark
   const { navigate } = useNavigation()
+  const { t, setLocale } = useTranslation()
   const [step, setStep] = useState<'splash' | 'language' | 'interests'>('splash')
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null)
   const [selectedInterests, setSelectedInterests] = useState<string[]>([])
@@ -56,16 +58,16 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" fill="none"/>
             </svg>
           </div>
-          <h1 className="text-4xl font-bold text-foreground mb-2">Turath</h1>
-          <h2 className="text-3xl font-serif text-accent mb-4" dir="rtl">تراث</h2>
+          <h1 className="text-4xl font-bold text-foreground mb-2">{t('common.welcome_title')}</h1>
+          <h2 className="text-3xl font-serif text-accent mb-4" dir="rtl">{t('common.welcome_subtitle')}</h2>
           <p className="text-center text-muted-foreground text-sm mb-12 max-w-[240px]">
-            Explore Morocco&apos;s rich cultural heritage and artisan traditions
+            {t('common.description')}
           </p>
           <button
             onClick={() => setStep('language')}
             className="w-full max-w-[280px] py-4 px-6 bg-primary text-primary-foreground rounded-2xl font-semibold text-lg shadow-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
           >
-            <span>Get Started</span>
+            <span>{t('common.get_started')}</span>
             <ChevronRightIcon className="w-5 h-5" />
           </button>
         </div>
@@ -79,14 +81,17 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
   if (step === 'language') {
     return (
       <div className="h-full flex flex-col pt-16 px-6 pb-8">
-        <h2 className="text-2xl font-bold text-foreground mb-2">Choose your language</h2>
-        <p className="text-sm text-muted-foreground mb-6">Select your preferred language</p>
+        <h2 className="text-2xl font-bold text-foreground mb-2">{t('onboarding.choose_language')}</h2>
+        <p className="text-sm text-muted-foreground mb-6">{t('onboarding.select_language')}</p>
         <div className="flex-1 overflow-y-auto">
           <div className="grid grid-cols-2 gap-3">
             {LANGUAGES.map((lang) => (
               <button
                 key={lang.code}
-                onClick={() => setSelectedLanguage(lang.code)}
+                onClick={() => {
+                  setSelectedLanguage(lang.code)
+                  setLocale(lang.code as 'fr' | 'ar' | 'en' | 'tzm')
+                }}
                 className={cn(
                   "flex items-center gap-3 p-4 rounded-2xl border-2 transition-all",
                   selectedLanguage === lang.code
@@ -114,7 +119,7 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
               : "bg-muted text-muted-foreground cursor-not-allowed"
           )}
         >
-          Continue
+          {t('common.continue_button')}
         </button>
       </div>
     )
@@ -122,8 +127,8 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
 
   return (
     <div className="h-full flex flex-col pt-16 px-6 pb-8">
-      <h2 className="text-2xl font-bold text-foreground mb-2">What interests you?</h2>
-      <p className="text-sm text-muted-foreground mb-6">Select topics you want to explore</p>
+      <h2 className="text-2xl font-bold text-foreground mb-2">{t('onboarding.what_interests_you')}</h2>
+      <p className="text-sm text-muted-foreground mb-6">{t('onboarding.select_interests')}</p>
       <div className="flex-1 flex flex-col gap-3">
         {INTERESTS.map((interest) => (
           <button
@@ -141,7 +146,7 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
                 <InterestIcon interest={interest.id} selected={selectedInterests.includes(interest.id)} />
               </div>
               <div className="text-left">
-                <p className="font-semibold text-foreground">{interest.label}</p>
+                <p className="font-semibold text-foreground">{t(`onboarding.${interest.id}`)}</p>
                 <p className="text-sm text-muted-foreground font-serif" dir="rtl">{interest.labelAr}</p>
               </div>
             </div>
@@ -159,8 +164,8 @@ export function OnboardingScreen({ isDark }: OnboardingScreenProps) {
             : "bg-muted text-muted-foreground cursor-not-allowed"
         )}
       >
-        <span>Start Exploring</span>
-        <span className="font-serif" dir="rtl">ابدأ الاستكشاف</span>
+        <span>{t('common.start_exploring')}</span>
+        <span className="font-serif" dir="rtl">{t('common.start_exploring_ar')}</span>
       </button>
     </div>
   )

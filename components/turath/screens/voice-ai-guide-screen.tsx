@@ -6,6 +6,7 @@ import { ChatMessage } from '@/lib/turath-types'
 import { MicIcon, KeyboardIcon, GlobeIcon, ChevronLeftIcon } from '../icons'
 import { BottomNavigation } from '../bottom-navigation'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
 interface VoiceAIGuideScreenProps {
   isDark?: boolean

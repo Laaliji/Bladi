@@ -6,6 +6,7 @@ import { CATEGORY_TABS } from '@/lib/turath-types'
 import { ChevronLeftIcon, ShareIcon, MapPinIcon, HeartIcon } from '../icons'
 import { BottomNavigation } from '../bottom-navigation'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
 const REGION_DATA = {
   id: '1',
@@ -33,6 +34,7 @@ interface RegionDetailScreenProps {
 export function RegionDetailScreen({ isDark }: RegionDetailScreenProps) {
   void isDark
   const { navigate, goBack } = useNavigation()
+  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState('history')
   const [savedItems, setSavedItems] = useState<Record<string, boolean>>(
     CONTENT_CARDS.reduce((acc, card) => ({ ...acc, [card.id]: card.saved }), {})
@@ -68,11 +70,11 @@ export function RegionDetailScreen({ isDark }: RegionDetailScreenProps) {
 
       {/* Stats */}
       <div className="flex items-center justify-around py-4 border-b border-border bg-card">
-        <div className="text-center"><p className="text-2xl font-bold text-primary">{REGION_DATA.heritageSites}</p><p className="text-xs text-muted-foreground">Heritage Sites</p></div>
+        <div className="text-center"><p className="text-2xl font-bold text-primary">{REGION_DATA.heritageSites}</p><p className="text-xs text-muted-foreground">{t('region_detail.heritage_sites')}</p></div>
         <div className="w-px h-10 bg-border" />
-        <div className="text-center"><p className="text-2xl font-bold text-accent">{REGION_DATA.artisans}</p><p className="text-xs text-muted-foreground">Artisans</p></div>
+        <div className="text-center"><p className="text-2xl font-bold text-accent">{REGION_DATA.artisans}</p><p className="text-xs text-muted-foreground">{t('region_detail.artisans')}</p></div>
         <div className="w-px h-10 bg-border" />
-        <div className="text-center"><p className="text-2xl font-bold text-secondary">{REGION_DATA.itineraries}</p><p className="text-xs text-muted-foreground">Itineraries</p></div>
+        <div className="text-center"><p className="text-2xl font-bold text-secondary">{REGION_DATA.itineraries}</p><p className="text-xs text-muted-foreground">{t('region_detail.itineraries')}</p></div>
       </div>
 
       {/* Category tabs */}
@@ -120,7 +122,7 @@ export function RegionDetailScreen({ isDark }: RegionDetailScreenProps) {
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background to-transparent pt-8">
         <button onClick={() => navigate('itinerary')} className="w-full py-4 px-6 bg-primary text-primary-foreground rounded-2xl font-semibold shadow-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
           <MapPinIcon className="w-5 h-5" />
-          <span>Start Itinerary</span>
+          <span>{t('itinerary.start_itinerary', 'Start Itinerary')}</span>
         </button>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { TransportMode } from '@/lib/turath-types'
 import { ChevronLeftIcon, WalkingIcon, CarIcon, BusIcon, NavigationIcon, CheckIcon, ClockIcon, MapPinIcon, WaveformIcon } from '../icons'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
 const ITINERARY_DATA = {
   name: 'Historic Marrakech',

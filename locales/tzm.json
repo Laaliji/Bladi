@@ -1,0 +1,522 @@
+{
+  "common": {
+    "welcome_title": "ⵜⵓⵔⴰⵜⵀ",
+    "welcome_subtitle": "ⴰⵣⴳⵯⵏⴳⴰⵍ ⵏ ⵜⵓⵔⴰⵜⵀ ⴰⵎⵖⵔⵉⴱⵉ",
+    "get_started": "ⴱⴷⵓ",
+    "continue_button": "ⴽⵎⵎⵍ",
+    "start_exploring": "ⴱⴷⵓ ⴰⵙⵏⴷⴻⵍ",
+    "back": "ⵓⴳⴰⵍ",
+    "next": "ⴰⵎⴳⴳⴰⵔⵓ",
+    "close": "ⵙⵖⵍ",
+    "save": "ⵙⴽⵍⵓ",
+    "cancel": "ⵓⴳⵓⵍ",
+    "confirm": "ⵙⵙⴽⵏ",
+    "delete": "ⴽⴽⵙ",
+    "edit": "ⵙⵏⴼⵍ",
+    "share": "ⴱⴷⵓ",
+    "search": "ⵣⵣⵔⴰⵢ",
+    "filter": "ⴰⴳⵔⵓⵣ",
+    "sort": "ⴷⴼⵔⵓⴼ",
+    "loading": "ⵉⵜⴰⴽⴰ...",
+    "error": "ⴰⵣⴳⴳⵯⴰⵍ",
+    "success": "ⵉⵙⵙⴰⴼ",
+    "description": "ⴰⵡⴷ ⴰⵎⵓⵔⴰⴽⵓⵛ ⵏⵏⴻⴽ ⵙ ⵓⵙⴰⵔⵓ ⴷ ⵉⵙⵓⵏⴰⴳ",
+    "view_all": "ⵣⵔ ⴰⴽⴽⵯ"
+  },
+  "onboarding": {
+    "choose_language": "ⴼⵔⵏ ⵜⵓⵜⵍⴰⵢⵜ ⵉⵏⴻⴽ",
+    "select_language": "ⴼⵔⵏ ⵜⵓⵜⵍⴰⵢⵜ ⵉⵏⴻⴽ ⵢⴻⴱⵖⴰⵏ",
+    "what_interests_you": "ⴰⵛⵓ ⵉ ⵙⵖⴻⴱⴰⵏⴻⵏ?",
+    "select_interests": "ⴼⵔⵏ ⵉⵙⵏⵊⴰⵊⵏ ⵉ ⵜⴻⴱⵖⵉⴷ ⴰⵙⵏⴻⴷ",
+    "interests_required": "ⴼⵔⵏ ⵢⴰⵏ ⵓⵙⵏⵊⴰⵊ ⵙ ⵓⵏⴻⵇⵜⴰⵢ",
+    "tourism": "ⴰⵙⵍⴰⵍⵍⴰⵢ",
+    "handicrafts": "ⵉⵙⵏⴰⴳⵏ",
+    "history": "ⴰⵎⵣⵔⵓⵢ",
+    "gastronomy": "ⵜⴰⵎⴰⴽⵍⴰⵜ",
+    "music": "ⴰⵣⴰⵡⴰⵏ"
+  },
+  "navigation": {
+    "map": "ⵜⴰⴽⴰⵔⵟⴰ",
+    "explore": "ⴰⵙⵏⴷⵍ",
+    "guide": "ⴰⵏⵏⴰⵢ",
+    "artisans": "ⵉⵎⴰⵙⵙⵏⵉⵏ",
+    "profile": "ⴰⵎⵓⴷⵓ",
+    "home": "ⴰⵙⵏⵓⴱⴳ",
+    "region_detail": "ⵜⴰⵎⵏⴰⴹⵜ",
+    "heritage_detail": "ⴰⵙⵉⵜⵉ",
+    "marketplace": "ⵜⴰⵙⵓⵇⵜ",
+    "artisan_profile": "ⴰⵎⴰⵙⵙⴰⵏ",
+    "checkout": "ⴰⵙⵔⵙ",
+    "itinerary": "ⴰⵙⵓⴼⵖ",
+    "voice_guide": "ⴰⵏⵏⴰⵢ ⵙ ⵓⵡⴰⵍ",
+    "challenges": "ⵜⵉⵙⵎⵔⵜⵉⵏ",
+    "settings": "ⵜⵉⵙⴱⴷⴷⵉⵏ"
+  },
+  "home_map": {
+    "search_placeholder": "ⵣⵣⵔⴰⵢ ⵜⵉⵎⵏⴰⴹⵉⵏ, ⵜⵉⵎⴷⵉⵏⵉⵏ...",
+    "filter_label": "ⴰⴳⵔⵓⵣ",
+    "all": "ⴰⴽⴽⵯ",
+    "regions": "ⵜⵉⵎⵏⴰⴹⵉⵏ",
+    "cities": "ⵜⵉⵎⴷⵉⵏⵉⵏ",
+    "crafts": "ⵉⵙⵏⴰⴳⵏ",
+    "heritage": "ⴰⵙⵓⵏⴰⴳ",
+    "festivals": "ⵉⵏⴰⴼⵓⴽⵏ",
+    "itineraries": "ⵉⵙⵓⴼⴰⵖ",
+    "show_map": "ⵙⴽⵏ ⵜⴰⴽⴰⵔⵟⴰ",
+    "list_view": "ⵜⴰⵍⵖⴰ ⵏ ⵓⵔⴽⴰⵍⵉⵙ",
+    "nearby_highlights": "ⵜⵉⵏⴼⴰⵍⵉⵏ ⵉⵢⵡⴰⵟⵏ"
+  },
+  "region_detail": {
+    "heritage_sites": "ⵉⵙⵉⵜⵏ ⵏ ⵓⵙⵓⵏⴰⴳ",
+    "artisans": "ⵉⵎⴰⵙⵙⵏⵉⵏ",
+    "itineraries": "ⵉⵙⵓⴼⴰⵖ",
+    "description": "ⴰⴳⵍⴰⵎ",
+    "location": "ⴰⴷⵖⴰⵔ",
+    "opening_hours": "ⵉⵎⵏⵉⴷⵏ",
+    "contact": "ⴰⵏⵙⴰ",
+    "website": "ⴰⵙⵉⵜ ⵓⵏⵚⵉⴱ",
+    "phone": "ⴰⵣⴰⵡⴰⵍ",
+    "email": "ⵜⴰⵏⵙⴰⵏⵜ",
+    "directions": "ⵉⵙⵓⴼⴰⵖ"
+  },
+  "heritage_detail": {
+    "title": "ⴰⵣⵡⵍ",
+    "description": "ⴰⴳⵍⴰⵎ",
+    "category": "ⴰⵙⴳⵣⵎ",
+    "history": "ⴰⵎⵣⵔⵓⵢ",
+    "location": "ⴰⴷⵖⴰⵔ",
+    "visiting_info": "ⵉⵏⵖⵎⵉⵙⵏ ⵏ ⵓⵙⵔⵙ",
+    "save_to_profile": "ⵙⴽⵍⵓ ⴳ ⵓⵎⵓⴷⵓ",
+    "saved": "ⵉⵜⵜⵡⴰⵙⴽⵍⴰ",
+    "share_this": "ⴱⴷⵓ ⴰⵢⴰ"
+  },
+  "marketplace": {
+    "marketplace": "ⵜⴰⵙⵓⵇⵜ ⵏ ⵉⵙⵏⴰⴳⵏ",
+    "products": "ⵉⵎⵓⵔⴰⵔⵏ",
+    "artisan_products": "ⵉⵎⵓⵔⴰⵔⵏ ⵏ ⵓⵎⴰⵙⵙⴰⵏ",
+    "price": "ⴰⵣⵣⵔⴼ",
+    "available": "ⵉⵍⵍⴰ",
+    "sold_out": "ⵉⵜⵜⵓⵣⵏ",
+    "add_to_cart": "ⵔⵏⵓ ⵖⵔ ⵜⴰⵙⵓⵇⵜ",
+    "view_artisan": "ⵣⵔ ⴰⵎⴰⵙⵙⴰⵏ",
+    "contact_artisan": "ⴰⵏⵙⴰ ⴰⵎⴰⵙⵙⴰⵏ",
+    "shipping": "ⴰⵙⵏⴰⴼⴰⵢ",
+    "estimated_delivery": "ⴰⴽⵓⴷ ⵏ ⵓⵙⵏⴰⴼⴰⵢ",
+    "total_price": "ⴰⵣⵣⵔⴼ ⴰⵖⴰⴼⵍⴰⵏ"
+  },
+  "artisan_profile": {
+    "verified_artisan": "ⴰⵎⴰⵙⵙⴰⵏ ⵉⵜⵜⵡⴰⵙⵙⴳⴷ",
+    "craft": "ⴰⵙⵏⴰⴳ",
+    "location": "ⴰⴷⵖⴰⵔ",
+    "rating": "ⴰⵙⴽⴽⵉⴷⵎ",
+    "reviews": "ⵜⵉⵎⵏⵏⴰⵢⵉⵏ",
+    "products": "ⵉⵎⵓⵔⴰⵔⵏ",
+    "about": "ⵅⴼ ⵏⵏⵙ",
+    "contact": "ⴰⵏⵙⴰ",
+    "visit_workshop": "ⵙⵏⴷⵍ ⴰⵏⵙⵉⵡⵉ",
+    "view_products": "ⵣⵔ ⵉⵎⵓⵔⴰⵔⵏ",
+    "following": "ⵉⴷⴰⴱⴱⵓⵏ",
+    "follow": "ⴷⴰⴱⴱⵓ"
+  },
+  "checkout": {
+    "order_summary": "ⴰⵎⵙⴷⴷⵓ ⵏ ⵓⵙⴰⵖ",
+    "shipping_address": "ⵜⴰⵏⵙⴰ ⵏ ⵓⵙⵏⴰⴼⴰⵢ",
+    "payment_method": "ⴰⵙⴳⵓⵔ ⵏ ⵓⵙⵍⴽⵎ",
+    "promo_code": "ⵓⴽⵓⴷ ⵏ ⵓⵙⵎⵙⵙⵓ",
+    "subtotal": "ⴰⴳⵣⵣⵓⵎ ⴰⵎⵣⵡⴰⵔⵓ",
+    "shipping_cost": "ⴰⵣⵣⵔⴼ ⵏ ⵓⵙⵏⴰⴼⴰⵢ",
+    "tax": "ⵜⴰⴽⵙⴰ",
+    "total": "ⴰⵖⴰⴼⵍⴰⵢ",
+    "place_order": "ⵙⵙⵔⵙ ⴰⵙⴰⵖ",
+    "continue_shopping": "ⴽⵎⵎⵍ ⴰⵙⵙⵓⵖ",
+    "order_placed": "ⴰⵙⴰⵖ ⵉⵜⵜⵡⴰⵙⵔⵙ",
+    "order_confirmation": "ⴰⵙⵙⴳⴷ ⵏ ⵓⵙⴰⵖ"
+  },
+  "itinerary": {
+    "day": "ⴰⵙⵙ",
+    "duration": "ⴰⴽⵓⴷ",
+    "distance": "ⴰⵏⵣⵡⵉ",
+    "stops": "ⵉⵙⴷⴰⴷⵏ",
+    "estimated_time": "ⴰⴽⵓⴷ ⵉⵜⵜⵓⵙⵙⴰⵏⵏ",
+    "start_point": "ⵜⴰⵏⵙⴰ ⵏ ⵓⵣⵡⴰⵔ",
+    "end_point": "ⵜⴰⵏⵙⴰ ⵏ ⵓⵙⴽⴽⵯⵔ",
+    "walking_time": "ⴰⴽⵓⴷ ⵏ ⵜⵎⵛⵉ",
+    "transport_mode": "ⴰⵏⴰⵡ ⵏ ⵓⵙⵏⴰⴼⴰⵢ",
+    "mark_complete": "ⵙⵙⴳⴷ ⵙ ⵓⵎⵎⵔⵓ",
+    "continue_itinerary": "ⴽⵎⵎⵍ ⴰⵙⵓⴼⵖ",
+    "start_itinerary": "ⴱⴷⵓ ⴰⵙⵓⴼⵖ"
+  },
+  "voice_guide": {
+    "ai_guide": "ⴰⵏⵏⴰⵢ ⵙ ⵓⵡⴰⵍ",
+    "ask_question": "ⵙⵓⵜⵔ ⵜⴰⵔⴰⴱⴱⵓⵜ...",
+    "send": "ⴰⵣⵏ",
+    "listening": "ⴰⵙⵙⴳⵎ...",
+    "speaking": "ⴰⵡⴰⵍ...",
+    "transcript": "ⴰⴷⵔⵉⵙ",
+    "voice_input": "ⴰⵙⴽⵛⵎ ⵙ ⵓⵡⴰⵍ",
+    "text_input": "ⴰⵙⴽⵛⵎ ⵙ ⵓⴷⵔⵉⵙ",
+    "settings": "ⵜⵉⵙⴱⴷⴷⵉⵏ",
+    "language": "ⵜⵓⵜⵍⴰⵢⵜ",
+    "voice_speed": "ⵜⴰⵥⵥⴰⵍⵉⵏ ⵏ ⵓⵡⴰⵍ"
+  },
+  "challenges": {
+    "challenges": "ⵜⵉⵙⵎⵔⵜⵉⵏ",
+    "badges": "ⵜⵉⵣⵎⵔⵉⵏ",
+    "progress": "ⴰⵙⵎⵓⵏ",
+    "complete": "ⵙⵙⴳⴷ",
+    "completed": "ⵉⵜⵜⵡⴰⵙⵙⴳⴷ",
+    "reward": "ⵜⴰⵏⴰⵎⵎⴰⵙⵜ",
+    "unlock": "ⵙⵙⵔⵉ",
+    "explorer": "ⴰⵙⵏⴷⴰⵍ",
+    "cultural": "ⴰⴷⵍⵉⵙ",
+    "artisan": "ⴰⵎⴰⵙⵙⴰⵏ",
+    "historian": "ⴰⵎⵣⵔⴰⵢ"
+  },
+  "profile": {
+    "my_profile": "ⴰⵎⵓⴷⵓ ⵉⵏⵓ",
+    "my_activity": "ⴰⵡⵔⵉⴽ ⵉⵏⵓ",
+    "saved_items": "ⵉⵎⵓⵔⴰⵔⵏ ⵉⵜⵜⵡⴰⵙⴽⵍⵏ",
+    "my_badges": "ⵜⵉⵣⵎⵔⵉⵏ ⵉⵏⵓ",
+    "my_itineraries": "ⵉⵙⵓⴼⴰⵖ ⵉⵏⵓ",
+    "edit_profile": "ⵙⵏⴼⵍ ⴰⵎⵓⴷⵓ",
+    "settings": "ⵜⵉⵙⴱⴷⴷⵉⵏ",
+    "about": "ⵅⴼ ⵏⵏⵙ",
+    "help": "ⵜⵉⵡⵉⵙⵉ",
+    "logout": "ⴼⴼⵖ",
+    "joined": "ⵉⵇⵇⵏ",
+    "followers": "ⵉⵎⴰⵍⴰⵢⵏ",
+    "following": "ⵉⴷⴰⴱⴱⵓⵏ"
+  },
+  "settings": {
+    "settings": "ⵜⵉⵙⴱⴷⴷⵉⵏ",
+    "language": "ⵜⵓⵜⵍⴰⵢⵜ",
+    "theme": "ⴰⵏⵡⴰⵏ",
+    "light": "ⴰⴼⴰⵡ",
+    "dark": "ⴰⴱⵔⴽⴰⵏ",
+    "notifications": "ⵜⵉⵎⵙⴰⵔⵉⵏ",
+    "push_notifications": "ⵜⵉⵎⵙⴰⵔⵉⵏ ⵏ ⵓⵥⴰⴳⵣ",
+    "email_notifications": "ⵜⵉⵎⵙⴰⵔⵉⵏ ⵏ ⵢⵉⵎⴰⵢⵍ",
+    "about": "ⵅⴼ ⵏⵏⵙ",
+    "version": "ⴰⵎⵙⴰⵙⵍ",
+    "privacy": "ⵜⴰⴱⴰⴷⵓⵜ",
+    "terms": "ⵉⵙⵡⵉⵔⵏ ⵏ ⵓⵙⵎⵔⵙ",
+    "help": "ⵜⵉⵡⵉⵙⵉ",
+    "contact_us": "ⴰⵏⵙⴰ ⵏⵏⵖ",
+    "logout": "ⴼⴼⵖ"
+  },
+  "heritage_detail_screen": {
+    "hear_story": "ⵙⵙⴰⵖ ⴰⵎⵣⵔⵓⵢ",
+    "listening": "ⴰⵙⵙⴳⵎ...",
+    "historical_timeline": "ⴰⵎⵣⵔⵓⵢ ⴰⴽⵓⴷⴰⵏ",
+    "related_content": "ⴰⵎⵣⴳⵓⵏ ⵉⵣⴷⵉⵏ",
+    "view_all": "ⵣⵔ ⴰⴽⴽⵯ",
+    "share": "ⴱⴷⵓ",
+    "plan_visit": "ⵙⵓⴼⵖ ⴰⵙⵔⵙ",
+    "unsave": "ⴽⴽⵙ ⵙⴽⵍⵓ",
+    "save": "ⵙⴽⵍⵓ",
+    "ar_view": "ⴰⵎⵓⵏⴰⴷ",
+    "view_image": "ⵣⵔ ⵜⴰⵡⵍⴰⴼⵜ"
+  },
+  "artisan_profile_screen": {
+    "view_shop": "ⵣⵔ ⵜⴰⵙⵓⵇⵜ",
+    "portfolio": "ⴰⵎⵓⵏⴰⴷ ⵏ ⵉⵎⵓⵔⴰⵔⵏ",
+    "products": "ⵉⵎⵓⵔⴰⵔⵏ",
+    "reviews": "ⵜⵉⵎⵏⵏⴰⵢⵉⵏ",
+    "shop": "ⵜⴰⵙⵓⵇⵜ",
+    "add_to_cart": "ⵔⵏⵓ ⵖⵔ ⵜⴰⵙⵓⵇⵜ",
+    "following": "ⵉⴷⴰⴱⴱⵓⵏ",
+    "follow": "ⴷⴰⴱⴱⵓ",
+    "mad": "ⴷⵔⵀⵎ"
+  },
+  "profile_screen": {
+    "profile": "ⴰⵎⵓⴷⵓ",
+    "badges": "ⵜⵉⵣⵎⵔⵉⵏ",
+    "progress": "ⴰⵙⵎⵓⵏ",
+    "history": "ⴰⵎⵣⵔⵓⵢ",
+    "regions": "ⵜⵉⵎⵏⴰⴹⵉⵏ",
+    "sites": "ⵉⵙⵉⵜⵏ",
+    "artisans": "ⵉⵎⴰⵙⵙⵏⵉⵏ",
+    "languages": "ⵜⵓⵜⵍⴰⵢⵉⵏ",
+    "regional_completion": "ⴰⵙⵎⵓⵏ ⵏ ⵜⵎⵏⴰⴹⵜ",
+    "recently_visited": "ⵉⵙⵉⵜⵏ ⵉⵜⵜⵡⴰⵙⵔⵙⵏ ⵙ ⵉⵎⵏⵣⵉ",
+    "active_challenges": "ⵜⵉⵙⵎⵔⵜⵉⵏ ⵜⵉⵎⵎⴰⵢⵏⵉⵏ",
+    "reward": "ⵜⴰⵏⴰⵎⵎⴰⵙⵜ"
+  },
+  "voice_ai_guide_screen": {
+    "ai_guide": "ⴰⵏⵏⴰⵢ ⵙ ⵓⵡⴰⵍ",
+    "ask_question": "ⵙⵓⵜⵔ ⵜⴰⵔⴰⴱⴱⵓⵜ...",
+    "send": "ⴰⵣⵏ",
+    "listening": "ⴰⵙⵙⴳⵎ...",
+    "speaking": "ⴰⵡⴰⵍ..."
+  },
+  "data": {
+    "artisans": {
+      "fatima_zahra": "ⴼⴰⵟⵉⵎⴰ ⵣⵣⴰⵀⵔⴰ",
+      "hassan_benchekroun": "ⵃⴰⵙⴰⵏ ⴱⵏⵛⴽⵔⵓⵏ",
+      "aicha_b": "ⵄⴰⵢⵛⴰ ⴱ.",
+      "malika_a": "ⵎⴰⵍⵉⴽⴰ ⴰ.",
+      "omar_t": "ⵄⵓⵎⴰⵔ ⵜ.",
+      "khadija_m": "ⵅⴷⵉⵊⴰ ⵎ."
+    },
+    "crafts": {
+      "zellige": "ⵣⵍⵉⵊ",
+      "leather": "ⴰⵢⵔⴰⵏ",
+      "textiles": "ⵉⵙⵍⴽⵏ",
+      "jewelry": "ⵉⵎⵖⴰⵔⵏ",
+      "wood": "ⴰⵙⵖⵔⵓ",
+      "pottery": "ⵜⴰⵙⵔⵉⵎⵜ"
+    },
+    "challenge_titles": {
+      "visit_5_unesco": "ⵙⵏⴷⵍ 5 ⵉⵙⵉⵜⵏ ⵏ ⵓⵏⴰⴳⴳⴰⵢ ⴳ ⵎⵕⵕⴰⴽⵛ",
+      "support_3_artisans": "ⴰⵡⴷ 3 ⵉⵎⴰⵙⵙⵏⵉⵏ ⵏⴰⴷⴷⵉⵏ",
+      "ai_guide_3_languages": "ⵙⵎⵔⵙ ⴰⵏⵏⴰⵢ ⵙ ⵓⵡⴰⵍ ⴳ 3 ⵜⵓⵜⵍⴰⵢⵉⵏ",
+      "almohad_dynasty": "ⵙⵙⵏ ⴰⵎⵣⵔⵓⵢ ⵏ ⵉⵎⵡⴰⵃⵉⴷⵉⵏ",
+      "walk_10km_fes": "ⵜⵎⵛⵉ 10 ⴽⵎ ⴳ ⵡⴰⵎⵎⴰⵙ ⵏ ⴼⴰⵙ"
+    },
+    "challenge_descriptions": {
+      "visit_5_unesco": "ⵙⵏⴷⵍ ⵉⵙⵉⵜⵏ ⵏ ⵓⵏⴰⴳⴳⴰⵢ ⵉⵜⵜⵡⴰⴼⵔⵏⵏ ⴳ ⵜⵎⴷⵉⵏⵜ ⵜⴰⵎⵇⵇⵔⴰⵏⵜ",
+      "support_3_artisans": "ⴰⵖⵔⵉⵙ ⵉⵎⵓⵔⴰⵔⵏ ⵉⵙⵍⵉⵙⵏⵏ ⵙⴳ ⵉⵎⴰⵙⵙⵏⵉⵏ-ⵏⵙⵏⵜ",
+      "ai_guide_3_languages": "ⵙⵎⵔⵙ ⴰⵏⵏⴰⵢ ⵙ ⵓⵡⴰⵍ ⴳ 3 ⵜⵓⵜⵍⴰⵢⵉⵏ",
+      "almohad_dynasty": "ⴳⵔ ⴰⵎⵣⵔⵓⵢ ⵏ ⵉⵎⵡⴰⵃⵉⴷⵉⵏ",
+      "walk_10km_fes": "ⵙⵏⴷⵍ ⵉⵙⵉⵜⵏ ⵉⵇⴱⵓⵔⵏ ⵙ ⵓⵎⴰⵔⵓ"
+    },
+    "rewards": {
+      "heritage_guardian": "ⵜⵉⵣⵎⵔⵜ ⵏ ⵓⵎⴰⵙⵙⴰⵏ ⵏ ⵓⵙⵓⵏⴰⴳ",
+      "zellige_master": "ⴰⵎⵙⵙⴰⵏ ⵏ ⵣⵍⵉⵊ",
+      "storyteller": "ⴰⵎⵙⴰⵡⴰⵍ",
+      "medina_walker": "ⵜⵉⵣⵎⵔⵜ ⵏ ⵜⵎⵛⵉ ⴳ ⵜⵍⵎⵙⵜ",
+      "culture_champion": "ⴰⵎⵏⴰⵡ ⵏ ⵓⴷⵍⵉⵙ",
+      "explorer": "ⴰⵙⵏⴷⴰⵍ",
+      "discount_10": "10% ⵏ ⵓⵙⵔⵙ",
+      "polyglot_badge": "ⵜⵉⵣⵎⵔⵜ ⵏ ⵜⵓⵜⵍⴰⵢⵉⵏ",
+      "historian_badge": "ⵜⵉⵣⵎⵔⵜ ⵏ ⵓⵎⵣⵔⴰⵢ",
+      "discount_15": "15% ⴳ ⵓⵙⵔⵙ ⴰⵎⴰⵢⵏⵓ"
+    },
+    "shipping_options": {
+      "standard": "ⴰⵙⵏⴰⴼⴰⵢ ⴰⴷⵍⵉⵙ",
+      "standard_days": "7-14 ⵡⵓⵙⵙⴰⵏ",
+      "express": "ⴰⵙⵏⴰⴼⴰⵢ ⴰⵣⵔⵏ",
+      "express_days": "3-5 ⵡⵓⵙⵙⴰⵏ",
+      "premium": "ⴰⵙⵏⴰⴼⴰⵢ ⴰⵎⵇⵔⴰⵏ",
+      "premium_days": "1-2 ⵡⵓⵙⵙⴰⵏ"
+    },
+    "heritage_sites": {
+      "koutoubia": "ⵜⴰⵎⵣⴳⵉⴷⴰ ⵏ ⴽⵓⵜⵓⴱⵉⵢⴰ",
+      "koutoubia_desc": "ⵜⴰⵎⵣⴳⵉⴷⴰ ⵜⴰⵎⵇⵇⵔⴰⵏⵜ ⴳ ⵎⵕⵕⴰⴽⵛ, ⵜⵍⵓⵍ ⴳ ⵓⵙⴳⴳⴰⵙ 1147",
+      "bahia_palace": "ⴰⴳⴰⴷⵉⵔ ⵏ ⴱⴰⵀⵢⴰ",
+      "bahia_desc": "ⵙⵏⴷⵍ ⴰⴳⴰⴷⵉⵔ ⴰⵏⴼⵍⵍⴰ ⵙⴳ ⵓⵙⴳⴳⴰⵙ 19",
+      "el_badi": "ⴰⴳⴰⴷⵉⵔ ⵏ ⴰⵍⴱⴰⴷⵉ",
+      "el_badi_desc": "ⵣⵣⵔⴰⵢ ⵉⴳⵔⵉ ⵏ ⵓⴳⴰⴷⵉⵔ ⴰⵎⴳⴳⴰⵔⵓ ⵏ ⵉⵙⵄⴰⴷⵉⵢⵏ",
+      "saadian_tombs": "ⵉⵇⴱⵓⵔⵏ ⵏ ⵉⵙⵄⴰⴷⵉⵢⵏ",
+      "saadian_tombs_desc": "ⵉⵇⴱⵓⵔⵏ ⵏ ⵉⵙⵄⴰⴷⵉⵢⵏ ⵙⴳ ⵓⵙⴳⴳⴰⵙ 16",
+      "jemaa_el_fnaa": "ⵙⴰⵃⴰ ⵏ ⵊⴰⵎⵄⴰ ⵍⴼⵏⴰ",
+      "jemaa_desc": "ⴱⴷⵓ ⴰⵙⵓⴼⵖ ⵉⵏⴻⴽ ⴳ ⵜⵍⵉⵙⴰ ⵜⴰⵎⵇⵇⵔⴰⵏⵜ"
+    },
+    "itinerary_stops": {
+      "jemaa_el_fnaa": "ⵙⴰⵃⴰ ⵏ ⵊⴰⵎⵄⴰ ⵍⴼⵏⴰ",
+      "jemaa_time": "9:00 ⵜⴰⴷⴳⴳⴰⵜ",
+      "jemaa_duration": "2 ⵡⴰⵙⵙⴰⵏ",
+      "jemaa_desc": "ⴱⴷⵓ ⴰⵙⵓⴼⵖ ⵉⵏⴻⴽ ⴳ ⵜⵍⵉⵙⴰ ⵜⴰⵎⵇⵇⵔⴰⵏⵜ",
+      "koutoubia_time": "11:30 ⵜⴰⴷⴳⴳⴰⵜ",
+      "koutoubia_duration": "1 ⴰⵙⵙ",
+      "koutoubia_desc": "ⵣⵔ ⵉⵙⴽⴽⵉⵍⵏ ⵙⴳ ⵓⵙⴳⴳⴰⵙ 12",
+      "bahia_time": "1:00 ⵜⴰⵏⵎⵉⵔⵜ",
+      "bahia_duration": "1,5 ⵡⴰⵙⵙⴰⵏ",
+      "bahia_desc": "ⵙⵏⴷⵍ ⴰⴳⴰⴷⵉⵔ ⴰⵏⴼⵍⵍⴰ ⵙⴳ ⵓⵙⴳⴳⴰⵙ 19",
+      "el_badi_time": "3:00 ⵜⴰⵏⵎⵉⵔⵜ",
+      "el_badi_duration": "1 ⴰⵙⵙ",
+      "el_badi_desc": "ⵣⵣⵔⴰⵢ ⵉⴳⵔⵉ ⵏ ⵓⴳⴰⴷⵉⵔ ⴰⵎⴳⴳⴰⵔⵓ",
+      "saadian_time": "4:30 ⵜⴰⵏⵎⵉⵔⵜ",
+      "saadian_duration": "45 ⵜⵓⴷⵔⵜ",
+      "saadian_desc": "ⵙⵏⴷⵍ ⵉⵇⴱⵓⵔⵏ ⵏ ⵉⵙⵄⴰⴷⵉⵢⵏ"
+    },
+    "locations": {
+      "fez": "ⴼⴰⵙ",
+      "marrakech": "ⵎⵕⵕⴰⴽⵛ",
+      "chefchaouen": "ⴰⵛⵛⴰⵡⵏ",
+      "essaouira": "ⵜⴰⵚⵚⵓⵔⵜ",
+      "atlas_mountains": "ⴰⴷⵔⴰⵔ ⵏ ⴰⵟⵍⴰⵙ",
+      "tangier": "ⵟⴰⵏⵊⴰ",
+      "al_quaraouiyine": "ⵊⴰⵎⵄⴰ ⵍⵇⴰⵕⴰⵡⵉⵢⵉⵏ",
+      "chouara_tannery": "ⵜⵉⵏⵖⵔⵉ ⵏ ⵛⵡⴰⵕⴰ",
+      "bab_boujloud": "ⴱⴰⴱ ⴱⵓⵊⵍⵓⴷ",
+      "dar_batha": "ⴷⴰⵔ ⴱⴰⵟⵀⴰ"
+    },
+    "location_categories": {
+      "heritage": "ⴰⵙⵓⵏⴰⴳ",
+      "artisan": "ⴰⵎⴰⵙⵙⴰⵏ",
+      "food": "ⵜⴰⵎⴰⴽⵍⴰ",
+      "museum": "ⴰⵎⵣⵔⵓⵢ",
+      "itinerary": "ⴰⵙⵓⴼⵖ"
+    },
+    "products": {
+      "berber_rug": "ⵜⴰⵣⵏⴰⵔⵜ ⵜⴰⵎⴰⵣⵉⵖⵜ",
+      "zellige_mirror": "ⴰⵎⵣⵔⴰⵢ ⵏ ⵣⵍⵉⵊ",
+      "leather_pouf": "ⴰⴱⵓⵍⴼⴰⵙ ⵏ ⴰⵢⵔⴰⵏ",
+      "berber_necklace": "ⵜⵉⵣⵔⴰ ⵜⴰⵎⴰⵣⵉⵖⵜ",
+      "carved_cedar": "ⴰⵙⵖⵔⵓ ⵏ ⵓⵣⵣⵓⵣ",
+      "tagine": "ⵜⴰⵊⵉⵏⵜ",
+      "zellige_table": "ⵜⴰⵎⵍⵍⴰⵢⵜ ⵏ ⵣⵍⵉⵊ"
+    },
+    "product_categories": {
+      "textiles": "ⵉⵙⵍⴽⵏ",
+      "zellige": "ⵣⵍⵉⵊ",
+      "leather": "ⴰⵢⵔⴰⵏ",
+      "jewelry": "ⵉⵎⵖⴰⵔⵏ",
+      "wood": "ⴰⵙⵖⵔⵓ",
+      "pottery": "ⵜⴰⵙⵔⵉⵎⵜ"
+    },
+    "regions": {
+      "marrakech_safi": "ⵎⵕⵕⴰⴽⵛ-ⴰⵙⴼⵉ",
+      "fes_meknes": "ⴼⴰⵙ-ⵎⴽⵏⴰⵙ",
+      "casablanca_settat": "ⴰⵏⴼⴰ-ⵙⵉⵜⵜⴰⵜ",
+      "draa_tafilalet": "ⴷⵔⴰ-ⵜⴰⴼⵉⵍⴰⵍⵜ"
+    },
+    "badges": {
+      "sahara_explorer": "ⴰⵙⵏⴷⴰⵍ ⵏ ⵉⴳⴰⵏⴰⵔ",
+      "zellige_master": "ⴰⵎⵙⵙⴰⵏ ⵏ ⵣⵍⵉⵊ",
+      "storyteller": "ⴰⵎⵙⴰⵡⴰⵍ",
+      "medina_walker": "ⴰⵙⵏⴷⴰⵍ ⵏ ⵜⵍⵎⵙⵜ",
+      "culture_champion": "ⴰⵎⵏⴰⵡ ⵏ ⵓⴷⵍⵉⵙ",
+      "heritage_guardian": "ⴰⵎⴰⵙⵙⴰⵏ ⵏ ⵓⵙⵓⵏⴰⴳ"
+    },
+    "content_types": {
+      "berber_pottery": "ⵜⴰⵙⵔⵉⵎⵜ ⵜⴰⵎⴰⵣⵉⵖⵜ",
+      "berber_pottery_desc": "ⵜⴰⵙⵔⵉⵎⵜ ⵜⴰⵎⴰⵣⵉⵖⵜ ⵙ ⵉⵣⵔⴰⵏ ⵉⵣⴳⴳⵯⴰⵖⵏ",
+      "tagine_cuisine": "ⵜⴰⵊⵉⵏⵜ",
+      "tagine_desc": "ⵉⵎⵓⵔⴰⵔⵏ ⵉⵣⴳⴳⵯⴰⵖⵏ ⵉⵜⵜⵡⴰⵙⵙⵏⴰⴼⵏ ⵙ ⵓⵙⴼⵓ",
+      "gnawa_music": "ⴰⵣⴰⵡⴰⵏ ⵏ ⴳⵏⴰⵡⴰ",
+      "gnawa_desc": "ⴰⵣⴰⵡⴰⵏ ⴰⵎⵇⵔⴰⵏ ⵉⴷ ⵢⵓⵙⵉⵏ ⵙⴳ ⵜⴼⵔⵉⵇⵜ",
+      "ben_youssef": "ⴰⵎⵣⴳⵉⴷ ⵏ ⴱⵏ ⵢⵓⵙⴼ",
+      "ben_youssef_desc": "ⴰⵎⵣⴳⵉⴷ ⴰⵎⵇⵔⴰⵏ ⴰⵙⵏⴽⵜⴰⵢ"
+    },
+    "suggested_questions": {
+      "battle_dchira": "ⴰⵡⴷ ⵖⴼ ⵉⵎⵏⵖⵉ ⵏ ⴷⵛⵉⵔⴰ",
+      "hassan_tower": "ⴰⵎⵣⵔⵓⵢ ⵏ ⵉⵙⴽⴽⵉⵍⵏ ⵏ ⵃⴰⵙⴰⵏ",
+      "zellige_art": "ⴷ ⵎⴰⵏ ⵉⴳⴰ ⵓⵙⵏⴰⴳ ⵏ ⵣⵍⵉⵊ?",
+      "berber_traditions": "ⵉⴷⵍⵉⵙⵏ ⵏ ⵉⵎⴰⵣⵉⵖⵏ"
+    },
+    "user_stats": {
+      "regions_visited": "ⵜⵉⵎⵏⴰⴹⵉⵏ ⵉⵜⵜⵡⴰⵙⵏⴷⵍⵏ",
+      "sites_explored": "ⵉⵙⵉⵜⵏ ⵉⵜⵜⵡⴰⵙⵏⴷⵍⵏ",
+      "artisans_supported": "ⵉⵎⴰⵙⵙⵏⵉⵏ ⵉⵜⵜⵡⴰⵡⴷⵏ",
+      "languages_used": "ⵜⵓⵜⵍⴰⵢⵉⵏ ⵉⵜⵜⵡⴰⵙⵎⵔⵙⵏ"
+    },
+    "leaderboard": {
+      "rank": "ⴰⵙⴷⴷⴰⵎ",
+      "points": "ⵜⵉⵇⵇⵏⵉⵏ",
+      "badge": "ⵜⵉⵣⵎⵔⵜ",
+      "you": "ⴽⵯⵛ"
+    },
+    "pagination": {
+      "start_point": "ⵜⴰⵏⵙⴰ ⵏ ⵓⵣⵡⴰⵔ",
+      "days": "ⵡⵓⵙⵙⴰⵏ",
+      "km": "ⴽⵎ",
+      "hours": "ⵉⵙⴰⵄⴰⵏ",
+      "mins": "ⵜⵓⴷⵔⵉⵏ"
+    }
+  },
+    "products": {
+      "berber_rug": "Agɛebbar amaziɣ i ttwanreǧ d tafat",
+      "zellige_mirror": "Asektu n wafinɣan n Zellige",
+      "leather_pouf": "Taɛarqust n achem",
+      "berber_necklace": "Taɣaṛa amaziɣt n tfeqqust",
+      "carved_cedar": "Tabtawt n cedren i ttwasferrulen",
+      "tagine": "Tajena aɣrnt",
+      "zellige_table": "Talɛawt n Zellige"
+    },
+    "product_categories": {
+      "textiles": "Izurar",
+      "zellige": "Zellige",
+      "leather": "Achem",
+      "jewelry": "Tizeɣlatin",
+      "wood": "Tazaṛift",
+      "pottery": "Taqandamt"
+    },
+    "regions": {
+      "marrakech_safi": "Marrakech-Safi",
+      "fes_meknes": "Fas-Miknas",
+      "casablanca_settat": "Kasablanka-Sittat",
+      "draa_tafilalet": "Draʕa-Tafilalet"
+    },
+    "badges": {
+      "sahara_explorer": "Amesneddel n Sahara",
+      "zellige_master": "Amazraɣ n Zellige",
+      "storyteller": "Amazraɣ",
+      "medina_walker": "Amesneddel n tlemmast",
+      "culture_champion": "Abrid n idlisen",
+      "heritage_guardian": "Umḍefrci n usmenyaf"
+    },
+    "content_types": {
+      "berber_pottery": "Taqandamt amaziɣt",
+      "berber_pottery_desc": "Taqandamt aɣrnt n ulli s izran n tajeṛjaḥ",
+      "tagine_cuisine": "Tajena",
+      "tagine_desc": "Isefka aɣrnin i ttwaqeccalen s tɛengut",
+      "gnawa_music": "Aẓawan n Gnawa",
+      "gnawa_desc": "Aẓawan amuqeddim i d-yettu si Tafriqt",
+      "ben_youssef": "Tajmat n Ben Youssef",
+      "ben_youssef_desc": "Tajmat taɛelmant tasnuktalit i ttseqqaden"
+    },
+    "suggested_questions": {
+      "battle_dchira": "Alaq-iyi ɣef txemmert n Dchira",
+      "hassan_tower": "Azeqqa n isemmuden n Hassan",
+      "zellige_art": "Acu i d ufus n Zellige?",
+      "berber_traditions": "Idles amaziɣ"
+    },
+    "user_stats": {
+      "regions_visited": "Tadgigin i ttwasndellen",
+      "sites_explored": "Isejjagen i ttwasndellen",
+      "artisans_supported": "Isunagga i ttwaeɣṛisen",
+      "languages_used": "Tutlayin i ttwasqdecmen"
+    },
+    "leaderboard": {
+      "rank": "Asuddam",
+      "points": "Iqan",
+      "badge": "Tizamur",
+      "you": "Kečč"
+    },
+    "pagination": {
+      "start_point": "Tira n ubdu",
+      "days": "wussan",
+      "km": "km",
+      "hours": "ussan",
+      "mins": "tudert"
+    }
+  ,
+  "demo_artisan": {
+    "name": "ⴼⴰⵟⵉⵎⴰ ⵣⵣⵀⵕⴰ",
+    "craft": "ⴰⵣⵍⵍⵉⵊ ⴰⵎⵏⵙⴰⵢ",
+    "city": "ⴼⴰⵙ",
+    "bio": "ⵜⴰⵎⵓⵙⵏⴰⵡⵜ ⵏ ⵓⵣⵍⵍⵉⵊ ⵙⴳ ⵜⴰⵙⵓⵜ ⵜⵉⵙⵙ ⴽⵕⴰⴹⵜ ⵉⵥⵍⵉⵏ ⵙ ⵜⵥⵓⵕⵉ ⵏ ⵓⴼⵙⵉⴼⵙⴰ ⴰⵎⵖⵔⵉⴱⵉ ⴰⵎⵏⵙⴰⵢ. ⵜⴰⵡⵊⴰ ⵉⵏⵓ ⴰⵔ ⵜⵙⴽⴰⵔ ⵜⵉⴼⵉⵍⵉⵏ ⵏ ⵓⵣⵍⵍⵉⵊ ⴳ ⵜⵎⴷⵉⵏⵜ ⵏ ⴼⴰⵙ ⵓⴳⴳⴰⵔ ⵏ 80 ⵉⵙⴳⴳⵯⴰⵙⵏ, ⴰⵔ ⵜⵃⵟⵟⵓ ⵜⵉⵜⵉⵇⵏⵉⵢⵉⵏ ⵜⵉⵇⵇⴱⵓⵕⵉⵏ ⵉⵜⵜⵓⵢⴰⵣⴰⵏ ⵙⴳ ⵜⴰⵙⵓⵜⵉⵏ.",
+    "time_2w": "ⵙⵉⵏ ⵉⵎⴰⵍⴰⵙⵙⵏ ⴰⵢⴰ",
+    "time_1m": "ⵢⴰⵏ ⴰⵢⵢⵓⵔ ⴰⵢⴰ",
+    "review1_text": "ⵜⴰⵎⵓⵙⵏⵉ ⵉⴼⴰⵡⵏ ⴰⵟⵟⴰⵚ! ⵜⴰⵟⴰⴱⵍⴰ ⵏ ⵓⵣⵍⵍⵉⵊ ⵜⴳⴰ ⵜⴰⵖⴰⵡⵙⴰ ⵜⴰⵏⴰⵎⵎⴰⵙⵜ ⴳ ⵜⴳⵎⵎⵉ ⵉⵏⵓ.",
+    "review1_name": "ⵙⴰⵔⴰ ⵎ.",
+    "review2_text": "ⵜⴰⵥⵓⵕⵉ ⵜⴰⵎⵖⵔⵉⴱⵉⵜ ⵜⴰⵏⵚⵍⵉⵜ. ⴰⵔ ⵜ ⵏⵙⵙⵓⵎⵔ ⵙ ⵡⴰⵟⵟⴰⵚ!",
+    "review2_name": "ⴰⵃⵎⴰⴷ ⴽ.",
+    "product1": "ⵟⴰⴱⵍⴰ ⵏ ⵓⵣⵍⵍⵉⵊ",
+    "product2": "ⵜⵉⵙⵉⵜ ⵏ ⵓⴼⵙⵉⴼⵙⴰ",
+    "product3": "ⵜⴰⴳⵔⵓⵎⵎⴰ ⵏ ⵜⴼⵉⵍⵉⵏ (25 ⵜⵉⴳⴳⵎⵉ)"
+  },
+  "demo_user": {
+    "name": "ⴰⵍⵉⴽⵙⴰⵏⴷⵔⴰ ⵛⵉⵏ",
+    "country": "ⵉⵡⵓⵏⴰⴽ ⵉⵎⵓⵏⵏ",
+    "member_since_date": "ⵎⴰⵕⵚ 2024",
+    "time_2d": "ⵙⵉⵏ ⵡⵓⵙⵙⴰⵏ ⴰⵢⴰ",
+    "time_3d": "ⴽⵕⴰⴹ ⵡⵓⵙⵙⴰⵏ ⴰⵢⴰ",
+    "time_1w": "ⵢⴰⵏ ⵉⵎⴰⵍⴰⵙⵙ ⴰⵢⴰ",
+    "member_since_prefix": "ⴰⴳⵎⴰⵎ ⵙⴳ"
+  },
+  "voice_ai": {
+    "q1": "ⴰⵡⵉⵢⵉⴷ ⵖⴼ ⵉⵎⵏⵖⵉ ⵏ ⴷⵛⵉⵔⴰ",
+    "q2": "ⴰⵎⵣⵔⵓⵢ ⵏ ⵜⵚⵚⵓⵎⵄⵜ ⵏ ⵃⴰⵙⴰⵏ",
+    "q3": "ⵎⴰⴷ ⵉⴳⴰⵏ ⴰⵣⵍⵍⵉⵊ?",
+    "q4": "ⵜⵉⵎⵢⵓⵔⵉⵏ ⵜⵉⵎⴰⵣⵉⵖⵉⵏ",
+    "welcome_msg": "ⵎⵔⵃⴱⴰ! ⵏⴽⴽⵉ ⴷ ⴰⵎⵏⵉⵔ ⵏⵏⴽ ⴳ ⵜⵓⵔⴰⵜ. ⵙⵇⵙⵉ ⵢⵉ ⵅⴼ ⴽⵔⴰ ⵏ ⵜⵖⴰⵡⵙⴰ ⴳ ⵜⵓⵙⵙⵏⴰ ⵜⴰⵎⵖⵔⵉⴱⵉⵜ ⵏⵖ ⴰⵎⵣⵔⵓⵢ.",
+    "tag_welcome": "ⴰⵎⵙⵏⴰⵍ",
+    "status_listening": "ⴰⵔ ⵉⵙⵙⴼⵍⵉⴷ...",
+    "status_speaking": "ⴰⵔ ⵉⵙⴰⵡⴰⵍ...",
+    "status_tap": "ⴰⴷⵔ ⵅⴼ ⵎⵉⴽⵔⵓ",
+    "type_placeholder": "ⴰⵔⴰ ⴰⵙⵇⵙⵉ ⵏⵏⴽ..."
+  }
+}

@@ -1,6 +1,7 @@
 "use client"
 
 import { useNavigation } from './navigation-provider'
+import { useTranslation } from './language-provider'
 import { type NavigationTab } from '@/lib/turath-types'
 import { CompassIcon, GridIcon, WaveformIcon, BasketIcon, UserIcon } from './icons'
 import { cn } from '@/lib/utils'
@@ -27,16 +28,17 @@ const SCREEN_TAB_MAP: Record<string, NavigationTab> = {
   'settings': 'profile',
 }
 
-const tabs: { id: NavigationTab; label: string; Icon: typeof CompassIcon }[] = [
-  { id: 'map', label: 'Map', Icon: CompassIcon },
-  { id: 'explore', label: 'Explore', Icon: GridIcon },
-  { id: 'guide', label: 'AI Guide', Icon: WaveformIcon },
-  { id: 'artisans', label: 'Artisans', Icon: BasketIcon },
-  { id: 'profile', label: 'Profile', Icon: UserIcon },
+const tabs: { id: NavigationTab; labelKey: string; Icon: typeof CompassIcon }[] = [
+  { id: 'map', labelKey: 'navigation.map', Icon: CompassIcon },
+  { id: 'explore', labelKey: 'navigation.explore', Icon: GridIcon },
+  { id: 'guide', labelKey: 'navigation.guide', Icon: WaveformIcon },
+  { id: 'artisans', labelKey: 'navigation.artisans', Icon: BasketIcon },
+  { id: 'profile', labelKey: 'navigation.profile', Icon: UserIcon },
 ]
 
 export function BottomNavigation() {
   const { navigate, currentScreen } = useNavigation()
+  const { t } = useTranslation()
   const activeTab = SCREEN_TAB_MAP[currentScreen] ?? 'map'
 
   return (
@@ -44,8 +46,9 @@ export function BottomNavigation() {
       <div className="mx-3 mb-3">
         <div className="glass rounded-2xl border border-border/50 shadow-lg">
           <div className="flex items-center justify-around px-2 py-3">
-            {tabs.map(({ id, label, Icon }) => {
+            {tabs.map(({ id, labelKey, Icon }) => {
               const isActive = activeTab === id
+              const label = t(labelKey)
               return (
                 <button
                   key={id}

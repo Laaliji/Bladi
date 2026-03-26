@@ -5,41 +5,9 @@ import { cn } from '@/lib/utils'
 import { SettingsIcon, TrophyIcon, ChevronRightIcon } from '../icons'
 import { BottomNavigation } from '../bottom-navigation'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
-const USER_DATA = {
-  name: 'Alexandra Chen',
-  avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
-  country: 'United States',
-  memberSince: 'March 2024',
-  stats: { regionsVisited: 4, sitesExplored: 23, artisansSupported: 7, languagesUsed: 3 },
-}
-
-const BADGES = [
-  { id: '1', name: 'Sahara Explorer', icon: 'desert', unlocked: true },
-  { id: '2', name: 'Zellige Master', icon: 'tile', unlocked: true },
-  { id: '3', name: 'Storyteller', icon: 'book', unlocked: true },
-  { id: '4', name: 'Medina Walker', icon: 'walk', unlocked: false },
-  { id: '5', name: 'Culture Champion', icon: 'star', unlocked: false },
-  { id: '6', name: 'Heritage Guardian', icon: 'shield', unlocked: false },
-]
-
-const REGION_PROGRESS = [
-  { id: '1', name: 'Marrakech-Safi', progress: 75, color: '#C1121F' },
-  { id: '2', name: 'Fes-Meknes', progress: 45, color: '#C9A84C' },
-  { id: '3', name: 'Casablanca-Settat', progress: 30, color: '#1B4332' },
-  { id: '4', name: 'Draa-Tafilalet', progress: 60, color: '#8B5A2B' },
-]
-
-const RECENT_HISTORY = [
-  { id: '1', name: 'Koutoubia Mosque', image: 'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=200&h=150&fit=crop', date: '2 days ago' },
-  { id: '2', name: 'Bahia Palace', image: 'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=200&h=150&fit=crop', date: '3 days ago' },
-  { id: '3', name: "Jemaa el-Fnaa", image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&h=150&fit=crop', date: '1 week ago' },
-]
-
-const ACTIVE_CHALLENGES = [
-  { id: '1', title: 'Visit 5 UNESCO sites in Marrakech', progress: 3, total: 5, reward: 'Heritage Guardian Badge' },
-  { id: '2', title: 'Support 3 local artisans', progress: 2, total: 3, reward: '10% Discount Coupon' },
-]
+// Data arrays moved inside component for translation
 
 interface ProfileScreenProps {
   isDark?: boolean
@@ -60,6 +28,43 @@ function BadgeIcon({ type, unlocked }: { type: string; unlocked: boolean }) {
 
 export function ProfileScreen({ isDark }: ProfileScreenProps) {
   void isDark
+  const { t } = useTranslation()
+
+  const USER_DATA = {
+    name: t('demo_user.name'),
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+    country: t('demo_user.country'),
+    memberSince: t('demo_user.member_since_date'),
+    stats: { regionsVisited: 4, sitesExplored: 23, artisansSupported: 7, languagesUsed: 3 },
+  }
+
+  const BADGES = [
+    { id: '1', name: t('data.badges.sahara_explorer'), icon: 'desert', unlocked: true },
+    { id: '2', name: t('data.badges.zellige_master'), icon: 'tile', unlocked: true },
+    { id: '3', name: t('data.badges.storyteller'), icon: 'book', unlocked: true },
+    { id: '4', name: t('data.badges.medina_walker'), icon: 'walk', unlocked: false },
+    { id: '5', name: t('data.badges.culture_champion'), icon: 'star', unlocked: false },
+    { id: '6', name: t('data.badges.heritage_guardian'), icon: 'shield', unlocked: false },
+  ]
+
+  const REGION_PROGRESS = [
+    { id: '1', name: t('data.regions.marrakech_safi'), progress: 75, color: '#C1121F' },
+    { id: '2', name: t('data.regions.fes_meknes'), progress: 45, color: '#C9A84C' },
+    { id: '3', name: t('data.regions.casablanca_settat'), progress: 30, color: '#1B4332' },
+    { id: '4', name: t('data.regions.draa_tafilalet'), progress: 60, color: '#8B5A2B' },
+  ]
+
+  const RECENT_HISTORY = [
+    { id: '1', name: t('data.heritage_sites.koutoubia'), image: 'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=200&h=150&fit=crop', date: t('demo_user.time_2d') },
+    { id: '2', name: t('data.heritage_sites.bahia_palace'), image: 'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=200&h=150&fit=crop', date: t('demo_user.time_3d') },
+    { id: '3', name: t('data.heritage_sites.jemaa_el_fnaa'), image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&h=150&fit=crop', date: t('demo_user.time_1w') },
+  ]
+
+  const ACTIVE_CHALLENGES = [
+    { id: '1', title: t('data.challenge_titles.visit_5_unesco'), progress: 3, total: 5, reward: t('data.rewards.heritage_guardian') },
+    { id: '2', title: t('data.challenge_titles.support_3_artisans'), progress: 2, total: 3, reward: t('data.rewards.discount_10') },
+  ]
+
   const { navigate } = useNavigation()
   const [activeTab, setActiveTab] = useState<'badges' | 'progress' | 'history'>('badges')
 
@@ -68,7 +73,7 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
       {/* Header */}
       <div className="pt-12 px-4 pb-6 bg-card border-b border-border">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold text-foreground">Profile</h1>
+          <h1 className="text-xl font-bold text-foreground">{t('navigation.profile')}</h1>
           <button onClick={() => navigate('settings')} className="w-10 h-10 rounded-full bg-muted flex items-center justify-center" aria-label="Settings">
             <SettingsIcon className="w-5 h-5 text-foreground" />
           </button>
@@ -82,16 +87,16 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
               <span className="text-lg">🇺🇸</span>
               <span className="text-sm text-muted-foreground">{USER_DATA.country}</span>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Member since {USER_DATA.memberSince}</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('demo_user.member_since_prefix')} {USER_DATA.memberSince}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-4 gap-2 mt-4">
           {[
-            { label: 'Regions', value: USER_DATA.stats.regionsVisited },
-            { label: 'Sites', value: USER_DATA.stats.sitesExplored },
-            { label: 'Artisans', value: USER_DATA.stats.artisansSupported },
-            { label: 'Languages', value: USER_DATA.stats.languagesUsed },
+            { label: t('profile_screen.regions'), value: USER_DATA.stats.regionsVisited },
+            { label: t('profile_screen.sites'), value: USER_DATA.stats.sitesExplored },
+            { label: t('profile_screen.artisans'), value: USER_DATA.stats.artisansSupported },
+            { label: t('profile_screen.languages'), value: USER_DATA.stats.languagesUsed },
           ].map((stat, i) => (
             <div key={i} className="text-center p-2 bg-muted rounded-xl">
               <p className="text-lg font-bold text-foreground">{stat.value}</p>
@@ -105,7 +110,7 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
       <div className="flex border-b border-border bg-card">
         {(['badges', 'progress', 'history'] as const).map((tab) => (
           <button key={tab} onClick={() => setActiveTab(tab)} className={cn("flex-1 py-3 text-sm font-medium transition-all border-b-2 capitalize", activeTab === tab ? "text-primary border-primary" : "text-muted-foreground border-transparent")}>
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            {t(`profile_screen.${tab}`)}
           </button>
         ))}
       </div>
@@ -128,7 +133,7 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
 
         {activeTab === 'progress' && (
           <div className="p-4 space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground">REGIONAL COMPLETION</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3">{t('profile_screen.regional_completion')}</h3>
             {REGION_PROGRESS.map((region) => (
               <div key={region.id} className="p-4 bg-card rounded-2xl border border-border">
                 <div className="flex items-center justify-between mb-2">
@@ -145,7 +150,7 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
 
         {activeTab === 'history' && (
           <div className="p-4">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-3">RECENTLY VISITED</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-3">{t('profile_screen.recently_visited')}</h3>
             <div className="space-y-3">
               {RECENT_HISTORY.map((place) => (
                 <button key={place.id} onClick={() => navigate('heritage-detail')} className="w-full flex gap-3 p-3 bg-card rounded-2xl border border-border text-left">
@@ -164,8 +169,8 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
         {/* Active challenges */}
         <div className="px-4 pt-4 pb-4">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-muted-foreground">ACTIVE CHALLENGES</h3>
-            <button onClick={() => navigate('challenges')} className="text-sm text-accent font-medium flex items-center gap-1">View all <ChevronRightIcon className="w-4 h-4" /></button>
+            <h3 className="text-sm font-semibold text-muted-foreground">{t('profile_screen.active_challenges')}</h3>
+            <button onClick={() => navigate('challenges')} className="text-sm text-accent font-medium flex items-center gap-1">{t('common.view_all')} <ChevronRightIcon className="w-4 h-4" /></button>
           </div>
           <div className="space-y-3">
             {ACTIVE_CHALLENGES.map((challenge) => (
@@ -176,7 +181,7 @@ export function ProfileScreen({ isDark }: ProfileScreenProps) {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-medium text-foreground">{challenge.title}</h4>
-                    <p className="text-xs text-muted-foreground mt-1">Reward: {challenge.reward}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{t('profile_screen.reward')}: {challenge.reward}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                         <div className="h-full bg-primary rounded-full" style={{ width: `${(challenge.progress / challenge.total) * 100}%` }} />

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, type ComponentType } from 'react'
 import { cn } from '@/lib/utils'
 import { NavigationProvider, useNavigation, type ScreenId } from './navigation-provider'
+import { LanguageProvider } from './language-provider'
 import { PhoneFrame } from './phone-frame'
 import { OnboardingScreen } from './screens/onboarding-screen'
 import { HomeMapScreen } from './screens/home-map-screen'
@@ -242,8 +243,10 @@ function AppContent() {
 
 export function AppShell() {
   return (
-    <NavigationProvider>
-      <AppContent />
-    </NavigationProvider>
+    <LanguageProvider>
+      <NavigationProvider>
+        <AppContent />
+      </NavigationProvider>
+    </LanguageProvider>
   )
 }

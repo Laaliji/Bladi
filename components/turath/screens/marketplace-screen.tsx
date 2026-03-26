@@ -6,6 +6,7 @@ import { CRAFT_CATEGORIES } from '@/lib/turath-types'
 import { SearchIcon, FilterIcon, HeartIcon, CartIcon, ChevronRightIcon } from '../icons'
 import { BottomNavigation } from '../bottom-navigation'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
 const FEATURED_ARTISANS = [
   { id: '1', name: 'Fatima Zahra', craft: 'Zellige', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop', coverImage: 'https://images.unsplash.com/photo-1590577976322-3d2d6e2130d5?w=400&h=200&fit=crop' },
@@ -28,6 +29,7 @@ interface MarketplaceScreenProps {
 export function MarketplaceScreen({ isDark }: MarketplaceScreenProps) {
   void isDark
   const { navigate } = useNavigation()
+  const { t } = useTranslation()
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [likedProducts, setLikedProducts] = useState<Record<string, boolean>>(
     PRODUCTS.reduce((acc, p) => ({ ...acc, [p.id]: p.liked }), {})
@@ -45,7 +47,7 @@ export function MarketplaceScreen({ isDark }: MarketplaceScreenProps) {
       {/* Header */}
       <div className="pt-12 px-4 pb-4 bg-card border-b border-border">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold text-foreground">Artisan Shop</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t('marketplace.marketplace', 'Artisan Shop')}</h1>
           <button onClick={() => navigate('checkout')} className="relative w-10 h-10 rounded-full bg-muted flex items-center justify-center">
             <CartIcon className="w-5 h-5 text-foreground" />
             {cartCount > 0 && <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center">{cartCount}</span>}
@@ -55,7 +57,7 @@ export function MarketplaceScreen({ isDark }: MarketplaceScreenProps) {
         <div className="flex gap-2">
           <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-muted rounded-2xl">
             <SearchIcon className="w-5 h-5 text-muted-foreground" />
-            <input type="text" placeholder="Search products..." className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none" />
+            <input type="text" placeholder={t('common.search')} className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none" />
           </div>
           <button className="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center">
             <FilterIcon className="w-5 h-5 text-accent-foreground" />
@@ -63,7 +65,7 @@ export function MarketplaceScreen({ isDark }: MarketplaceScreenProps) {
         </div>
 
         <div className="flex gap-2 overflow-x-auto mt-4 pb-1 scrollbar-hide">
-          <button onClick={() => setActiveCategory(null)} className={cn("px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all", !activeCategory ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>All</button>
+          <button onClick={() => setActiveCategory(null)} className={cn("px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all", !activeCategory ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>{t('home_map.all')}</button>
           {CRAFT_CATEGORIES.map((cat) => (
             <button key={cat} onClick={() => setActiveCategory(cat)} className={cn("px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all", activeCategory === cat ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>{cat}</button>
           ))}
@@ -74,8 +76,8 @@ export function MarketplaceScreen({ isDark }: MarketplaceScreenProps) {
       <div className="flex-1 overflow-y-auto pb-24">
         <div className="px-4 pt-4">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold text-foreground">Featured Artisans</h2>
-            <button onClick={() => navigate('artisan-profile')} className="text-sm text-accent font-medium flex items-center gap-1">View all <ChevronRightIcon className="w-4 h-4" /></button>
+            <h2 className="text-lg font-semibold text-foreground">{t('marketplace.artisan_products', 'Featured Artisans')}</h2>
+            <button onClick={() => navigate('artisan-profile')} className="text-sm text-accent font-medium flex items-center gap-1">{t('common.view_all', 'View all')} <ChevronRightIcon className="w-4 h-4" /></button>
           </div>
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
             {FEATURED_ARTISANS.map((artisan) => (

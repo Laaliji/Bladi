@@ -4,30 +4,9 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { ChevronLeftIcon, ShareIcon, BookmarkIcon, PlayIcon, Volume2Icon, CameraIcon, ChevronRightIcon } from '../icons'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
-const HERITAGE_DATA = {
-  title: 'Koutoubia Mosque',
-  titleAr: 'جامع الكتبية',
-  description: `The Koutoubia Mosque is the largest mosque in Marrakech, Morocco. The mosque was founded in 1147 by the Almohad caliph Abd al-Mu'min after his conquest of Marrakesh. The minaret, completed under the reign of Yaqub al-Mansur (1184–1199), stands as one of the finest examples of Almohad architecture.`,
-  images: [
-    'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1580746738099-78d6833b3f84?w=800&h=600&fit=crop',
-  ],
-  pullQuote: 'صومعة الكتبية رمز من رموز مراكش العريقة',
-  pullQuoteEn: 'The Koutoubia Minaret — a timeless symbol of Marrakech',
-  timeline: [
-    { year: '1147', event: 'Foundation by Almohad caliph', eventAr: 'تأسيس من طرف الموحدين' },
-    { year: '1158', event: 'Reconstruction begins', eventAr: 'بداية إعادة البناء' },
-    { year: '1195', event: 'Minaret completed', eventAr: 'اكتمال الصومعة' },
-    { year: '1990', event: 'UNESCO recognition', eventAr: 'اعتراف اليونسكو' },
-  ],
-  relatedContent: [
-    { id: '1', title: 'Almohad Dynasty', image: 'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=200&h=150&fit=crop' },
-    { id: '2', title: 'Islamic Architecture', image: 'https://images.unsplash.com/photo-1580746738099-78d6833b3f84?w=200&h=150&fit=crop' },
-    { id: '3', title: 'Marrakech Medina', image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&h=150&fit=crop' },
-  ],
-}
+// Data arrays moved inside component for translation
 
 interface HeritageDetailScreenProps {
   isDark?: boolean
@@ -36,6 +15,32 @@ interface HeritageDetailScreenProps {
 export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
   void isDark
   const { goBack, navigate } = useNavigation()
+  const { t } = useTranslation()
+
+  const HERITAGE_DATA = {
+    title: t('data.heritage_sites.koutoubia'),
+    titleAr: 'جامع الكتبية',
+    description: t('heritage_detail.koutoubia_desc'),
+    images: [
+      'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1580746738099-78d6833b3f84?w=800&h=600&fit=crop',
+    ],
+    pullQuote: 'صومعة الكتبية رمز من رموز مراكش العريقة',
+    pullQuoteEn: t('heritage_detail.pull_quote'),
+    timeline: [
+      { year: '1147', event: t('heritage_detail.timeline_1147'), eventAr: 'تأسيس من طرف الموحدين' },
+      { year: '1158', event: t('heritage_detail.timeline_1158'), eventAr: 'بداية إعادة البناء' },
+      { year: '1195', event: t('heritage_detail.timeline_1195'), eventAr: 'اكتمال الصومعة' },
+      { year: '1990', event: t('heritage_detail.timeline_1990'), eventAr: 'اعتراف اليونسكو' },
+    ],
+    relatedContent: [
+      { id: '1', title: t('heritage_detail.title_almohad'), image: 'https://images.unsplash.com/photo-1548018560-c7196bf66e3c?w=200&h=150&fit=crop' },
+      { id: '2', title: t('heritage_detail.title_islamic_arch'), image: 'https://images.unsplash.com/photo-1580746738099-78d6833b3f84?w=200&h=150&fit=crop' },
+      { id: '3', title: t('heritage_detail.title_medina'), image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&h=150&fit=crop' },
+    ],
+  }
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [saved, setSaved] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -91,12 +96,12 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
                   <div key={i} className="w-1 bg-current rounded-full waveform-bar" style={{ height: `${8 + (i * 3)}px`, animationDelay: `${i * 0.1}s` }} />
                 ))}
               </div>
-              <span className="font-medium">Listening...</span>
+              <span className="font-medium">{t('heritage_detail.listening')}</span>
             </>
           ) : (
             <>
               <Volume2Icon className="w-5 h-5" />
-              <span className="font-medium">Hear the Story</span>
+              <span className="font-medium">{t('heritage_detail.hear_story')}</span>
             </>
           )}
         </button>
@@ -111,7 +116,7 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
         </blockquote>
 
         <div>
-          <h3 className="text-lg font-semibold text-foreground mb-4">Historical Timeline</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-4">{t('heritage_detail.historical_timeline')}</h3>
           <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
             {HERITAGE_DATA.timeline.map((item, index) => (
               <div key={index} className="flex-shrink-0 w-32 p-3 bg-card rounded-2xl border border-border text-center">
@@ -125,7 +130,7 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
 
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-foreground">Related Content</h3>
+            <h3 className="text-lg font-semibold text-foreground">{t('heritage_detail.related_content')}</h3>
             <button className="text-sm text-accent font-medium flex items-center gap-1">View all <ChevronRightIcon className="w-4 h-4" /></button>
           </div>
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
@@ -143,11 +148,11 @@ export function HeritageDetailScreen({ isDark }: HeritageDetailScreenProps) {
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background to-transparent pt-8 flex gap-3">
         <button className="flex-1 py-3 px-4 bg-card border border-border text-foreground rounded-2xl font-medium flex items-center justify-center gap-2">
           <ShareIcon className="w-5 h-5" />
-          Share
+          {t('heritage_detail.share')}
         </button>
         <button onClick={() => navigate('itinerary')} className="flex-1 py-3 px-4 bg-primary text-primary-foreground rounded-2xl font-medium flex items-center justify-center gap-2">
           <PlayIcon className="w-5 h-5" />
-          Plan Visit
+          {t('heritage_detail.plan_visit')}
         </button>
       </div>
     </div>

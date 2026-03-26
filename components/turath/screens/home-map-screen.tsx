@@ -6,22 +6,9 @@ import { FILTER_CHIPS } from '@/lib/turath-types'
 import { SearchIcon, MicIcon, MapPinIcon, ChevronRightIcon } from '../icons'
 import { BottomNavigation } from '../bottom-navigation'
 import { useNavigation } from '../navigation-provider'
+import { useTranslation } from '../language-provider'
 
-const MAP_PINS = [
-  { id: 'fez', name: 'Fez', x: 55, y: 35, type: 'heritage' as const },
-  { id: 'marrakech', name: 'Marrakech', x: 45, y: 55, type: 'artisan' as const },
-  { id: 'chefchaouen', name: 'Chefchaouen', x: 50, y: 28, type: 'heritage' as const },
-  { id: 'essaouira', name: 'Essaouira', x: 30, y: 52, type: 'food' as const },
-  { id: 'atlas', name: 'Atlas Mountains', x: 55, y: 60, type: 'itinerary' as const },
-  { id: 'tangier', name: 'Tangier', x: 48, y: 18, type: 'heritage' as const },
-]
-
-const NEARBY_HIGHLIGHTS = [
-  { id: '1', name: 'Al Quaraouiyine', category: 'Heritage', distance: '2.3 km', image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400' },
-  { id: '2', name: 'Chouara Tannery', category: 'Artisan', distance: '1.8 km', image: 'https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=400' },
-  { id: '3', name: 'Bab Boujloud', category: 'Heritage', distance: '3.1 km', image: 'https://images.unsplash.com/photo-1553899017-9279a3e1c0c9?w=400' },
-  { id: '4', name: 'Dar Batha', category: 'Museum', distance: '2.5 km', image: 'https://images.unsplash.com/photo-1548018560-c7196548e84d?w=400' },
-]
+// Data arrays moved inside component for translation
 
 interface HomeMapScreenProps {
   isDark?: boolean
@@ -30,6 +17,24 @@ interface HomeMapScreenProps {
 export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
   void isDark
   const { navigate } = useNavigation()
+  const { t } = useTranslation()
+
+  const MAP_PINS = [
+    { id: 'fez', name: t('home_map.fes'), x: 55, y: 35, type: 'heritage' as const },
+    { id: 'marrakech', name: t('home_map.marrakech'), x: 45, y: 55, type: 'artisan' as const },
+    { id: 'chefchaouen', name: t('home_map.chefchaouen'), x: 50, y: 28, type: 'heritage' as const },
+    { id: 'essaouira', name: t('home_map.essaouira'), x: 30, y: 52, type: 'food' as const },
+    { id: 'atlas', name: t('home_map.atlas'), x: 55, y: 60, type: 'itinerary' as const },
+    { id: 'tangier', name: t('home_map.tangier'), x: 48, y: 18, type: 'heritage' as const },
+  ]
+
+  const NEARBY_HIGHLIGHTS = [
+    { id: '1', name: t('home_map.al_quaraouiyine'), category: t('home_map.cat_heritage'), distance: '2.3 km', image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400' },
+    { id: '2', name: t('home_map.chouara'), category: t('home_map.cat_artisan'), distance: '1.8 km', image: 'https://images.unsplash.com/photo-1531219572328-a0171b4448a3?w=400' },
+    { id: '3', name: t('home_map.bab_boujloud'), category: t('home_map.cat_heritage'), distance: '3.1 km', image: 'https://images.unsplash.com/photo-1553899017-9279a3e1c0c9?w=400' },
+    { id: '4', name: t('home_map.dar_batha'), category: t('home_map.cat_museum'), distance: '2.5 km', image: 'https://images.unsplash.com/photo-1548018560-c7196548e84d?w=400' },
+  ]
+
   const [activeFilter, setActiveFilter] = useState('all')
   const [bottomSheetExpanded, setBottomSheetExpanded] = useState(false)
 
@@ -49,7 +54,7 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
         <div className="glass rounded-2xl border border-border/50 shadow-lg">
           <div className="flex items-center gap-3 px-4 py-3">
             <SearchIcon className="w-5 h-5 text-muted-foreground" />
-            <input type="text" placeholder="Search places, crafts, artisans..." className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none" />
+            <input type="text" placeholder={t('home_map.search_placeholder')} className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none" />
             <button className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
               <MicIcon className="w-5 h-5 text-primary" />
             </button>
@@ -108,9 +113,9 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
         </button>
         <div className="px-4 pb-4">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-foreground">Nearby Highlights</h3>
+            <h3 className="text-lg font-semibold text-foreground">{t('home_map.nearby_highlights', 'Nearby Highlights')}</h3>
             <button onClick={() => navigate('region-detail')} className="text-sm text-accent font-medium flex items-center gap-1">
-              View all <ChevronRightIcon className="w-4 h-4" />
+              {t('common.view_all', 'View all')} <ChevronRightIcon className="w-4 h-4" />
             </button>
           </div>
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
