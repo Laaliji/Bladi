@@ -14,6 +14,7 @@ import {
   type MapCity,
   type CityType,
 } from '../interactive-morocco-map'
+import { AnimatedAvatar } from '../animated-avatar'
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Real monument images per city (from /public/cities/)
@@ -114,7 +115,7 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
     : 'linear-gradient(135deg, #BDD9EF 0%, #C8E8D8 100%)'
 
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <div className="h-full flex flex-col overflow-hidden relative">
 
       {/* ── HERO HEADER ─────────────────────────────────────────────────── */}
       <div
@@ -145,6 +146,7 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
             <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#C1121F] border border-background" />
           </div>
         </div>
+
 
         {/* Search bar */}
         <div
@@ -378,6 +380,9 @@ export function HomeMapScreen({ isDark }: HomeMapScreenProps) {
       </div>
 
       <BottomNavigation />
+
+      {/* ── AVATAR GUIDE OVERLAY ─────────────────────────────────── */}
+      <AnimatedAvatar isDark={isDark} />
     </div>
   )
 }
