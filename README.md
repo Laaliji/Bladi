@@ -1,35 +1,118 @@
-# turath-wireframes-ng
+# Turath | تراث
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+> **An interactive mobile app wireframe celebrating Morocco's rich cultural heritage.**
 
-## Built with v0
+Turath (Arabic for *"Heritage"*) is a high-fidelity interactive wireframe for a mobile-first cultural discovery platform. It lets users explore Moroccan cities, artisan crafts, heritage sites, and local traditions — guided by an AI voice narrator and an immersive map-first experience.
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+---
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_YBMnkqmOLt1qAsS9tiC8WMmc1g8B)
+## ✨ Features
 
-## Getting Started
+| Screen | Description |
+|--------|-------------|
+| 🗺️ **Home / Map** | Interactive Morocco map with city markers and region-based discovery |
+| 🏛️ **Heritage Detail** | Deep-dive into historical sites, stories, and local context |
+| 🌍 **Region Detail** | Curated content per Moroccan region — culture, crafts, cuisine |
+| 🛍️ **Marketplace** | Browse and purchase authentic artisan products |
+| 👤 **Artisan Profile** | Meet the makers — craftsmanship bios and product galleries |
+| 🛒 **Checkout** | Streamlined purchase flow |
+| 🗓️ **Itinerary** | Build and manage personalized cultural travel plans |
+| 🎤 **Voice AI Guide** | AI-powered audio narration for heritage sites and stories |
+| 🏅 **Challenges** | Gamified cultural discovery with badges and progress tracking |
+| 🔐 **Onboarding** | Smooth multi-step introduction to the app experience |
+| ⚙️ **Settings / Profile** | User preferences, language, and account management |
 
-First, run the development server:
+---
+
+## 🏗️ Tech Stack
+
+- **Framework** — [Next.js](https://nextjs.org) (App Router, TypeScript)
+- **Styling** — [Tailwind CSS v4](https://tailwindcss.com) + custom design tokens
+- **Animation** — [Framer Motion](https://www.framer.com/motion/) for micro-interactions and screen transitions
+- **UI Components** — [Radix UI](https://www.radix-ui.com/) primitives + [shadcn/ui](https://ui.shadcn.com/)
+- **Icons** — [Lucide React](https://lucide.dev/)
+- **Maps** — Custom interactive SVG/image-based Morocco map with percentage-based city positioning
+- **AI Avatar** — Spring-animated guide avatar with typewriter Arabic narration and sound wave indicators
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** ≥ 18
+- **pnpm** (recommended) or npm / yarn
+
+### Install dependencies
 
 ```bash
-npm run dev
+pnpm install
 # or
-yarn dev
-# or
-pnpm dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run the development server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+# or
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more, take a look at the following resources:
+The wireframe renders inside a phone maquette that fits the viewport — no scrolling required.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+---
 
-<a href="https://v0.app/chat/api/kiro/clone/Laaliji/turath-wireframes-ng" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+## 📁 Project Structure
+
+```
+turath-wireframes-ng/
+├── app/
+│   ├── layout.tsx          # Root layout & metadata
+│   ├── page.tsx            # Entry point
+│   └── globals.css         # Global styles & design tokens
+├── components/
+│   └── turath/
+│       ├── screens/        # All 12 app screens
+│       ├── app-shell.tsx   # Main shell with navigation
+│       ├── animated-avatar.tsx     # AI guide avatar
+│       ├── bottom-navigation.tsx   # Tab bar navigation
+│       ├── interactive-morocco-map.tsx  # SVG city map
+│       ├── navigation-provider.tsx # Navigation context
+│       ├── phone-frame.tsx         # Mobile maquette frame
+│       └── screen-gallery.tsx      # Screen transition manager
+├── hooks/                  # Custom React hooks
+├── lib/                    # Shared utilities
+└── public/                 # Static assets (map, icons, audio)
+```
+
+---
+
+## 🎨 Design Philosophy
+
+Turath is designed with a **mobile-first, immersive aesthetic** inspired by Moroccan visual culture:
+
+- **Warm earthy tones** — terracotta, saffron, deep indigo
+- **Arabic-first content** — RTL layouts with proper Arabic typography
+- **Fluid motion** — spring-based animations for a tactile, native-app feel
+- **Gamified discovery** — challenges and badges to encourage cultural exploration
+
+---
+
+## 📦 Deployment
+
+The project is ready to deploy on [Vercel](https://vercel.com):
+
+```bash
+pnpm build
+```
+
+Or connect the repository to Vercel for automatic CI/CD deployments.
+
+---
+
+## 📄 License
+
+This project is a design prototype and wireframe demonstration. All content related to Moroccan heritage is used for educational and cultural appreciation purposes.

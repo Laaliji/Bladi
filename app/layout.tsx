@@ -19,7 +19,6 @@ const notoNaskhArabic = Noto_Naskh_Arabic({
 export const metadata: Metadata = {
   title: 'Turath | تراث - Moroccan Cultural Heritage',
   description: 'Explore Morocco\'s rich cultural heritage, artisan crafts, and historical sites with Turath - your AI-powered guide to Moroccan traditions.',
-  generator: 'v0.app',
   keywords: ['Morocco', 'heritage', 'culture', 'tourism', 'artisan', 'crafts', 'zellige', 'medina'],
   icons: {
     icon: [
