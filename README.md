@@ -1,8 +1,8 @@
-# Turath | تراث
+# Bladi | بلادي
 
 > **An interactive mobile app wireframe celebrating Morocco's rich cultural heritage.**
 
-Turath (Arabic for *"Heritage"*) is a high-fidelity interactive wireframe for a mobile-first cultural discovery platform. It lets users explore Moroccan cities, artisan crafts, heritage sites, and local traditions — guided by an AI voice narrator and an immersive map-first experience.
+Bladi (Arabic for *"Heritage"*) is a high-fidelity interactive wireframe for a mobile-first cultural discovery platform. It lets users explore Moroccan cities, artisan crafts, heritage sites, and local traditions — guided by an AI voice narrator and an immersive map-first experience.
 
 ---
 
